@@ -2049,7 +2049,50 @@ body:not(.in-results) .results-top-nav { display: none !important; }
    RESPONSIVE — Tablet / Mobile
 ═══════════════════════════════════════════ */
 @media(max-width:768px) {
-  .nav-inner { padding: 0 16px; }
+  .nav-inner {
+    padding: 10px 16px;
+    height: auto;
+    min-height: 56px;
+    gap: 10px 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .nav-brand { order: 1; }
+  .nav-right {
+    order: 2;
+    margin-left: auto;
+    max-width: 100%;
+  }
+  .nav-user-row {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    gap: 6px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links .nav-link {
+    display: inline-flex;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .nav-start-btn,
+  .nav-redeem-btn {
+    padding: 7px 12px;
+    font-size: 10px;
+  }
+  .nav-user-badge {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
   .landing-hero { padding: 76px 20px 26px; }
   .landing-hero-inner { max-width: 100%; }
   .hero-showcase {
@@ -2127,7 +2170,26 @@ body:not(.in-results) .results-top-nav { display: none !important; }
   .career-info-card { min-height: unset; }
 }
 @media(max-width:480px) {
-  .nav-links .nav-link { display: none; }
+  .nav-inner {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .nav-brand {
+    font-size: 10px;
+    letter-spacing: .1em;
+  }
+  .nav-user-row { gap: 6px; }
+  .nav-user-badge { display: none; }
+  .nav-links .nav-link {
+    display: inline-flex;
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+  .nav-start-btn,
+  .nav-redeem-btn {
+    padding: 7px 10px;
+    font-size: 10px;
+  }
   .landing-section { padding: 48px 16px; }
   .landing-hero { padding: 68px 16px 22px; }
   .hero-title { font-size: clamp(40px, 13vw, 56px); }
