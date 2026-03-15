@@ -4842,12 +4842,15 @@ function updateProgress(){
 }
 
 
-function showResults(){
+function showResults(options){
+  var preserveScroll = !!(options && options.preserveScroll);
   document.getElementById('quiz').style.display='none';
   document.getElementById('results').style.display='block';
   document.body.classList.remove('in-quiz');
   document.body.classList.add('in-results');
-  window.scrollTo({top:0,behavior:'smooth'});
+  if (!preserveScroll) {
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
 
   // ── Sort directions ──
   var dirEntries=Object.keys(scores).filter(function(k){return DIRS[k];})
@@ -6072,8 +6075,7 @@ function restoreHistorySnapshot(index) {
   if (historyPage) historyPage.style.display = 'none';
   document.body.classList.remove('in-quiz');
   document.body.classList.add('in-results');
-  showResults();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showResults({ preserveScroll: true });
 }
 
 function buildHistoryPage() {
