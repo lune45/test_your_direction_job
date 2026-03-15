@@ -1956,7 +1956,7 @@ var ANCHOR_Qs=[
  text:'什么形式的工作成果最让你有满足感？',
  opts:[
   {t:'一个证明或理论框架，能经得起同行细查',d:{ml_theory:3,theory:3,stat_learn:2}},
-  {t:'一个可监控的系统，SLA 99.99% 稳定运行',d:{systems:2,dist_sys:2,mlops:2}},
+  {t:'一个可监控的系统，SLA 99.99% 稳定运行',sub:'意思是这套系统平时很稳、几乎一直在线，出了问题也能很快发现。99.99% 可以简单理解为“很少掉线”。',d:{systems:2,dist_sys:2,mlops:2}},
   {t:'一个机器人完成真实任务的视频',d:{robotics:3,embodied:3,autonomous:2}},
   {t:'一张能帮助医生做出更好决策的影像分析报告',d:{applied_ai:3,med_vision:3,domain_ds:2}}
  ]},
@@ -2154,6 +2154,69 @@ var ANCHOR_Qs=[
   {t:'用随机过程 / 仿真估计系统在不确定性下的表现',d:{stoch:3,sci_comp:2,uq:2}},
   {t:'用统计实验识别某个策略到底有没有效果',d:{stats:2,causal:3,econom:2}},
   {t:'用系统和硬件协同把真实吞吐/延迟做上去',d:{systems:2,arch:2,hw_sw:2}}
+ ]},
+
+{id:'a34',phase:'anchor',cat:'长期平台 / Long-Term Platform',
+ text:'如果未来几年可以长期维护一套“自己的平台”，你最想搭哪一种？',
+ opts:[
+  {t:'一套经得住真实流量和故障冲击的基础设施平台',d:{systems:3,dist_sys:3,cloud:2}},
+  {t:'一套能支撑实验、评估和因果判断的数据平台',d:{ds_eng:3,causal:2,stats:2}},
+  {t:'一套从板卡、固件到加速器都能反复迭代的端侧计算平台',d:{arch:3,embedded:3,hw_sw:2}},
+  {t:'一套能在真实环境里持续采集、定位、控制和评估的机器人平台',d:{robotics:3,perception:2,control:2}}
+ ]},
+
+{id:'a35',phase:'anchor',cat:'问题诊断 / Failure Diagnosis',
+ text:'一个项目效果不理想，你本能最先怀疑哪一层出了问题？',
+ opts:[
+  {t:'目标定义和评估方式错了，大家可能在优化错的东西',d:{causal:3,ds_sci:2,or_ops:1}},
+  {t:'系统架构和资源组织不对，真正瓶颈根本不在算法本身',d:{systems:3,sys_ai:2,arch:2}},
+  {t:'传感链路、硬件时序或控制闭环带来了物理误差',d:{embedded:3,signal:2,control:2}},
+  {t:'调度、规划或资源分配策略不对，整体方案不是最优的',d:{optim:3,scheduling:2,game_th:2}}
+ ]},
+
+{id:'a36',phase:'anchor',cat:'约束偏好 / Constraint Preference',
+ text:'哪种约束最会激起你“非得把它做出来”的劲头？',
+ opts:[
+  {t:'用户量暴涨，但系统不能掉线也不能变慢',d:{systems:3,dist_sys:2,cloud:2}},
+  {t:'样本少、偏差大，但结论还必须足够可靠',d:{stats:3,causal:2,bayes:2}},
+  {t:'功耗和时序都被卡死，还得把设备真正做出来',d:{embedded:3,vlsi:2,arch:2}},
+  {t:'噪声、遮挡和扰动很多，机器仍然要稳稳完成动作',d:{robotics:3,control:2,autonomous:2}}
+ ]},
+
+{id:'a37',phase:'anchor',cat:'成果画面 / Deliverable Picture',
+ text:'如果这个学期最后必须交一个“看得见的成果”，你最想交什么？',
+ opts:[
+  {t:'一套能承载真实请求的系统、数据库或平台原型',d:{systems:3,db:2,dist_sys:2}},
+  {t:'一份能真正改变决策的实验、预测或因果分析报告',d:{ds_sci:3,causal:2,or_ops:2}},
+  {t:'一块能稳定跑起来的板卡、端侧设备或计算原型',d:{arch:3,embedded:2,hw_sw:2}},
+  {t:'一个在真实场景里完成任务的机器人 demo',d:{robotics:3,perception:2,control:2}}
+ ]},
+
+{id:'a38',phase:'anchor',cat:'项目投入 / Project Investment',
+ text:'如果要把一个学期都压在同一类项目上，你最愿意长期磨哪一类？',
+ opts:[
+  {t:'把一套服务在高并发下做得稳、快、可扩展',d:{systems:3,dist_sys:3,cloud:2}},
+  {t:'用实验和数据判断一个策略到底有没有真实效果',d:{causal:3,stats:2,ds_sci:2,econom:1}},
+  {t:'把板卡、设备或端侧系统真正调到能长期运行',d:{embedded:3,hw_sw:2,arch:2}},
+  {t:'让机器人在复杂环境里感知、规划并完成动作',d:{robotics:3,autonomous:2,control:2}}
+ ]},
+
+{id:'a39',phase:'anchor',cat:'长期问题 / Long-Haul Problem',
+ text:'哪类问题最像你愿意连续啃好几年的？',
+ opts:[
+  {t:'大型软件系统为什么会慢、会抖、会在高峰期出问题',d:{systems:3,dist_sys:2,db:2}},
+  {t:'有限资源怎样分配才最优，比如排班、路线、库存、定价',d:{optim:3,or_ops:3,scheduling:2}},
+  {t:'数据里的关系到底是巧合还是因果，怎么说得更可靠',d:{causal:3,stats:2,ds_sci:2}},
+  {t:'计算怎样在芯片和硬件层被重新组织得更快更省',d:{arch:3,ai_hw:2,vlsi:2}}
+ ]},
+
+{id:'a40',phase:'anchor',cat:'未来工作画面 / Future Work Picture',
+ text:'哪种长期工作画面最吸引你？',
+ opts:[
+  {t:'维护和演进一套很多人依赖的基础设施平台',d:{systems:3,dist_sys:2,cloud:2}},
+  {t:'做出一套能支撑分析、实验和业务判断的数据方法或平台',d:{ds_sci:2,ds_eng:2,causal:2}},
+  {t:'设计求解器或决策系统，让调度和资源分配更聪明',d:{or_ops:3,optim:2,scheduling:2}},
+  {t:'把硬件、固件和系统真正接成一台可靠设备',d:{embedded:3,hw_sw:2,arch:2}}
  ]},
 
 ];
@@ -2481,6 +2544,26 @@ var CS_Qs=[
   {t:'在线与近似决策——没有完整信息时也要尽快给出不错方案',d:{algo:2,theory:2,or_ops:2,game_th:1}},
   {t:'理论 / 算法不是我最想长期投入的方向',d:{theory:1}}
  ]},
+
+{id:'cs17',phase:'cs',cat:'网络与云 / Networks & Cloud',
+ text:'如果你继续往“网络 / 云”这条线深挖，更想长期做哪类问题？',
+ opts:[
+  {t:'云网络与服务治理——服务之间怎样稳、快、可灰度地通信',d:{cloud:3,networks:2,dist_sys:2}},
+  {t:'网络测量与可观测性——系统到底慢在哪、堵在哪、抖在哪',d:{networks:3,systems:2,cloud:1}},
+  {t:'移动与边缘网络——设备在弱网、切换和带宽变化中怎样保持体验',d:{networks:3,cloud:1,embedded:1}},
+  {t:'协议与互联网基础设施——规则一旦定下，整个系统怎样长期演化',d:{networks:3,theory:1,systems:1}},
+  {t:'网络 / 云不是我最想长期投入的方向',d:{networks:1}}
+ ]},
+
+{id:'cs18',phase:'cs',cat:'软件可靠性 / Software Reliability',
+ text:'如果你更偏“把复杂软件长期做稳”，最想攻哪类问题？',
+ opts:[
+  {t:'测试与验证——系统越大，越需要自动化保证它没在悄悄变坏',d:{formal:2,systems:2,pl:1}},
+  {t:'运行时与调试——程序崩了、卡了、泄漏了，怎样更快看清原因',d:{systems:3,pl:2,arch:1}},
+  {t:'工程协作与发布——多人并行开发时怎样做到可回滚、可追踪、可复现',d:{systems:3,cloud:2,pl:1}},
+  {t:'开发效率工具——让别人更快写对代码，而不是自己单点写得更快',d:{pl:3,systems:1,hci:1}},
+  {t:'软件可靠性不是我最想长期投入的方向',d:{systems:1}}
+ ]},
 ];
 
 var DS_Qs=[
@@ -2654,6 +2737,26 @@ var DS_Qs=[
   {t:'贴近政策 / 组织决策——让分析结果真的改变资源分配和策略',d:{econom:2,domain_ds:2,causal:2}},
   {t:'应用研究目前不是我最想长期投入的方向',d:{domain_ds:1}}
  ]},
+
+{id:'ds19',phase:'ds',cat:'风险与预测 / Risk & Forecasting',
+ text:'如果你继续往“预测 / 风险”深挖，更想长期做哪类问题？',
+ opts:[
+  {t:'需求与供给预测——提前判断未来会来什么、缺什么、该备多少',d:{ts_anal:3,domain_ds:2,or_ops:1}},
+  {t:'信用 / 欺诈 / 风险识别——在大量噪声里提前看出危险信号',d:{domain_ds:3,stats:2,bayes:1}},
+  {t:'医疗 / 教育结果预测——提前识别谁更需要干预和帮助',d:{domain_ds:3,causal:2,stats:1}},
+  {t:'不确定性建模——不仅要预测结果，还要说清它有多不稳',d:{bayes:3,stats:2,uq:1}},
+  {t:'预测 / 风险不是我最想长期投入的方向',d:{ts_anal:1}}
+ ]},
+
+{id:'ds20',phase:'ds',cat:'产品分析 / Product Analytics',
+ text:'如果你做的是“产品里的数据科学”，最想把时间花在哪类问题上？',
+ opts:[
+  {t:'指标体系——什么才算真的增长、留存、满意和健康',d:{ds_sci:3,stats:2,vis:1}},
+  {t:'实验平台——让 A/B、分层实验和归因分析都能长期复用',d:{causal:3,mlops:1,ds_eng:1}},
+  {t:'用户分层与行为建模——不同人到底为什么会做出不同选择',d:{domain_ds:3,ds_sci:2,causal:1}},
+  {t:'决策支持——把分析变成产品、运营和商业团队真的会用的动作建议',d:{domain_ds:2,vis:2,ds_sci:2}},
+  {t:'产品分析不是我最想长期投入的方向',d:{ds_sci:1}}
+ ]},
 ];
 
 var ROBOTICS_Qs=[
@@ -2766,6 +2869,56 @@ var ROBOTICS_Qs=[
   {t:'交互优先——先把“人怎么给机器人意图”这件事讲清楚',d:{hri:3,embodied:2,vla:1}},
   {t:'平台优先——先把软硬件和数据闭环搭起来，让研究能持续迭代',d:{robotics:2,embedded:2,systems:2}},
   {t:'机器人研究整体目前不是我最想长期投入的方向',d:{robotics:1}}
+ ]},
+
+{id:'rb12',phase:'robotics',cat:'机器人学习 / Robot Learning',
+ text:'如果你更偏“机器人怎么学会新技能”，最想长期攻哪类问题？',
+ opts:[
+  {t:'模仿学习——看人做几遍，机器人就能学会关键动作',d:{embodied:3,robotics:2,rl:1}},
+  {t:'离线机器人学习——不反复上真机试错，也能从历史数据学策略',d:{embodied:2,rl:3,robotics:1}},
+  {t:'语言条件操作——一句自然语言指令就能触发复杂动作链',d:{vla:3,embodied:2,hri:1}},
+  {t:'世界模型与预训练——先学会理解环境，再学具体任务',d:{embodied:3,rl:2,perception:1}},
+  {t:'机器人学习不是我最想长期投入的方向',d:{embodied:1}}
+ ]},
+
+{id:'rb13',phase:'robotics',cat:'野外与行业机器人 / Field Robotics',
+ text:'如果机器人要走出实验室，你更想把它放到哪类现场？',
+ opts:[
+  {t:'巡检与运维——去工厂、电站、矿区这些人不想长待的地方',d:{autonomous:3,robotics:2,perception:1}},
+  {t:'空中机器人——无人机在复杂地形里自主感知和执行任务',d:{autonomous:3,control:2,motion:1}},
+  {t:'海洋 / 水下机器人——传感困难、通信受限，但任务价值很高',d:{robotics:3,signal:1,autonomous:2}},
+  {t:'多机器人协同——很多机器人一起分工，不只是一台机器聪明',d:{robotics:3,autonomous:2,motion:1}},
+  {t:'这些野外 / 行业机器人场景不是我最想长期投入的',d:{robotics:1}}
+ ]},
+
+{id:'rb14',phase:'robotics',cat:'机器人软件栈 / Robotics Stack',
+ text:'如果你负责整个机器人软件栈，更想把精力花在哪一层？',
+ opts:[
+  {t:'感知栈——把相机、激光、IMU 变成稳定可用的世界表示',d:{perception:3,slam:2,signal:1}},
+  {t:'任务与行为层——把“要做什么”拆成一串可靠的动作计划',d:{motion:3,hri:1,autonomous:2}},
+  {t:'控制与执行层——让命令真正丝滑地落到电机和执行器上',d:{control:3,embedded:2,robotics:1}},
+  {t:'数据与评测层——把日志、仿真、回放和测试闭环搭起来',d:{robotics:2,systems:2,embodied:1}},
+  {t:'机器人软件栈不是我最想长期投入的方向',d:{robotics:1}}
+ ]},
+
+{id:'rb15',phase:'robotics',cat:'机器人操作 / Manipulation',
+ text:'如果机器人要真正“动手做事”，你最想长期攻哪类问题？',
+ opts:[
+  {t:'抓取与操作——杂乱环境里也能稳定抓到和放对物体',d:{robotics:3,perception:2,embodied:1}},
+  {t:'移动操作——一边移动一边完成操作，不只停在工作台前',d:{motion:3,robotics:2,autonomous:1}},
+  {t:'从示范里学技能——看几次人类演示就能迁移到新任务',d:{embodied:3,vla:2,rl:1}},
+  {t:'接触与安全——和人、物体接触时仍然柔顺、可控、可信任',d:{control:2,hri:2,robotics:2}},
+  {t:'机器人操作目前不是我最想长期投入的方向',d:{robotics:1}}
+ ]},
+
+{id:'rb16',phase:'robotics',cat:'机器人部署 / Deployment',
+ text:'如果机器人真的要长期上线，哪类现实问题最值得你花时间？',
+ opts:[
+  {t:'传感器漂移与标定——今天能跑，过几周后也要还能跑',d:{perception:2,slam:2,signal:1}},
+  {t:'仿真到真实迁移——实验室里好使，到了现场别突然失灵',d:{embodied:2,autonomous:2,robotics:1}},
+  {t:'故障诊断与远程维护——机器出了问题，要能快速定位和恢复',d:{robotics:2,systems:2,embedded:1}},
+  {t:'人与机器协作——人何时信任它、何时接管、如何更顺手地配合',d:{hri:3,robotics:1,safety:1}},
+  {t:'机器人部署整体目前不是我最想长期投入的方向',d:{robotics:1}}
  ]},
 ];
 
@@ -2887,6 +3040,46 @@ var EE_Qs=[
   {t:'量产测试——从样品可用走到规模稳定出货',d:{elec_sys:2,vlsi:2,signal:1}},
   {t:'硬件验证 / Bring-up 不是我最想长期投入的方向',d:{embedded:1}}
  ]},
+
+{id:'ee13',phase:'ee',cat:'混合信号 / Mixed-Signal',
+ text:'如果你继续往“模拟 / 混合信号”走，更想长期攻哪类问题？',
+ opts:[
+  {t:'模数转换——ADC/DAC 的速度、精度和功耗怎样一起平衡',d:{elec_sys:3,signal:2,vlsi:1}},
+  {t:'时钟与同步——系统一复杂，时序和抖动就会变成底层大问题',d:{elec_sys:3,vlsi:2,embedded:1}},
+  {t:'电源管理——算力越来越高，但热和功耗必须被压住',d:{elec_sys:3,embedded:2,ai_hw:1}},
+  {t:'传感前端——让真实世界里的微弱信号别在第一步就被淹没',d:{elec_sys:2,signal:3,photonics:1}},
+  {t:'混合信号不是我最想长期投入的方向',d:{elec_sys:1}}
+ ]},
+
+{id:'ee14',phase:'ee',cat:'端侧系统 / Edge Systems',
+ text:'如果你做的是“设备端真正要跑起来的系统”，最想长期攻哪类问题？',
+ opts:[
+  {t:'低功耗设备——算力不多、电池很紧，但功能还得长期稳定工作',d:{embedded:3,iot:2,elec_sys:1}},
+  {t:'传感-控制闭环——从感知到动作的整个链条都必须足够快和稳',d:{embedded:2,control:2,signal:2}},
+  {t:'端侧 AI 部署——模型要压缩、量化，还要在真设备上跑得动',d:{embedded:3,ai_hw:2,quant:2}},
+  {t:'设备联网与更新——成千上万台设备怎样安全协同和远程维护',d:{iot:3,embedded:2,security:1}},
+  {t:'端侧系统不是我最想长期投入的方向',d:{embedded:1}}
+ ]},
+
+{id:'ee15',phase:'ee',cat:'下一代通信 / Next-Gen Communication',
+ text:'如果你继续往“通信系统”深挖，更想长期做哪类问题？',
+ opts:[
+  {t:'无线链路优化——把频谱、功率和误码率调到更优',d:{comm:3,signal:2,info_th:1}},
+  {t:'通信标准与协议——规则定得怎样，整个生态才会真正跑起来',d:{comm:3,systems:1,info_th:1}},
+  {t:'基站 / 终端实现——让算法真正变成能跑的工程系统',d:{comm:2,embedded:2,signal:2}},
+  {t:'智能通信——把学习方法接进资源调度、信道估计和网络控制里',d:{comm:2,signal:2,ml:2}},
+  {t:'通信系统不是我最想长期投入的方向',d:{comm:1}}
+ ]},
+
+{id:'ee16',phase:'ee',cat:'EE工作画面 / EE Work Style',
+ text:'哪种 EE 工作日常最像你愿意长期投入的状态？',
+ opts:[
+  {t:'反复测量和调优信号链路，让输入输出更稳更准',d:{signal:3,elec_sys:2,photonics:1}},
+  {t:'围绕无线链路和协议做系统级优化，盯吞吐、误码和覆盖',d:{comm:3,info_th:1,signal:1}},
+  {t:'让嵌入式控制系统在真实设备上长期稳定运行',d:{embedded:2,control:2,elec_sys:1}},
+  {t:'设计并验证数字/AI 硬件模块，把计算真正做进芯片',d:{vlsi:2,ai_hw:2,arch:1}},
+  {t:'这些 EE 工作画面目前都不是我最想长期投入的',d:{comm:1}}
+ ]},
 ];
 
 var CE_Qs=[
@@ -2968,6 +3161,66 @@ var CE_Qs=[
   {t:'在设备端盯启动、日志、功耗和时序，把系统一点点稳定下来',d:{emb_sw:3,embedded:2,soc:1}},
   {t:'设计面向 AI 的专用执行单元，让同样模型更快更省',d:{ai_hw:3,npu:2,arch:2}},
   {t:'这些 CE 工作画面目前都不是我最想长期投入的',d:{arch:1}}
+ ]},
+
+{id:'ce9',phase:'ce',cat:'运行时与编译 / Runtime & Compiler',
+ text:'如果你站在“软件怎样把硬件吃满”这条线上，最想长期攻哪类问题？',
+ opts:[
+  {t:'编译器映射——同一个模型怎样自动变成最适合目标硬件的执行计划',d:{hw_sw:3,ai_hw:2,pl:1}},
+  {t:'运行时调度——不同算子、不同内存块、不同执行单元怎样排队协作',d:{hw_sw:3,arch:2,soc:1}},
+  {t:'内核与算子优化——真正把热点算子改到更快、更省带宽',d:{ai_hw:2,hw_sw:2,arch:2}},
+  {t:'调试与可观测性——让复杂硬件运行链路里的问题更快被看见',d:{emb_sw:2,hw_sw:2,systems:1}},
+  {t:'运行时 / 编译链不是我最想长期投入的方向',d:{hw_sw:1}}
+ ]},
+
+{id:'ce10',phase:'ce',cat:'内存与互连 / Memory & Interconnect',
+ text:'如果你继续往“数据在系统里怎么流动”深挖，更想长期做哪类问题？',
+ opts:[
+  {t:'缓存与带宽——算力已经够快，真正卡住的是数据搬运',d:{mem_sys:3,arch:2,ai_hw:1}},
+  {t:'片上互连——越来越多模块在一颗芯片上，怎么别互相堵死',d:{soc:3,mem_sys:2,arch:1}},
+  {t:'近存 / 存内计算——把数据尽量留在靠近计算的地方',d:{in_mem:3,ai_hw:2,mem_sys:1}},
+  {t:'多芯片协同——单芯片不够了，很多块芯片怎样像一个系统那样工作',d:{soc:2,arch:2,hw_sw:2}},
+  {t:'内存 / 互连不是我最想长期投入的方向',d:{mem_sys:1}}
+ ]},
+
+{id:'ce11',phase:'ce',cat:'设备到云 / Device to Cloud',
+ text:'如果你负责“设备-边缘-云”整条链路，最想长期解决什么？',
+ opts:[
+  {t:'设备侧稳定性——设备资源紧，但还得长期运行、远程维护',d:{emb_sw:3,embedded:2,soc:1}},
+  {t:'边缘协同——哪些任务放本地、哪些放云上，怎样分工最划算',d:{emb_sw:2,cloud:2,hw_sw:2}},
+  {t:'数据与模型下发——更新一旦出错，现场设备可能全部受影响',d:{emb_sw:3,security:1,systems:1}},
+  {t:'设备平台产品化——让不同硬件代际也能复用同一套软件平台',d:{soc:2,emb_sw:2,hw_sw:1}},
+  {t:'设备到云这条线不是我最想长期投入的方向',d:{emb_sw:1}}
+ ]},
+
+{id:'ce12',phase:'ce',cat:'可重构与验证 / Reconfigurable & Validation',
+ text:'如果你继续往“把体系结构想法变成真机”走，更想长期做哪类问题？',
+ opts:[
+  {t:'FPGA 原型——先在可重构硬件上验证架构，快速试错',d:{fpga:3,arch:2,logic_des:1}},
+  {t:'系统验证——复杂系统一大，边界条件和时序问题就会成倍出现',d:{logic_des:3,soc:2,emb_sw:1}},
+  {t:'平台集成——不同 IP、不同外设、不同软件栈怎样真正接起来',d:{soc:3,hw_sw:2,emb_sw:1}},
+  {t:'板级与接口联调——从原理图到设备通信，最后一公里最磨人也最关键',d:{emb_sw:2,fpga:2,systems:1}},
+  {t:'可重构 / 验证不是我最想长期投入的方向',d:{fpga:1}}
+ ]},
+
+{id:'ce13',phase:'ce',cat:'执行瓶颈 / Execution Bottlenecks',
+ text:'如果你继续深挖 CE，更想长期盯哪类瓶颈？',
+ opts:[
+  {t:'执行效率——流水线、执行单元和乱序机制怎样把周期吃满',d:{arch:3,logic_des:2,mem_sys:1}},
+  {t:'数据搬运——缓存、带宽、互连怎样别拖慢整套系统',d:{mem_sys:3,soc:2,arch:1}},
+  {t:'编译与运行时——软件怎样更聪明地把硬件潜力真正用出来',d:{hw_sw:3,arch:2,ai_hw:1}},
+  {t:'平台固件与 bring-up——底层链路怎样从上电开始就可控、可调、可诊断',d:{emb_sw:3,soc:1,embedded:1}},
+  {t:'这些 CE 执行瓶颈目前都不是我最想长期投入的',d:{arch:1}}
+ ]},
+
+{id:'ce14',phase:'ce',cat:'计算平台 / Compute Platforms',
+ text:'哪种 CE 工作现场最像你愿意长期投入的样子？',
+ opts:[
+  {t:'AI 加速器 / NPU 平台——围绕模型、算子和硬件一起做联合优化',d:{ai_hw:3,npu:2,arch:1}},
+  {t:'边缘设备平台——传感器、连接、固件和设备端计算要一起配合',d:{emb_sw:2,soc:2,embedded:2}},
+  {t:'原型与验证平台——先把想法做成能跑的 FPGA / 板级系统，再快速试错',d:{fpga:3,soc:1,logic_des:1}},
+  {t:'CPU / GPU / 内存系统分析——用 benchmark 和 profiling 找出真实瓶颈',d:{arch:3,mem_sys:2,hw_sw:1}},
+  {t:'这些 CE 平台场景目前都不是我最想长期投入的',d:{arch:1}}
  ]},
 ];
 
@@ -3070,6 +3323,66 @@ var OR_Qs=[
   {t:'数值方法与仿真——让复杂模型在计算机里跑起来并可验证',d:{sci_comp:3,optim:1,stoch:1}},
   {t:'机制与博弈——把人的行为和规则设计也纳入模型',d:{game_th:3,or_ops:1,econom:1}},
   {t:'这些数理工具目前都不是我最想长期投入的',d:{optim:1}}
+ ]},
+
+{id:'or11',phase:'or',cat:'服务系统 / Service Systems',
+ text:'如果你继续往“服务系统与容量”深挖，更想长期做哪类问题？',
+ opts:[
+  {t:'排队与等待——用户来了很多，系统怎样既不爆也不让人等太久',d:{stoch:3,or_ops:2,systems:1}},
+  {t:'容量规划——该备多少资源才既稳又不浪费',d:{or_ops:3,scheduling:2,optim:1}},
+  {t:'鲁棒运营——需求波动很大时，方案怎样仍然可执行',d:{stoch:2,optim:2,or_ops:2}},
+  {t:'服务网络设计——站点、仓、运力和时窗怎样整体协同',d:{or_ops:3,scheduling:2,comb_opt:1}},
+  {t:'服务系统不是我最想长期投入的方向',d:{or_ops:1}}
+ ]},
+
+{id:'or12',phase:'or',cat:'市场与机制 / Markets & Mechanisms',
+ text:'如果你更偏“规则与激励”，最想长期做哪类问题？',
+ opts:[
+  {t:'拍卖与定价——规则稍微一变，参与者行为就会完全不同',d:{game_th:3,or_ops:2,stoch:1}},
+  {t:'平台资源分配——商家、用户、平台三方目标怎么平衡',d:{game_th:3,or_ops:2,domain_ds:1}},
+  {t:'激励机制——怎样设计规则，大家更愿意说真话、做对事',d:{game_th:3,econom:2,or_ops:1}},
+  {t:'市场仿真——先把参与者行为模拟清楚，再谈策略与制度',d:{stoch:2,game_th:2,sci_comp:1}},
+  {t:'市场 / 机制不是我最想长期投入的方向',d:{game_th:1}}
+ ]},
+
+{id:'or13',phase:'or',cat:'科学建模 / Scientific Modeling',
+ text:'如果你做的是“现实系统的数学模型”，最想长期建哪类模型？',
+ opts:[
+  {t:'制造与工业系统——设备、良率、排程和约束都要进同一个模型',d:{or_ops:3,sci_comp:2,optim:1}},
+  {t:'能源与电网——供需、功率、储能和不确定天气一起进入决策',d:{or_ops:3,stoch:2,sci_comp:1}},
+  {t:'交通与城市系统——路网、需求波动、拥堵和策略反馈一起建模',d:{or_ops:3,stoch:2,domain_ds:1}},
+  {t:'生物 / 科学过程——系统本身很复杂，但又值得用严格模型去逼近',d:{sci_comp:3,comp_bio:2,stoch:1}},
+  {t:'科学建模不是我最想长期投入的方向',d:{sci_comp:1}}
+ ]},
+
+{id:'or14',phase:'or',cat:'序贯决策 / Sequential Decision',
+ text:'如果问题不是“一次性决定”，而是一步一步往前走，你最想长期做哪类？',
+ opts:[
+  {t:'长期规划——当前动作会改变后面很多步的可选空间',d:{dynamic_prog:3,optim:2,stoch:1}},
+  {t:'风险控制——每一步都得考虑最坏情况，不然代价会滚雪球',d:{stoch:3,uq:2,or_ops:1}},
+  {t:'自适应策略——边观察边更新，不可能一次就把世界看全',d:{dynamic_prog:2,stoch:2,bayes:1}},
+  {t:'RL / OR 交叉——把现实业务问题写成能学习、能规划、能执行的决策系统',d:{dynamic_prog:3,or_ops:2,rl:1}},
+  {t:'序贯决策不是我最想长期投入的方向',d:{dynamic_prog:1}}
+ ]},
+
+{id:'or15',phase:'or',cat:'优化建模 / Optimization Modeling',
+ text:'如果你负责一个复杂运营问题，第一反应更想把哪一层建清楚？',
+ opts:[
+  {t:'目标和约束——先把“什么算好、什么不能碰”写成清楚模型',d:{conv_opt:3,optim:2,or_ops:1}},
+  {t:'不确定性——需求、天气、价格和噪声怎样一起进模型',d:{stoch:3,uq:2,optim:1}},
+  {t:'离散结构——路线、匹配、排程这种组合关系怎样被精确表达',d:{comb_opt:3,algo:2,or_ops:1}},
+  {t:'参与者反应——规则一变，人的行为和系统结果就一起变',d:{game_th:3,econom:2,or_ops:1}},
+  {t:'这些建模层面目前都不是我最想长期投入的',d:{optim:1}}
+ ]},
+
+{id:'or16',phase:'or',cat:'OR落地 / OR Productization',
+ text:'如果一个优化系统真的要进入业务，最想长期解决哪类难点？',
+ opts:[
+  {t:'解释和信任——结果再优，如果业务团队不敢用也没有意义',d:{or_ops:3,vis:1,game_th:1}},
+  {t:'预测和优化联动——不是先预测完就结束，而是要直接连到后续动作',d:{or_ops:2,ts_anal:2,optim:2}},
+  {t:'实时重算——需求和约束一变，方案也要跟着快速更新',d:{scheduling:3,stoch:2,optim:1}},
+  {t:'规则和最优解的平衡——数学上最优，不一定是业务上最能落地的方案',d:{or_ops:3,game_th:1,domain_ds:1}},
+  {t:'OR 落地目前不是我最想长期投入的方向',d:{or_ops:1}}
  ]},
 ];
 
@@ -3451,11 +3764,207 @@ var DEEP_Qs=[
   {t:'优化与预测联动——不是单独做模型，而是把预测直接接进优化动作',sub:'※ 更偏 demand forecasting + resource planning 的一体化系统',d:{or_ops:3,ts_anal:1,domain_ds:1}},
   {t:'规则与人机协同——不是一味追求最优，而是给人留出可干预空间',sub:'※ 更偏现实约束、交互式优化和策略接受度',d:{or_ops:2,game_th:1,hci:1}}
  ]},
+
+{id:'d_network_cloud',phase:'deep',cat:'网络与云深挖 / Network & Cloud Deep Dive',
+ triggerDirs:['networks','cloud','dist_sys'], triggerThreshold:10,
+ text:'如果继续深挖网络 / 云基础设施，你最想长期做哪类问题？',
+ opts:[
+  {t:'云网络与服务发现——服务一多，通信、隔离和治理就会复杂得多',sub:'※ 更偏大型服务之间怎么稳定通信、发现彼此、做灰度和容灾',d:{cloud:3,networks:2,dist_sys:2}},
+  {t:'性能测量与可观测性——系统慢不是最可怕，可怕的是根本不知道它为什么慢',sub:'※ 更偏 tracing、拥塞分析、网络测量和性能归因',d:{networks:3,systems:2,cloud:1}},
+  {t:'边缘与移动网络——用户位置、链路条件和带宽都在不断变化',sub:'※ 更偏弱网、切换、边缘节点协同和端到端体验优化',d:{networks:3,cloud:1,embedded:1}},
+  {t:'协议演化与互联网基础设施——一条规则改动会影响整张网的长期行为',sub:'※ 更偏互联网架构、协议设计和大规模网络治理',d:{networks:3,systems:1,theory:1}}
+ ]},
+
+{id:'d_devinfra',phase:'deep',cat:'开发基础设施深挖 / Developer Infra Deep Dive',
+ triggerDirs:['systems','pl','formal'], triggerThreshold:10,
+ text:'如果继续深挖“让复杂软件长期可维护”，你最想长期做哪类问题？',
+ opts:[
+  {t:'测试与发布体系——改动很多，但系统必须始终可回滚、可追踪、可验证',sub:'※ 更偏 CI/CD、测试策略、变更管理和工程稳定性',d:{systems:3,formal:1,pl:1}},
+  {t:'运行时与调试工具——程序真出事时，怎样最快把问题看清楚',sub:'※ 更偏 profiler、调试器、诊断工具和性能分析链路',d:{systems:3,pl:2,arch:1}},
+  {t:'静态检查与程序分析——尽量在程序真正运行前发现问题',sub:'※ 更偏 lint、类型、静态分析和自动化质量保证',d:{pl:3,formal:2,systems:1}},
+  {t:'开发体验平台——让大团队也能稳定、高效地协作开发',sub:'※ 更偏仓库工具链、构建系统和开发者效率平台',d:{pl:2,systems:2,hci:1}}
+ ]},
+
+{id:'d_product_metrics',phase:'deep',cat:'产品指标深挖 / Product Metrics Deep Dive',
+ triggerDirs:['ds_sci','causal','vis'], triggerThreshold:10,
+ text:'如果继续深挖产品分析，你最想长期做哪类问题？',
+ opts:[
+  {t:'指标设计——什么才是真正能代表用户价值和业务健康的指标',sub:'※ 更偏定义口径、拆分目标和避免“把错误东西做得更快”',d:{ds_sci:3,stats:2,vis:1}},
+  {t:'实验平台——让实验设计、分层分析和回看复盘都能长期复用',sub:'※ 更偏 A/B 平台、实验治理和结论沉淀',d:{causal:3,mlops:1,ds_eng:1}},
+  {t:'用户分群与旅程分析——不同用户为什么在不同阶段做出不同选择',sub:'※ 更偏行为分析、路径分析和策略拆分',d:{domain_ds:3,ds_sci:2,causal:1}},
+  {t:'决策可视化——把复杂分析变成产品和运营团队愿意真正使用的界面',sub:'※ 更偏 dashboard、交互分析和决策支持',d:{vis:3,ds_sci:2,hci:1}}
+ ]},
+
+{id:'d_decision_analytics',phase:'deep',cat:'决策分析深挖 / Decision Analytics Deep Dive',
+ triggerDirs:['domain_ds','econom','causal'], triggerThreshold:10,
+ text:'如果继续深挖“数据怎样帮助真实决策”，你最想长期做哪类问题？',
+ opts:[
+  {t:'策略评估——先判断一项政策或产品动作到底有没有用',sub:'※ 更偏效果评估、归因和“如果不做会怎样”的问题',d:{causal:3,econom:2,domain_ds:1}},
+  {t:'资源分配——预算、人力、营销或运营动作怎样分才最值',sub:'※ 更偏决策支持、优化和业务落地',d:{domain_ds:3,or_ops:2,causal:1}},
+  {t:'风险与预警——提前发现哪些用户、流程或机构更可能出问题',sub:'※ 更偏预警、监控和不确定性下的决策',d:{domain_ds:3,bayes:1,stats:2}},
+  {t:'解释与沟通——让复杂分析结果真的被决策者采用',sub:'※ 更偏把复杂模型翻译成管理层和业务团队能行动的建议',d:{domain_ds:2,vis:2,ds_sci:1}}
+ ]},
+
+{id:'d_robot_learning',phase:'deep',cat:'机器人学习深挖 / Robot Learning Deep Dive',
+ triggerDirs:['embodied','rl','vla'], triggerThreshold:10,
+ text:'如果继续深挖机器人学习，你最想长期攻哪类问题？',
+ opts:[
+  {t:'模仿学习——少量高质量示范如何变成稳定可迁移的技能',sub:'※ 更偏从人类演示里学技能，而不是完全靠试错',d:{embodied:3,rl:2,robotics:1}},
+  {t:'离线机器人学习——不用反复上真机，也能从历史轨迹里学策略',sub:'※ 更偏从已有数据中学机器人动作，降低真实世界试错成本',d:{rl:3,embodied:2,robotics:1}},
+  {t:'语言条件控制——一句自然语言指令怎样真正变成可靠动作',sub:'※ 更偏把语言模型、视觉和控制接成一个可执行链路',d:{vla:3,embodied:2,hri:1}},
+  {t:'世界模型与预训练——先学环境规律，再学具体任务',sub:'※ 更偏让机器人先建立对物理世界的可迁移表示',d:{embodied:3,rl:2,perception:1}}
+ ]},
+
+{id:'d_field_robotics',phase:'deep',cat:'野外机器人深挖 / Field Robotics Deep Dive',
+ triggerDirs:['autonomous','robotics','perception'], triggerThreshold:10,
+ text:'如果继续深挖“机器人走出实验室”，你最想长期做哪类问题？',
+ opts:[
+  {t:'巡检与运维机器人——环境脏、远、危险，但任务价值极高',sub:'※ 更偏工厂、电站、矿区、隧道等真实环境里的自主作业',d:{autonomous:3,robotics:2,perception:1}},
+  {t:'空中机器人——受限载荷下还要感知、规划、控制一起做好',sub:'※ 更偏无人机导航、避障、任务规划和机载算力约束',d:{autonomous:3,control:2,motion:1}},
+  {t:'海洋 / 水下机器人——通信差、感知难，系统鲁棒性要求更高',sub:'※ 更偏长期自主运行和强不确定环境下的系统设计',d:{robotics:3,signal:1,autonomous:2}},
+  {t:'多机器人协同——不是单机智能，而是很多机器人一起完成任务',sub:'※ 更偏协同规划、任务分配和系统级 coordination',d:{robotics:3,autonomous:2,motion:1}}
+ ]},
+
+{id:'d_mixed_signal',phase:'deep',cat:'混合信号深挖 / Mixed-Signal Deep Dive',
+ triggerDirs:['elec_sys','signal','vlsi'], triggerThreshold:10,
+ text:'如果继续深挖模拟 / 混合信号，你最想长期做哪类问题？',
+ opts:[
+  {t:'模数转换与时钟——速度、精度、抖动和功耗总是在互相拉扯',sub:'※ 更偏 ADC/DAC、时钟链路和底层稳定性问题',d:{elec_sys:3,signal:2,vlsi:1}},
+  {t:'电源与热管理——系统越来越强，但供电和散热永远是硬约束',sub:'※ 更偏 PMIC、功耗管理和整机稳定性',d:{elec_sys:3,embedded:1,ai_hw:1}},
+  {t:'前端传感链路——弱小的真实信号怎样在第一步就别被毁掉',sub:'※ 更偏模拟前端、噪声控制和传感器接口',d:{signal:3,elec_sys:2,photonics:1}},
+  {t:'量产一致性与验证——实验室能跑和大规模稳定交付不是一回事',sub:'※ 更偏 PVT、验证、测试和出货稳定性',d:{elec_sys:2,vlsi:2,eda:1}}
+ ]},
+
+{id:'d_wireless_systems',phase:'deep',cat:'无线系统深挖 / Wireless Systems Deep Dive',
+ triggerDirs:['comm','info_th','signal'], triggerThreshold:10,
+ text:'如果继续深挖无线 / 通信系统，你最想长期做哪类问题？',
+ opts:[
+  {t:'物理层与链路——把调制、编码和估计做到更稳更接近极限',sub:'※ 更偏 PHY、误码率、链路预算和信道特性',d:{comm:3,info_th:2,signal:1}},
+  {t:'网络与资源调度——不同用户、不同链路怎样公平又高效地共享资源',sub:'※ 更偏 MAC、调度、协议和系统层优化',d:{comm:3,or_ops:1,systems:1}},
+  {t:'通信实现——让算法最终落到基站、终端和真实设备上',sub:'※ 更偏工程实现、基带、板级与系统整合',d:{comm:2,embedded:2,signal:2}},
+  {t:'智能无线——把学习方法真正接进估计、优化和链路控制里',sub:'※ 更偏 AI for wireless、信道预测和学习型调度',d:{comm:2,signal:2,ml:2}}
+ ]},
+
+{id:'d_memory_runtime',phase:'deep',cat:'内存与运行时深挖 / Memory & Runtime Deep Dive',
+ triggerDirs:['mem_sys','hw_sw','arch'], triggerThreshold:10,
+ text:'如果继续深挖 CE 里的“数据流和执行流”，你最想长期做哪类问题？',
+ opts:[
+  {t:'缓存与带宽瓶颈——算力不是不够，而是数据来不及送到位',sub:'※ 更偏 memory hierarchy、缓存策略和带宽利用率',d:{mem_sys:3,arch:2,ai_hw:1}},
+  {t:'执行时调度——不同算子、不同核、不同内存块怎样更聪明地配合',sub:'※ 更偏 runtime、调度和资源分配',d:{hw_sw:3,arch:2,soc:1}},
+  {t:'近存 / 异构数据流——让数据更少移动、让不同计算单元更自然分工',sub:'※ 更偏 in-memory、heterogeneous computing 和 dataflow',d:{in_mem:2,hw_sw:2,arch:2}},
+  {t:'性能诊断——系统慢不是最可怕，最可怕是根本看不清慢在哪里',sub:'※ 更偏 profiling、性能归因和底层可观测性',d:{arch:2,hw_sw:2,systems:1}}
+ ]},
+
+{id:'d_device_platform',phase:'deep',cat:'设备平台深挖 / Device Platform Deep Dive',
+ triggerDirs:['soc','emb_sw','fpga'], triggerThreshold:10,
+ text:'如果继续深挖 CE 里的设备平台，你最想长期做哪类问题？',
+ opts:[
+  {t:'固件与启动链路——设备从上电到可用，中间每一步都不能乱',sub:'※ 更偏 boot chain、初始化、设备发现和平台稳定性',d:{emb_sw:3,soc:2,security:1}},
+  {t:'SoC 集成——不同 IP、外设和软件栈怎样真正装进同一个可交付系统',sub:'※ 更偏集成、接口和跨团队协同',d:{soc:3,emb_sw:2,hw_sw:1}},
+  {t:'可重构平台——用 FPGA / 原型系统快速试错新的计算想法',sub:'※ 更偏 prototype、reconfigurable systems 和验证',d:{fpga:3,arch:1,soc:1}},
+  {t:'设备长期维护——部署之后怎么升级、追踪、止损和远程修复',sub:'※ 更偏平台工程、运维、日志和生命周期管理',d:{emb_sw:3,systems:1,security:1}}
+ ]},
+
+{id:'d_service_risk',phase:'deep',cat:'服务与风险深挖 / Service & Risk Deep Dive',
+ triggerDirs:['stoch','uq','or_ops'], triggerThreshold:10,
+ text:'如果继续深挖不确定系统，你最想长期做哪类问题？',
+ opts:[
+  {t:'排队与服务容量——系统来了多少请求、多久排完、哪里会堵住',sub:'※ 更偏 queueing、容量建模和服务系统分析',d:{stoch:3,or_ops:2,systems:1}},
+  {t:'稳健规划——最坏情况不一定常见，但一旦出现代价极高',sub:'※ 更偏 robust optimization、风险边界和保守决策',d:{uq:3,optim:2,stoch:1}},
+  {t:'风险量化——不仅要给方案，还要说清它在什么条件下会失效',sub:'※ 更偏 uncertainty quantification 和风险评估',d:{uq:3,stoch:2,stats:1}},
+  {t:'服务网络决策——等待时间、成本和服务质量怎样一起平衡',sub:'※ 更偏服务运营、调度和系统级决策',d:{or_ops:3,stoch:2,scheduling:1}}
+ ]},
+
+{id:'d_mechanism_platform',phase:'deep',cat:'机制与平台深挖 / Mechanism & Platform Deep Dive',
+ triggerDirs:['game_th','or_ops','econom'], triggerThreshold:10,
+ text:'如果继续深挖“平台规则怎样影响行为”，你最想长期做哪类问题？',
+ opts:[
+  {t:'拍卖与定价——规则一旦设计不同，平台收益和公平性都会变',sub:'※ 更偏 auction、pricing 和市场设计',d:{game_th:3,or_ops:2,econom:1}},
+  {t:'激励兼容——怎样让参与者更愿意诚实行动而不是钻空子',sub:'※ 更偏 mechanism design 和策略行为分析',d:{game_th:3,econom:2,or_ops:1}},
+  {t:'平台供需匹配——订单、司机、商家、用户之间怎样更高效地配平',sub:'※ 更偏 marketplace、matching 和实时决策',d:{or_ops:3,game_th:2,domain_ds:1}},
+  {t:'规则仿真——先在模拟里看长期行为，再决定制度要不要上线',sub:'※ 更偏 simulation、policy design 和系统性副作用分析',d:{stoch:2,game_th:2,sci_comp:1}}
+ ]},
+
+{id:'d_ai_eval',phase:'deep',cat:'AI评测深挖 / AI Evaluation Deep Dive',
+ triggerDirs:['llm','foundation','safety','xai'], triggerThreshold:10,
+ text:'如果继续深挖“怎么判断 AI 真的变强了”，你最想长期做哪类问题？',
+ opts:[
+  {t:'能力评测——推理、规划、代码、工具使用这些能力怎样被测得更准',sub:'※ 更偏 benchmark 设计、任务拆解和能力边界定义',d:{llm:3,foundation:2,ml_theory:1}},
+  {t:'可靠性评测——模型什么时候会胡说、失控、过度自信',sub:'※ 更偏 red teaming、failure case 和部署前风险评估',d:{safety:3,llm:2,xai:1}},
+  {t:'数据与污染分析——模型是真的会了，还是只是背过了评测集',sub:'※ 更偏训练数据来源、评测公平性和数据污染分析',d:{foundation:3,ml_theory:2,stats:1}},
+  {t:'自动化评估系统——让评测可以规模化、持续化，而不是一次性跑分',sub:'※ 更偏 eval pipeline、自动评分和长期监控',d:{applied_ai:2,llm:2,mlops:1}}
+ ]},
+
+{id:'d_cs_storage_reliability',phase:'deep',cat:'存储与可靠性深挖 / Storage & Reliability Deep Dive',
+ triggerDirs:['db','dist_sys','systems','cloud'], triggerThreshold:10,
+ text:'如果继续深挖“系统怎样长期跑稳”，你最想长期做哪类问题？',
+ opts:[
+  {t:'一致性与复制——多副本、多机房下数据怎样既不乱又别太慢',sub:'※ 更偏复制协议、一致性级别和故障恢复',d:{db:3,dist_sys:2,systems:1}},
+  {t:'存储与日志——写入、压缩、恢复和冷热分层怎样一起协作',sub:'※ 更偏存储引擎、日志结构和系统级性能设计',d:{db:3,systems:2,cloud:1}},
+  {t:'可靠发布与回滚——系统更新很频繁，但业务不能跟着一起翻车',sub:'※ 更偏发布策略、回滚、灰度和服务稳定性',d:{systems:3,cloud:2,dist_sys:1}},
+  {t:'可观测性与诊断——出问题时怎样更快把根因从大量信号里拎出来',sub:'※ 更偏 tracing、指标、日志和性能定位工具',d:{systems:3,cloud:2,db:1}}
+ ]},
+
+{id:'d_ds_intervention_design',phase:'deep',cat:'干预设计深挖 / Intervention Design Deep Dive',
+ triggerDirs:['causal','domain_ds','econom','stats'], triggerThreshold:10,
+ text:'如果继续深挖“数据怎样支撑干预动作”，你最想长期做哪类问题？',
+ opts:[
+  {t:'实验设计——在真实业务里怎样把实验做得既可信又不扰民',sub:'※ 更偏分层实验、随机化策略和效果识别',d:{causal:3,stats:2,domain_ds:1}},
+  {t:'异质性影响——同一个动作对不同人群的效果怎么可能完全不同',sub:'※ 更偏 uplift、CATE 和人群差异化决策',d:{causal:3,stats:2,econom:1}},
+  {t:'策略上线评估——不是“模型分高就上线”，而是要判断真实收益和副作用',sub:'※ 更偏 policy evaluation、归因和长期影响跟踪',d:{domain_ds:3,causal:2,stats:1}},
+  {t:'干预闭环——分析、实验、上线、回看怎样形成真正可复用的流程',sub:'※ 更偏产品化、实验平台和决策系统闭环',d:{domain_ds:2,mlops:1,causal:2}}
+ ]},
+
+{id:'d_robot_manipulation',phase:'deep',cat:'机器人操作深挖 / Manipulation Deep Dive',
+ triggerDirs:['robotics','embodied','motion','perception'], triggerThreshold:10,
+ text:'如果继续深挖“机器人怎样真正动手做事”，你最想长期攻哪类问题？',
+ opts:[
+  {t:'抓取与放置——杂乱场景下怎样稳定拿对、放对、不打滑',sub:'※ 更偏抓取、接触建模和操作稳定性',d:{robotics:3,perception:2,control:1}},
+  {t:'移动操作——机器人一边移动一边操作时，规划和控制怎样配合',sub:'※ 更偏 mobile manipulation、路径约束和动作串联',d:{motion:3,robotics:2,control:1}},
+  {t:'从示范学技能——看几次人类操作后，怎样稳地迁移到新物体和新环境',sub:'※ 更偏 imitation learning、数据收集和泛化',d:{embodied:3,robotics:2,rl:1}},
+  {t:'接触与柔顺控制——机器人碰到人和物体时怎样仍然安全、可解释、可控',sub:'※ 更偏 compliant control、触觉和人机接触安全',d:{control:2,robotics:2,hri:1}}
+ ]},
+
+{id:'d_ee_sensor_frontend',phase:'deep',cat:'传感前端深挖 / Sensor Front-End Deep Dive',
+ triggerDirs:['signal','elec_sys','photonics'], triggerThreshold:10,
+ text:'如果继续深挖“真实世界信号怎样进系统”，你最想长期做哪类问题？',
+ opts:[
+  {t:'模拟前端——微弱信号在第一步就别被噪声和失真淹没',sub:'※ 更偏 AFE、噪声控制、放大与滤波设计',d:{elec_sys:3,signal:2,photonics:1}},
+  {t:'成像链路——从光到像素再到 ISP，哪一步最影响最终可用性',sub:'※ 更偏成像器件、ISP 和视觉前端系统',d:{photonics:3,signal:2,cv:1}},
+  {t:'传感系统集成——传感器、电路、固件和控制怎样真正配成一个产品',sub:'※ 更偏系统级感知集成，而不是单点器件研究',d:{signal:2,embedded:1,elec_sys:2}},
+  {t:'高速接口与信号完整性——信息越快越容易乱，链路怎样还能稳',sub:'※ 更偏高速链路、时钟、抖动和板级接口设计',d:{elec_sys:3,comm:1,signal:1}}
+ ]},
+
+{id:'d_ce_reconfigurable_runtime',phase:'deep',cat:'可重构平台深挖 / Reconfigurable Platform Deep Dive',
+ triggerDirs:['fpga','hw_sw','soc','arch'], triggerThreshold:10,
+ text:'如果继续深挖 CE 里的“平台与原型”，你最想长期做哪类问题？',
+ opts:[
+  {t:'可重构原型——先用 FPGA 把体系结构想法快速跑通和验证',sub:'※ 更偏原型验证、架构试错和快速迭代',d:{fpga:3,arch:2,soc:1}},
+  {t:'跨层调优——编译器、runtime 和硬件一起动，才能把性能真正吃满',sub:'※ 更偏 runtime、mapping 和跨层协同优化',d:{hw_sw:3,arch:2,fpga:1}},
+  {t:'系统集成——原型不只是能跑，还要能接驱动、接设备、接应用',sub:'※ 更偏平台软件栈、外设接口和 SoC 级集成',d:{soc:3,emb_sw:2,hw_sw:1}},
+  {t:'可观测与验证——原型复杂了以后，怎样快速看清到底哪层出了问题',sub:'※ 更偏 profiling、debug、trace 和系统验证',d:{hw_sw:2,fpga:2,systems:1}}
+ ]},
+
+{id:'d_or_network_design',phase:'deep',cat:'网络与服务优化深挖 / Network & Service Optimization Deep Dive',
+ triggerDirs:['or_ops','scheduling','stoch','optim'], triggerThreshold:10,
+ text:'如果继续深挖“很多节点怎样一起协作更优”，你最想长期做哪类问题？',
+ opts:[
+  {t:'物流与配送网络——仓、车、路和时窗一起变化时怎样仍然高效',sub:'※ 更偏 network design、vehicle routing 和时窗优化',d:{or_ops:3,scheduling:2,optim:1}},
+  {t:'服务系统容量——排队、等待、峰值和资源冗余怎样一起平衡',sub:'※ 更偏 service operations、queueing 和容量规划',d:{stoch:3,or_ops:2,scheduling:1}},
+  {t:'实时资源调度——需求在变、资源也在变，方案还得快速重算',sub:'※ 更偏 online optimization、实时调度和动态约束',d:{scheduling:3,optim:2,stoch:1}},
+  {t:'网络化决策平台——不是只出一个解，而是让系统持续滚动给出更好的动作建议',sub:'※ 更偏 OR 系统产品化、决策闭环和平台接入',d:{or_ops:3,optim:1,domain_ds:1}}
+ ]},
 ];
 
 // ── QUESTION BANK NORMALIZATION / UX CLEANUP ───────────────────────────────
 var _questionBanksNormalized = false;
 var QUESTION_BANKS = [ANCHOR_Qs, AI_Qs, CS_Qs, DS_Qs, ROBOTICS_Qs, EE_Qs, CE_Qs, OR_Qs, DEEP_Qs, CAREER_Qs];
+var ANCHOR_ROUTING_IDS = [
+  'a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a12',
+  'a13','a14','a15','a16','a17','a18','a19','a20','a21','a22','a23',
+  'a24','a25','a26','a27','a28','a29','a30','a31','a32','a33','a34',
+  'a35','a36','a37','a38','a39','a40'
+];
 var ENGLISH_ONLY_RE = /^[^一-龥]*[A-Za-z][^一-龥]*$/;
 var PREFERENCE_QUESTION_RE = /感兴趣|研究冲动|最关注|最在意|最想深入|最想每天做|职业偏好|更愿意|更喜欢|最享受|最想做|最有吸引力|最值得|最希望|最想专攻|最想攻克|最想解决|偏好|最重要|最优先|最自然|最核心|最愿意|最有研究动力/;
 var NEUTRAL_OPTION_RE = /没有明确|无明显偏好|暂时没有|不特别想|都不是我|不感兴趣|核心兴趣|目前不在|暂时还没有特别|还没有特别|想再多看看|没有特别想|没有特别吸引力|没有特别偏好|不是我最想长期投入|不是我最(?:想|感兴趣).*方向|不是我最感兴趣|目前不是我最感兴趣|目前不是我最想|都不是我最感兴趣|都不是我最想/;
@@ -3555,7 +4064,20 @@ var QUESTION_HINT_OVERRIDES = {
   ai11:'这题没有标准答案，它更像在判断你会被哪一类“未来十年还会持续发酵的大问题”长期吸住。',
   a21:'这题在看你更适合哪种学术或工程共同体，不需要你真的认识这些人，只要选你最愿意天天和他们讨论问题的那种氛围。',
   a22:'这里的“难”不是考试难度，而是你愿不愿意把时间耗在这种困难上。愿意长期啃哪种难题，往往比“哪种更热门”更重要。',
-  a14:''
+  a14:'',
+  c_vis3:'这题不是在问你会不会做多模态，而是在看你更想做哪一种工作：偏研究原理、偏产品落地、偏行业应用，还是偏底层平台。',
+  c_air4:'这题在看你对表示学习最感兴趣的是哪一类问题：解释原理、扩展到新数据类型、做大规模应用，还是研究它什么时候真的能迁移成功。'
+};
+var OPTION_NOTE_OVERRIDES = {
+  'a12::一个可监控的系统，SLA 99.99% 稳定运行':'意思是这套系统能长期稳定地跑着，平时可以随时看到它是否正常，一出问题也能很快发现。这里的 99.99% 可以简单理解为“几乎一直在线，很少出故障”。',
+  'c_vis3::研究视觉语言模型的对齐机制':'更偏研究岗：你会更关心模型为什么能把“图片里的东西”和“文字里的意思”对应起来，而不只是把它做成一个功能。',
+  'c_vis3::把 VLM 产品化——文档智能、图文问答、视觉搜索':'更偏产品落地：你想把图文能力做成用户真的会用的功能，比如合同问答、票据识别、商品搜图和文档检索。',
+  'c_vis3::做医疗多模态——影像+报告+患者记录的联合理解':'更偏行业应用：你会把影像、文字报告和病历放在一起理解，目标是帮助医生判断得更快、更准。',
+  'c_vis3::构建多模态 AI 系统的基础设施':'更偏平台与系统：你更在意训练、部署、数据管线和算力调度，让多模态模型能稳定跑起来、被团队反复使用。',
+  'c_air4::理论上理解为什么对比学习有效——几何结构是什么':'更偏基础研究：你想回答“这类方法为什么有效”，会更常接触数学分析、表示空间结构和理论解释。',
+  'c_air4::在新的模态（蛋白质/音频/代码）上做预训练':'更偏基础模型研究：你想把同一套学习方法带到新的数据类型里，看看模型能不能学出可迁移的通用表示。',
+  'c_air4::把表示学习用于工业级推荐系统的 embedding':'更偏工业应用：embedding 可以理解为“给用户、商品、内容做一个数字画像”，方便系统做召回、匹配和排序。',
+  'c_air4::研究迁移学习的泛化边界——什么条件下一定有效':'更偏理论边界：迁移学习就是“在一个任务上学到的能力，换到另一个任务还能不能用”；你关心它什么时候有效、什么时候会失灵。'
 };
 var QUESTION_HINT_RULES = [
   {re:/ML基础|ML Foundations/, note:'这题在判断你更想推进模型为什么能学会、如何更省数据，还是如何更高效地把能力做出来。'},
@@ -3677,6 +4199,10 @@ function getNeutralOptionSub(q) {
 
 function deriveOptionNote(q, opt) {
   if (!opt || opt.neutral || isNeutralOptionText(opt.t || '')) return '';
+  var overrideKey = (q && q.id ? q.id : '') + '::' + (opt.t || '');
+  if (Object.prototype.hasOwnProperty.call(OPTION_NOTE_OVERRIDES, overrideKey)) {
+    return OPTION_NOTE_OVERRIDES[overrideKey];
+  }
   var rawSub = (opt.sub || '').trim();
   if (rawSub && /[一-龥]/.test(rawSub)) return rawSub.replace(/^※\s*/, '');
   var source = [opt.t || '', rawSub].join(' ');
@@ -3787,16 +4313,17 @@ var PHASE2_TRACKS={
   or:OR_Qs
 };
 
-var PHASE2_LIMITS={1:13,2:10,3:8};
+var PHASE2_LIMITS={1:15,2:12,3:9};
+var PHASE3_LIMIT=9;
 
 var DEEP_DOMAIN_MAP={
-  ai:['d_foundation','d_nlp_ir','d_llm','d_cv','d_sys','d_multimodal_gen'],
-  cs:['d_sys','d_security','d_pl_formal','d_graphics_hci','d_db_infra','d_theory_algos'],
-  ds:['d_stats','d_bayes_ts','d_data_eng','d_experiment_policy','d_forecast_decision','d_domain_risk'],
-  robotics:['d_robot_perception','d_embodied','d_autonomous','d_control_emb','d_motion_control','d_hri_field'],
-  ee:['d_signal_comm','d_vlsi','d_arch_codesign','d_control_emb','d_embedded_edge','d_devices_photonics'],
-  ce:['d_arch_codesign','d_vlsi','d_firmware_soc','d_accelerator_runtime','d_ce_platform','d_control_emb'],
-  or:['d_optim','d_or_decision','d_bayes_ts','d_market_risk','d_sci_modeling','d_or_products']
+  ai:['d_foundation','d_nlp_ir','d_llm','d_cv','d_sys','d_multimodal_gen','d_security','d_optim','d_ai_eval'],
+  cs:['d_sys','d_security','d_pl_formal','d_graphics_hci','d_db_infra','d_theory_algos','d_network_cloud','d_devinfra','d_cs_storage_reliability'],
+  ds:['d_stats','d_bayes_ts','d_data_eng','d_experiment_policy','d_forecast_decision','d_domain_risk','d_product_metrics','d_decision_analytics','d_ds_intervention_design'],
+  robotics:['d_robot_perception','d_embodied','d_autonomous','d_control_emb','d_motion_control','d_hri_field','d_robot_learning','d_field_robotics','d_robot_manipulation'],
+  ee:['d_signal_comm','d_vlsi','d_arch_codesign','d_control_emb','d_embedded_edge','d_devices_photonics','d_mixed_signal','d_wireless_systems','d_ee_sensor_frontend'],
+  ce:['d_arch_codesign','d_vlsi','d_firmware_soc','d_accelerator_runtime','d_ce_platform','d_control_emb','d_memory_runtime','d_device_platform','d_ce_reconfigurable_runtime'],
+  or:['d_optim','d_or_decision','d_bayes_ts','d_market_risk','d_sci_modeling','d_or_products','d_service_risk','d_mechanism_platform','d_or_network_design']
 };
 
 var CAREER_DOMAIN_CLUSTER_MAP={
@@ -3889,10 +4416,14 @@ function addScores(d){
   });
 }
 
-function domainSum(dom){
-  var s=0;
-  (DOMAIN_KEYS[dom]||[]).forEach(function(k){s+=(scores[k]||0);});
-  return s;
+function domainSum(dom, sourceScores){
+  var pool = sourceScores || scores;
+  var vals=(DOMAIN_KEYS[dom]||[]).map(function(k){ return pool[k]||0; }).filter(function(v){ return v>0; });
+  if(!vals.length) return 0;
+  vals.sort(function(a,b){ return b-a; });
+  var head=vals.slice(0,6).reduce(function(sum,v){ return sum+v; },0);
+  var tail=vals.slice(6,10).reduce(function(sum,v){ return sum+v; },0);
+  return head + tail*0.25;
 }
 
 function getPhaseDomainScores() {
@@ -3907,6 +4438,89 @@ function getPhaseDomainScores() {
   };
 }
 
+function getQuestionById(qid) {
+  var found = null;
+  QUESTION_BANKS.some(function(bank) {
+    found = bank.find(function(q) { return q.id === qid; });
+    return !!found;
+  });
+  return found;
+}
+
+function collectLeafScoresFromAnswers(filterFn) {
+  var leafScores = {};
+  answers.forEach(function(answer) {
+    var q = getQuestionById(answer.qid);
+    if (!q || (filterFn && !filterFn(q, answer))) return;
+    (answer.selectedIdxs || []).forEach(function(idx) {
+      var opt = q.opts[idx];
+      if (!opt || !opt.d) return;
+      Object.keys(opt.d).forEach(function(key) {
+        if (key.indexOf('career_') === 0) return;
+        leafScores[key] = (leafScores[key] || 0) + opt.d[key];
+      });
+    });
+  });
+  return leafScores;
+}
+
+function getDomainScoresFromLeafScores(leafScores) {
+  return {
+    ai: domainSum('ai', leafScores),
+    cs: domainSum('cs', leafScores),
+    ds: domainSum('ds', leafScores),
+    robotics: domainSum('rb', leafScores),
+    ee: domainSum('ee', leafScores),
+    ce: domainSum('ce', leafScores),
+    or: domainSum('or', leafScores)
+  };
+}
+
+function getAnchorRoutingScores() {
+  var routingLookup = {};
+  ANCHOR_ROUTING_IDS.forEach(function(id) { routingLookup[id] = true; });
+  return getDomainScoresFromLeafScores(collectLeafScoresFromAnswers(function(q) {
+    return q.phase === 'anchor' && !!routingLookup[q.id];
+  }));
+}
+
+function getPhase2DecisionScores() {
+  var activeLookup = {};
+  (phase2Domains.length ? phase2Domains : resolvePhase2Domains()).forEach(function(dom) {
+    activeLookup[dom] = true;
+  });
+  var trackScores = {
+    ai: 0,
+    cs: 0,
+    ds: 0,
+    robotics: 0,
+    ee: 0,
+    ce: 0,
+    or: 0
+  };
+  answers.forEach(function(answer) {
+    var q = getQuestionById(answer.qid);
+    if (!q || !activeLookup[q.phase]) return;
+    var phaseDomain = q.phase;
+    (answer.selectedIdxs || []).forEach(function(idx) {
+      var opt = q.opts[idx];
+      if (!opt || !opt.d) return;
+      trackScores[phaseDomain] = (trackScores[phaseDomain] || 0) + 2.4;
+      Object.keys(activeLookup).forEach(function(dom) {
+        var domKey = dom === 'robotics' ? 'rb' : dom;
+        var contribution = (DOMAIN_KEYS[domKey] || []).reduce(function(sum, key) {
+          if (key.indexOf('career_') === 0) return sum;
+          return sum + (opt.d[key] || 0);
+        }, 0);
+        if (!contribution) return;
+        var weight = dom === phaseDomain ? 0.9 : 0.28;
+        trackScores[dom] = (trackScores[dom] || 0) + contribution * weight;
+      });
+    });
+  });
+  return trackScores;
+}
+
 function activatePhaseDomains(domains) {
   phaseActivated.ai = domains.indexOf('ai') >= 0;
   phaseActivated.cs = domains.indexOf('cs') >= 0;
@@ -3918,46 +4532,55 @@ function activatePhaseDomains(domains) {
 }
 
 function resolvePhase2Domains() {
-  var sums = getPhaseDomainScores();
-  var ranking = Object.keys(sums).sort(function(a, b) {
-    return sums[b] - sums[a];
+  var sums = getAnchorRoutingScores();
+  var ranking = Object.keys(sums).map(function(dom){
+    return {dom:dom, score:sums[dom]||0};
+  }).sort(function(a, b) {
+    return b.score - a.score;
   });
-  var topScore = sums[ranking[0]] || 0;
-  var total = Object.values(sums).reduce(function(a, b) { return a + b; }, 0) || 1;
-  var absThresholds={ai:26,cs:22,ds:18,robotics:15,or:12,ee:15,ce:15};
-  var activated = [];
-  ranking.forEach(function(dom, idx) {
-    var score = sums[dom] || 0;
-    var pct = score / total;
-    var rel = topScore ? score / topScore : 0;
-    var allow = false;
-    if (idx === 0) allow = score > 0;
-    else if (idx === 1) allow = (pct >= 0.16 && rel >= 0.62) || score >= (absThresholds[dom] || 18);
-    else if (idx === 2) allow = (pct >= 0.14 && rel >= 0.78) || (score >= (absThresholds[dom] || 18) && rel >= 0.72);
-    if (allow && activated.length < 3) activated.push(dom);
-  });
-  if (!activated.length) activated = [ranking[0]];
+  var top = ranking[0];
+  var second = ranking[1];
+  if (!top || top.score <= 0) return ['ai'];
+  var activated = [top.dom];
+  if (second && second.score > 0) {
+    var total = ranking.reduce(function(sum, item){ return sum + item.score; }, 0) || 1;
+    var secondShare = second.score / total;
+    var secondRel = second.score / (top.score || 1);
+    var closeGap = (top.score - second.score) <= 5;
+    if (second.score >= 9 && (secondRel >= 0.66 || secondShare >= 0.22 || closeGap)) {
+      activated.push(second.dom);
+    }
+  }
   return activated;
 }
 
 function getPhase2TrackLimit(domainCount, dom) {
   var bank = PHASE2_TRACKS[dom] || [];
-  return Math.min(bank.length, PHASE2_LIMITS[domainCount] || 8);
+  return Math.min(bank.length, PHASE2_LIMITS[domainCount] || 9);
 }
 
 function resolvePhase2Focus() {
+  var phase2Scores = getPhase2DecisionScores();
+  var anchorScores = getAnchorRoutingScores();
   var ranked = (phase2Domains.length ? phase2Domains : resolvePhase2Domains()).map(function(dom) {
-    return { dom: dom, score: getPhaseDomainScores()[dom] || 0 };
+    return {
+      dom: dom,
+      score: phase2Scores[dom] || 0,
+      tie: anchorScores[dom] || 0,
+      combined: (phase2Scores[dom] || 0) + (anchorScores[dom] || 0) * 0.38
+    };
   }).sort(function(a, b) {
-    return b.score - a.score;
+    if (b.combined !== a.combined) return b.combined - a.combined;
+    if (b.score !== a.score) return b.score - a.score;
+    return b.tie - a.tie;
   });
   var finalists = [];
   if (ranked[0]) finalists.push(ranked[0].dom);
   if (ranked[1]) {
-    var topScore = ranked[0].score || 1;
-    var secondScore = ranked[1].score || 0;
-    var pairTotal = ranked[0].score + secondScore || 1;
-    if (secondScore >= topScore * 0.72 && secondScore / pairTotal >= 0.38) finalists.push(ranked[1].dom);
+    var topScore = ranked[0].combined || 1;
+    var secondScore = ranked[1].combined || 0;
+    var pairTotal = ranked[0].combined + secondScore || 1;
+    if (secondScore >= topScore * 0.8 && secondScore / pairTotal >= 0.35) finalists.push(ranked[1].dom);
   }
   return { finalists: finalists, primary: finalists[0] || (ranked[0] && ranked[0].dom) || null };
 }
@@ -4019,10 +4642,10 @@ function buildDeepSequence(){
       return { q: q, score: getDeepTriggerScore(q) };
     }).sort(function(a, b) {
       return b.score - a.score;
-    }).slice(0, 4).map(function(item) { return item.q; });
+    }).slice(0, PHASE3_LIMIT).map(function(item) { return item.q; });
   }
 
-  candidates.forEach(function(q) {
+  candidates.slice(0, PHASE3_LIMIT).forEach(function(q) {
     qSequence.push(q);
   });
   updateProgress();
@@ -4231,7 +4854,19 @@ function showResults(){
     .map(function(k){return[k,scores[k]];})
     .sort(function(a,b){return b[1]-a[1];});
 
-  var topDir=(dirEntries.find(function(e){return !UMBRELLA_DIRS[e[0]];}) || dirEntries[0] || [null])[0];
+  var primaryDomainDirKey = {
+    ai:'ai',
+    cs:'cs',
+    ds:'ds',
+    robotics:'rb',
+    ee:'ee',
+    ce:'ce',
+    or:'or'
+  }[primaryDomain] || null;
+  var primaryDomainTopDir = dirEntries.find(function(e){
+    return !UMBRELLA_DIRS[e[0]] && DIRS[e[0]] && DIRS[e[0]].domain === primaryDomainDirKey;
+  });
+  var topDir=(primaryDomainTopDir || dirEntries.find(function(e){return !UMBRELLA_DIRS[e[0]];}) || dirEntries[0] || [null])[0];
   var topDirObj=topDir?DIRS[topDir]:null;
   var primaryDomainLabel = {
     ai:'AI / ML',
@@ -4243,12 +4878,19 @@ function showResults(){
     or:'Math / OR'
   }[primaryDomain] || '';
 
-  // Domain distribution (7 domains)
-  var domainSum={ai:0,cs:0,ds:0,rb:0,or:0,ee:0,ce:0};
-  dirEntries.forEach(function(e){
-    var dom=DIRS[e[0]]?DIRS[e[0]].domain:'ai';
-    domainSum[dom]=(domainSum[dom]||0)+e[1];
-  });
+  // Domain distribution (7 domains) uses the routed family scores rather than
+  // raw leaf totals, so large families like AI do not win just because they
+  // have more sub-directions.
+  var routedDomainScores=getPhaseDomainScores();
+  var domainSum={
+    ai:routedDomainScores.ai||0,
+    cs:routedDomainScores.cs||0,
+    ds:routedDomainScores.ds||0,
+    rb:routedDomainScores.robotics||0,
+    or:routedDomainScores.or||0,
+    ee:routedDomainScores.ee||0,
+    ce:routedDomainScores.ce||0
+  };
   var totalDom=Object.values(domainSum).reduce(function(a,b){return a+b;},0)||1;
   var aiPct=domainSum.ai/totalDom, csPct=domainSum.cs/totalDom, dsPct=domainSum.ds/totalDom;
   var rbPct=domainSum.rb/totalDom, orPct=domainSum.or/totalDom;
@@ -4501,15 +5143,24 @@ function buildMajors(domainSum,totalDom,dirEntries){
   var g=function(k){return scores[k]||0;};
   // Score 8 majors based on domain totals + specific direction signals
   var dom=function(d){return domainSum[d]||0;};
+  var domainToMajorKeyMap={
+    ai:'ai_ml',
+    cs:'cs',
+    ds:'ds_stat',
+    robotics:'robotics',
+    ee:'ece',
+    ce:'ce',
+    or:'or_math'
+  };
   var scores8={
-    ai_ml:    dom('ai')*1.5 + g('ml')+g('dl')+g('nlp')+g('llm')+g('cv')+g('multimodal')+g('generative')+g('foundation'),
-    cs:       dom('cs')*1.2 + g('systems')+g('theory')+g('algo')+g('pl')+g('security')+g('dist_sys'),
-    ece:      dom('ee')*1.3  + g('vlsi')+g('embedded')+g('control')+g('signal')+g('comm')+g('info_th'),
-    ce:       dom('ce')*1.4  + g('arch')+g('hw_sw')+g('soc')+g('ai_hw')+g('npu')+g('fpga'),
-    ds_stat:  dom('ds')*1.3  + g('stats')+g('causal')+g('bayes')+g('ds_sci')+g('econom'),
-    robotics: dom('rb')*1.4  + g('robotics')+g('embodied')+g('autonomous')+g('perception')+g('slam'),
-    or_math:  dom('or')*1.3  + g('optim')+g('or_ops')+g('game_th')+g('stoch')+g('sci_comp')+g('comb_opt'),
-    swe:      dom('cs')*0.8  + g('dist_sys')+g('sys_ai')+g('mlops')+g('db')+g('cloud')
+    ai_ml:    dom('ai')*1.15 + g('ml')+g('dl')+g('nlp')+g('llm')+g('cv')+g('multimodal')+g('generative')+g('foundation'),
+    cs:       dom('cs')*1.25 + g('systems')+g('theory')+g('algo')+g('pl')+g('security')+g('dist_sys'),
+    ece:      dom('ee')*1.25 + g('vlsi')+g('embedded')+g('control')+g('signal')+g('comm')+g('info_th'),
+    ce:       dom('ce')*1.25 + g('arch')+g('hw_sw')+g('soc')+g('ai_hw')+g('npu')+g('fpga'),
+    ds_stat:  dom('ds')*1.25 + g('stats')+g('causal')+g('bayes')+g('ds_sci')+g('econom'),
+    robotics: dom('rb')*1.25 + g('robotics')+g('embodied')+g('autonomous')+g('perception')+g('slam'),
+    or_math:  dom('or')*1.25 + g('optim')+g('or_ops')+g('game_th')+g('stoch')+g('sci_comp')+g('comb_opt'),
+    swe:      dom('cs')*0.95 + g('dist_sys')+g('sys_ai')+g('mlops')+g('db')+g('cloud')
   };
   var majorData={
     ai_ml:{abbr:'AI / ML',name:'人工智能 / 机器学习 · Artificial Intelligence & Machine Learning',
@@ -4546,8 +5197,26 @@ function buildMajors(domainSum,totalDom,dirEntries){
       tags:['System Architecture','Distributed Systems','DevOps & CI-CD','API Design','Full-Stack Development']},
   };
 
+  var primaryMajor = domainToMajorKeyMap[primaryDomain] || null;
+  var finalistMajors = (phase2Finalists || []).map(function(domKey){
+    return domainToMajorKeyMap[domKey];
+  }).filter(Boolean);
+
+  if (primaryMajor) scores8[primaryMajor] += 72;
+  finalistMajors.forEach(function(key){
+    if (key !== primaryMajor) scores8[key] += 24;
+  });
+
   var ranked=Object.keys(scores8).sort(function(a,b){return scores8[b]-scores8[a];});
-  var top4=ranked.slice(0,4).filter(function(k){return majorData[k];});
+  var orderedMajors = [];
+  if (primaryMajor && majorData[primaryMajor]) orderedMajors.push(primaryMajor);
+  finalistMajors.forEach(function(key){
+    if (majorData[key] && orderedMajors.indexOf(key) < 0) orderedMajors.push(key);
+  });
+  ranked.forEach(function(key){
+    if (majorData[key] && orderedMajors.indexOf(key) < 0) orderedMajors.push(key);
+  });
+  var top4=orderedMajors.slice(0,4);
 
   var majorEl=document.getElementById('majorGrid');
   if(!majorEl) return;
@@ -4555,8 +5224,8 @@ function buildMajors(domainSum,totalDom,dirEntries){
     var m=majorData[k];
     var s=scores8[k];
     var maxS=scores8[ranked[0]]||1;
-    var fitClass=i===0?'mc-fit-strong':i<=1?'mc-fit-mid':'';
-    var fitLabel=i===0?m.desc.slice(0,1)==='专'?'强烈推荐':'强烈推荐':i<=1?'推荐':'值得考虑';
+    var fitClass=(k===primaryMajor)?'mc-fit-strong':(finalistMajors.indexOf(k)>=0?'mc-fit-mid':'');
+    var fitLabel=(k===primaryMajor)?'主方向推荐':(finalistMajors.indexOf(k)>=0?'并行可考虑':'拓展备选');
     return '<div class="major-card'+(i===0?' top-major':'')+'">'
       +'<div class="mc-header"><span class="mc-abbr">'+m.abbr+'</span>'
       +'<span class="mc-fit '+fitClass+'">'+fitLabel+'</span></div>'
@@ -4888,7 +5557,7 @@ function openDirModal(dirKey) {
   var modal = document.getElementById('dirModal');
   modal.classList.add('open');
   modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+  lockBodyScroll();
   resetEntryScroll(modal.querySelector('.dir-modal-card') || modal);
 }
 
@@ -4896,7 +5565,7 @@ function closeDirModal() {
   var modal = document.getElementById('dirModal');
   modal.classList.remove('open');
   modal.style.display = 'none';
-  document.body.style.overflow = '';
+  unlockBodyScroll();
 }
 
 // Close on backdrop click
@@ -5157,7 +5826,7 @@ function openRedeemOverlay() {
     overlay.classList.add('open');
     overlay.style.display = 'flex';
   }
-  document.body.classList.add('modal-open');
+  lockBodyScroll();
   setTimeout(function(){
     var inp = document.getElementById('redeemInput');
     if (inp) inp.focus();
@@ -5176,7 +5845,7 @@ function closeRedeemOverlay() {
     overlay.classList.remove('open');
     overlay.style.display = 'none';
   }
-  document.body.classList.remove('modal-open');
+  unlockBodyScroll();
 }
 
 function continueLocalPreview() {
@@ -5185,6 +5854,42 @@ function continueLocalPreview() {
   closeRedeemOverlay();
   updateNavState();
   _startQuizCore();
+}
+
+var _modalLockDepth = 0;
+var _lockedBodyScrollY = 0;
+
+function lockBodyScroll() {
+  if (_modalLockDepth === 0) {
+    _lockedBodyScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    document.body.dataset.lockedScrollY = String(_lockedBodyScrollY);
+    document.body.style.position = 'fixed';
+    document.body.style.top = (-_lockedBodyScrollY) + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.classList.add('modal-open');
+  }
+  _modalLockDepth += 1;
+}
+
+function unlockBodyScroll(force) {
+  if (force) {
+    _modalLockDepth = 0;
+  } else {
+    _modalLockDepth = Math.max(0, _modalLockDepth - 1);
+  }
+  if (_modalLockDepth > 0) return;
+  var savedScrollY = parseInt(document.body.dataset.lockedScrollY || String(_lockedBodyScrollY || 0), 10) || 0;
+  document.body.classList.remove('modal-open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  delete document.body.dataset.lockedScrollY;
+  _lockedBodyScrollY = savedScrollY;
+  window.scrollTo({ top: savedScrollY, behavior: 'auto' });
 }
 
 function goHomeAfterRedeem() {
@@ -5234,8 +5939,7 @@ function hideBlockingLayers() {
     el.classList.remove('open', 'show');
     el.style.display = 'none';
   });
-  document.body.classList.remove('modal-open');
-  document.body.style.overflow = '';
+  unlockBodyScroll(true);
 }
 
 function showQuizLoadingState() {
@@ -5462,12 +6166,12 @@ function openCareerModal(ck) {
   }
   var modal = document.getElementById('careerModal');
   modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+  lockBodyScroll();
   resetEntryScroll(modal.querySelector('.dir-modal-card') || modal);
 }
 function closeCareerModal() {
   document.getElementById('careerModal').style.display = 'none';
-  document.body.style.overflow = '';
+  unlockBodyScroll();
 }
 document.addEventListener('DOMContentLoaded', function() {
   var m = document.getElementById('careerModal');
