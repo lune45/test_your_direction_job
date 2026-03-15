@@ -4905,8 +4905,13 @@ function renderQ(){
 
   html+='<div class="q-nav">';
   html+='<button class="nav-btn btn-back" onclick="goBack()"'+(canGoBack?'':' disabled')+'>← 上一题 / Back</button>';
-  var isLast=curIdx===qSequence.length-1;
-  if(isLast){
+  var stageKey = getStageKey(q.phase);
+  var hasPendingStage =
+    (stageKey === 'part1' && !phaseBuilt) ||
+    (stageKey === 'part2' && !deepBuilt) ||
+    (stageKey === 'part3' && !careerBuilt);
+  var isTerminal = curIdx===qSequence.length-1 && !hasPendingStage;
+  if(isTerminal){
     html+='<button class="nav-btn btn-finish" id="nextBtn" onclick="commitAndNext('+isMulti+')" '+(selectedIdxs.length===0?'disabled':'')+'>查看结果 →</button>';
   } else {
     html+='<button class="nav-btn btn-next" id="nextBtn" onclick="commitAndNext('+isMulti+')" '+(selectedIdxs.length===0?'disabled':'')+'>继续 → Continue</button>';
@@ -5835,7 +5840,7 @@ buildDirDetails = function(dirEntries) {
 var _phaseTransitionInProgress = false;
 
 function showPhaseOverlay(phaseKey, onDone) {
-  if (_phaseTransitionInProgress) return;
+  if (_phaseTransitionInProgress) _phaseTransitionInProgress = false;
   _phaseTransitionInProgress = true;
   var info = getPhaseMeta(phaseKey);
   var stageInfo = getStageInfoFromPhase(phaseKey);
