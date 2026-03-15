@@ -4378,6 +4378,7 @@ var CAREER_DOMAIN_CLUSTER_MAP={
 
 function resetAll(){
   scores={};careerScores={};answers=[];qSequence=[];curIdx=0;
+  _questionOptionOrderCache={};
   phaseActivated={anchor:true,ai:false,cs:false,ds:false,robotics:false,ee:false,ce:false,or:false,deep:false,career:false};
   phaseBuilt=false;deepBuilt=false;careerBuilt=false;
   _viewingHistorySnapshot=false;
@@ -4435,7 +4436,7 @@ function startQuiz(){
       var quiz  = document.getElementById('quiz');
       if (intro) intro.style.display = 'none';
       if (quiz)  quiz.style.display  = 'block';
-      qSequence = ACTIVE_STAGE1_QS.slice();
+      qSequence = buildStage1Sequence();
       curIdx = 0;
       updateProgress();
       renderQ();
@@ -4704,6 +4705,14 @@ function buildBridgeQuestion(template, domains) {
   return question;
 }
 
+function appendQuestionsUnique(list) {
+  (list || []).forEach(function(q) {
+    if (!q || !q.id) return;
+    var exists = qSequence.some(function(existing) { return existing && existing.id === q.id; });
+    if (!exists) qSequence.push(q);
+  });
+}
+
 function buildPhaseSequence(){
   if(phaseBuilt) return;
   phaseBuilt=true;
@@ -4711,9 +4720,9 @@ function buildPhaseSequence(){
   activatePhaseDomains(phase2Domains);
 
   if (ACTIVE_STAGE2_TEMPLATES.length) {
-    ACTIVE_STAGE2_TEMPLATES.slice(0, getPhase2TrackLimit(phase2Domains.length)).forEach(function(template) {
-      qSequence.push(buildBridgeQuestion(template, phase2Domains));
-    });
+    appendQuestionsUnique(ACTIVE_STAGE2_TEMPLATES.slice(0, getPhase2TrackLimit(phase2Domains.length)).map(function(template) {
+      return buildBridgeQuestion(template, phase2Domains);
+    }));
     updateProgress();
     return;
   }
@@ -4724,7 +4733,7 @@ function buildPhaseSequence(){
     var trackKey=dom;
     if(!track || added[trackKey]) return;
     added[trackKey]=true;
-    qSequence=qSequence.concat(track.slice(0, getPhase2TrackLimit(phase2Domains.length, dom)));
+    appendQuestionsUnique(track.slice(0, getPhase2TrackLimit(phase2Domains.length, dom)));
   });
   updateProgress();
 }
@@ -4747,9 +4756,7 @@ function buildDeepSequence(){
     }).slice(0, PHASE3_LIMIT).map(function(item) { return item.q; });
   }
 
-  candidates.slice(0, candidates.length).forEach(function(q) {
-    qSequence.push(q);
-  });
+  appendQuestionsUnique(candidates.slice(0, candidates.length));
   updateProgress();
 }
 
@@ -4759,6 +4766,62 @@ function shuffle(arr){
     var tmp=arr[i];arr[i]=arr[j];arr[j]=tmp;
   }
   return arr;
+}
+
+var _questionOptionOrderCache = {};
+
+function getQuestionOptionOrder(q) {
+  if (!q || !(q.opts || []).length) return [];
+  if (_questionOptionOrderCache[q.id] && _questionOptionOrderCache[q.id].length === q.opts.length) {
+    return _questionOptionOrderCache[q.id].slice();
+  }
+  var neutral = [];
+  var regular = [];
+  q.opts.forEach(function(opt, idx) {
+    if (opt && (opt.exclusive || opt.neutral || isNeutralOptionText(opt.t || ''))) neutral.push(idx);
+    else regular.push(idx);
+  });
+  var order = shuffle(regular.slice()).concat(neutral);
+  _questionOptionOrderCache[q.id] = order.slice();
+  return order;
+}
+
+function getQuestionDomainProfile(q) {
+  var leaf = {};
+  (q && q.opts || []).forEach(function(opt) {
+    if (!opt || !opt.d) return;
+    Object.keys(opt.d).forEach(function(key) {
+      if (key.indexOf('career_') === 0) return;
+      leaf[key] = (leaf[key] || 0) + opt.d[key];
+    });
+  });
+  return getDomainScoresFromLeafScores(leaf);
+}
+
+function buildStage1Sequence() {
+  var buckets = {};
+  var all = (ACTIVE_STAGE1_QS || []).slice();
+  all.forEach(function(q) {
+    var profile = getQuestionDomainProfile(q);
+    var top = Object.keys(profile).sort(function(a, b) { return (profile[b] || 0) - (profile[a] || 0); })[0] || 'mixed';
+    if (!buckets[top]) buckets[top] = [];
+    buckets[top].push(q);
+  });
+  var ordered = [];
+  var bucketKeys = Object.keys(buckets).sort(function(a, b) {
+    return buckets[b].length - buckets[a].length;
+  });
+  while (ordered.length < all.length) {
+    var progressed = false;
+    bucketKeys.forEach(function(key) {
+      if (buckets[key] && buckets[key].length) {
+        ordered.push(buckets[key].shift());
+        progressed = true;
+      }
+    });
+    if (!progressed) break;
+  }
+  return ordered;
 }
 
 function renderQ(){
@@ -4773,23 +4836,23 @@ function renderQ(){
 
   // Phase label
   var phaseLabel=(getPhaseMeta(q.phase)||{}).short || q.phase;
-  var catLabel=getCnLabel(q.cat);
   var canGoBack=curIdx>0 && qSequence[curIdx-1] && qSequence[curIdx-1].phase===q.phase;
 
   var letters='ABCDEFGHIJ';
+  var optionOrder = getQuestionOptionOrder(q);
   var html='<div class="q-card">';
   html+='<div class="q-meta"><span class="q-phase-badge">'+phaseLabel+'</span>';
-  if(catLabel) html+='<span class="q-phase-badge">'+catLabel+'</span>';
   if(isMulti) html+='<div class="multi-badge">☑ 多选题 · 最多选 <strong>'+maxSel+'</strong> 项</div>';
   html+='</div>';
   html+='<div class="q-text">'+q.text+'</div>';
   if(q.hint) html+='<div class="q-hint">'+q.hint+'</div>';
   html+='<div class="q-opts">';
-  q.opts.forEach(function(opt,i){
-    var isSel=selectedIdxs.indexOf(i)>=0;
+  optionOrder.forEach(function(optIdx, renderIdx){
+    var opt=q.opts[optIdx];
+    var isSel=selectedIdxs.indexOf(optIdx)>=0;
     var isDisabled=isMulti&&selectedIdxs.length>=maxSel&&!isSel;
-    html+='<div class="opt'+(isSel?' selected':'')+(isDisabled?' disabled-opt':'')+'" onclick="selectOpt('+i+','+isMulti+','+maxSel+')">';
-    html+='<div class="opt-letter" style="'+(isSel?'background:var(--accent);color:#fff;':'')+'">'+letters[i]+'</div>';
+    html+='<div class="opt'+(isSel?' selected':'')+(isDisabled?' disabled-opt':'')+'" data-opt-idx="'+optIdx+'" onclick="selectOpt('+optIdx+','+isMulti+','+maxSel+')">';
+    html+='<div class="opt-letter" style="'+(isSel?'background:var(--accent);color:#fff;':'')+'">'+letters[renderIdx]+'</div>';
     html+='<div class="opt-body"><div class="opt-main">'+opt.t+'</div>';
     if(opt.sub) html+='<div class="opt-sub">'+opt.sub+'</div>';
     html+='</div></div>';
@@ -4829,11 +4892,13 @@ function selectOpt(i,isMulti,maxSel){
   if(existingAns){ existingAns.selectedIdxs=sel; }
   else { answers.push({qid:q.id,selectedIdxs:sel,scored:false}); }
   var opts=document.querySelectorAll('.opt');
-  opts.forEach(function(el,idx){
-    el.classList.toggle('selected',sel.indexOf(idx)>=0);
-    el.classList.toggle('disabled-opt',isMulti&&sel.length>=maxSel&&sel.indexOf(idx)<0);
-    el.querySelector('.opt-letter').style.background=sel.indexOf(idx)>=0?'var(--accent)':'';
-    el.querySelector('.opt-letter').style.color=sel.indexOf(idx)>=0?'#fff':'';
+  opts.forEach(function(el){
+    var originalIdx = parseInt(el.getAttribute('data-opt-idx') || '-1', 10);
+    var selected = sel.indexOf(originalIdx) >= 0;
+    el.classList.toggle('selected',selected);
+    el.classList.toggle('disabled-opt',isMulti&&sel.length>=maxSel&&!selected);
+    el.querySelector('.opt-letter').style.background=selected?'var(--accent)':'';
+    el.querySelector('.opt-letter').style.color=selected?'#fff':'';
   });
   var btn=document.getElementById('nextBtn');
   if(btn) btn.disabled=sel.length===0;
@@ -4847,7 +4912,7 @@ function buildCareerSequence(){
   var activeCareerBank = ACTIVE_STAGE4_CAREER_BANKS[primaryDomain];
   if (Array.isArray(activeCareerBank) && activeCareerBank.length) {
     careerClustersSelected = [];
-    qSequence = qSequence.concat(activeCareerBank.slice());
+    appendQuestionsUnique(activeCareerBank.slice());
     updateProgress();
     return;
   }
@@ -4864,7 +4929,7 @@ function buildCareerSequence(){
 
   careerClustersSelected.forEach(function(ck){
     var qs=CAREER_Qs.filter(function(q){return q.cluster===ck;});
-    qSequence=qSequence.concat(qs);
+    appendQuestionsUnique(qs);
   });
 
   updateProgress();
@@ -5670,7 +5735,6 @@ function openDirModal(dirKey) {
   var modal = document.getElementById('dirModal');
   modal.classList.add('open');
   modal.style.display = 'flex';
-  lockBodyScroll();
   resetEntryScroll(modal.querySelector('.dir-modal-card') || modal);
 }
 
@@ -5678,7 +5742,6 @@ function closeDirModal() {
   var modal = document.getElementById('dirModal');
   modal.classList.remove('open');
   modal.style.display = 'none';
-  unlockBodyScroll();
 }
 
 // Close on backdrop click
@@ -6094,7 +6157,7 @@ function _startQuizCore() {
     showQuizLoadingState();
     resetAll();
     // Build anchor questions
-    qSequence = ACTIVE_STAGE1_QS.slice();
+    qSequence = buildStage1Sequence();
     curIdx = 0;
     updateProgress();
     renderQ();
@@ -6270,12 +6333,10 @@ function openCareerModal(ck) {
   }
   var modal = document.getElementById('careerModal');
   modal.style.display = 'flex';
-  lockBodyScroll();
   resetEntryScroll(modal.querySelector('.dir-modal-card') || modal);
 }
 function closeCareerModal() {
   document.getElementById('careerModal').style.display = 'none';
-  unlockBodyScroll();
 }
 document.addEventListener('DOMContentLoaded', function() {
   var m = document.getElementById('careerModal');
