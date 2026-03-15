@@ -4108,7 +4108,7 @@ var QUESTION_HINT_OVERRIDES = {
   c_air4:'这题在看你对表示学习最感兴趣的是哪一类问题：解释原理、扩展到新数据类型、做大规模应用，还是研究它什么时候真的能迁移成功。'
 };
 var OPTION_NOTE_OVERRIDES = {
-  'a12::一个可监控的系统，SLA 99.99% 稳定运行':'意思是这套系统能长期稳定地跑着，平时可以随时看到它是否正常，一出问题也能很快发现。这里的 99.99% 可以简单理解为“几乎一直在线，很少出故障”。',
+  'a12::一个可监控的系统，SLA 99.99% 稳定运行':'想象你负责一套一直有人在用的系统：平时能随时看到它是不是正常，出了问题也能尽快发现。99.99% 可以简单理解为“几乎一直在线，很少出故障”。',
   'c_vis3::研究视觉语言模型的对齐机制':'更偏研究岗：你会更关心模型为什么能把“图片里的东西”和“文字里的意思”对应起来，而不只是把它做成一个功能。',
   'c_vis3::把 VLM 产品化——文档智能、图文问答、视觉搜索':'更偏产品落地：你想把图文能力做成用户真的会用的功能，比如合同问答、票据识别、商品搜图和文档检索。',
   'c_vis3::做医疗多模态——影像+报告+患者记录的联合理解':'更偏行业应用：你会把影像、文字报告和病历放在一起理解，目标是帮助医生判断得更快、更准。',
@@ -4152,7 +4152,7 @@ var QUESTION_HINT_RULES = [
 ];
 var PHASE_META = {
   anchor:   {part:'第一部分', section:'粗分与性格锚定', pill:'第一部分 · 基础锚定', short:'基础锚定', icon:'🧭', color:'var(--accent3)', desc:'先不急着谈具体专业，先看你更像哪类问题解决者，以及你做事时真正被什么驱动。'},
-  bridge:   {part:'第二部分', section:'交界方向分流', pill:'第二部分 · 交界分流', short:'交界分流', icon:'🪄', color:'var(--accent)', desc:'把前面露头的 2-3 个大方向放在一起比较，看看你真正愿意长期投入的是哪一条主线。'},
+  bridge:   {part:'第二部分', section:'交界方向分流', pill:'第二部分 · 交界分流', short:'交界分流', icon:'🪄', color:'var(--accent)', desc:'把前面露头的 3-4 个大方向放在一起比较，看看你真正愿意长期投入的是哪一条主线。'},
   ai:       {part:'第二部分', section:'专业与方向细分', pill:'第二部分 · AI / ML', short:'AI / ML 专项', icon:'🤖', color:'var(--ai-color)', desc:'继续在 AI / ML 里收窄到你愿意长期投入的子方向。'},
   cs:       {part:'第二部分', section:'专业与方向细分', pill:'第二部分 · CS', short:'CS 专项', icon:'⚙️', color:'var(--cs-color)', desc:'继续在计算机科学里判断你更偏系统、理论、语言还是交互。'},
   ds:       {part:'第二部分', section:'专业与方向细分', pill:'第二部分 · DS / Stats', short:'数据科学专项', icon:'📊', color:'var(--ds-color)', desc:'继续细分你更偏统计推断、数据产品、数据工程还是因果分析。'},
@@ -4239,6 +4239,7 @@ function getNeutralOptionSub(q) {
 
 function deriveOptionNote(q, opt) {
   if (!opt || opt.neutral || isNeutralOptionText(opt.t || '')) return '';
+  if (q && q.phase === 'career') return '';
   var overrideKey = (q && q.id ? q.id : '') + '::' + (opt.t || '');
   if (Object.prototype.hasOwnProperty.call(OPTION_NOTE_OVERRIDES, overrideKey)) {
     return OPTION_NOTE_OVERRIDES[overrideKey];
@@ -4535,6 +4536,51 @@ function getAnchorRoutingScores() {
   }));
 }
 
+var BRIDGE_NEIGHBOR_MAP = {
+  ai: ['cs', 'ds', 'robotics', 'ce', 'or'],
+  cs: ['ce', 'or', 'ai', 'ds', 'ee'],
+  ds: ['or', 'ai', 'cs', 'robotics', 'ee'],
+  robotics: ['ee', 'ce', 'ai', 'cs', 'ds'],
+  ee: ['robotics', 'ce', 'cs', 'or', 'ds'],
+  ce: ['cs', 'ee', 'robotics', 'ai', 'or'],
+  or: ['ds', 'cs', 'ai', 'ce', 'ee']
+};
+
+function uniquePush(list, item) {
+  if (!item || list.indexOf(item) >= 0) return;
+  list.push(item);
+}
+
+function getRankedDomainsFromScores(sourceScores) {
+  return Object.keys(sourceScores).map(function(dom) {
+    return { dom: dom, score: sourceScores[dom] || 0 };
+  }).sort(function(a, b) {
+    return b.score - a.score;
+  });
+}
+
+function expandBridgeDomains(domains, minCount, maxCount, ranking) {
+  var ranked = (ranking || []).map(function(item) { return item.dom; });
+  var expanded = (domains || []).slice();
+  var seeds = expanded.slice();
+  while (expanded.length < (minCount || 4) && seeds.length) {
+    var seed = seeds.shift();
+    (BRIDGE_NEIGHBOR_MAP[seed] || []).forEach(function(neighbor) {
+      if (expanded.length >= (minCount || 4)) return;
+      uniquePush(expanded, neighbor);
+    });
+  }
+  ranked.forEach(function(dom) {
+    if (expanded.length >= (minCount || 4)) return;
+    uniquePush(expanded, dom);
+  });
+  ['ai', 'cs', 'ds', 'robotics', 'ee', 'ce', 'or'].forEach(function(dom) {
+    if (expanded.length >= (minCount || 4)) return;
+    uniquePush(expanded, dom);
+  });
+  return expanded.slice(0, maxCount || 4);
+}
+
 function getPhase2DecisionScores() {
   var activeLookup = {};
   (phase2Domains.length ? phase2Domains : resolvePhase2Domains()).forEach(function(dom) {
@@ -4591,41 +4637,35 @@ function activatePhaseDomains(domains) {
 
 function resolvePhase2Domains() {
   var sums = getAnchorRoutingScores();
-  var ranking = Object.keys(sums).map(function(dom){
-    return {dom:dom, score:sums[dom]||0};
-  }).sort(function(a, b) {
-    return b.score - a.score;
-  });
+  var ranking = getRankedDomainsFromScores(sums);
   var top = ranking[0];
   var second = ranking[1];
   var third = ranking[2];
-  if (!top) return ['cs', 'ds'];
-  var activated = [top.dom];
-  if (second && second.score > 0) {
-    var total = ranking.reduce(function(sum, item){ return sum + item.score; }, 0) || 1;
-    var secondShare = second.score / total;
-    var secondRel = second.score / (top.score || 1);
-    var closeGap = (top.score - second.score) <= 7;
-    if (secondRel >= 0.58 || secondShare >= 0.18 || closeGap) activated.push(second.dom);
+  var fourth = ranking[3];
+  if (!top) return ['cs', 'robotics', 'ds', 'ee'];
+  var activated = [];
+  if (top && top.score > 0) uniquePush(activated, top.dom);
+  if (second && second.score > 0) uniquePush(activated, second.dom);
+  if (third && third.score > 0) uniquePush(activated, third.dom);
+  if (activated.length < 3) {
+    activated = expandBridgeDomains(activated, 3, 4, ranking);
   }
-  if (third && third.score > 0 && activated.length >= 2) {
-    var thirdShare = third.score / ((ranking.reduce(function(sum, item){ return sum + item.score; }, 0)) || 1);
-    var thirdRel = third.score / (second && second.score ? second.score : 1);
-    var thirdGap = (top.score - third.score) <= 10;
-    if (thirdRel >= 0.78 || thirdShare >= 0.14 || thirdGap) activated.push(third.dom);
+  if (fourth && fourth.score > 0) {
+    var total = ranking.reduce(function(sum, item) { return sum + item.score; }, 0) || 1;
+    var fourthShare = fourth.score / total;
+    var fourthRel = fourth.score / ((third && third.score) || 1);
+    var closeGap = (top.score - fourth.score) <= 6;
+    if (fourthShare >= 0.12 || fourthRel >= 0.72 || closeGap) uniquePush(activated, fourth.dom);
   }
-  if (activated.length === 1 && second) {
-    activated.push(second.dom);
-  }
-  return activated;
+  return expandBridgeDomains(activated, 3, 4, ranking);
 }
 
 function getPhase2TrackLimit(domainCount, dom) {
   if (ACTIVE_STAGE2_TEMPLATES.length) {
-    return Math.min(ACTIVE_STAGE2_TEMPLATES.length, ({1:8,2:9,3:10}[domainCount] || 10));
+    return Math.min(ACTIVE_STAGE2_TEMPLATES.length, ({1:10,2:11,3:12,4:12}[domainCount] || 12));
   }
   var bank = PHASE2_TRACKS[dom] || [];
-  return Math.min(bank.length, PHASE2_LIMITS[domainCount] || 9);
+  return Math.min(bank.length, PHASE2_LIMITS[domainCount] || 12);
 }
 
 function resolvePhase2Focus() {
@@ -4682,23 +4722,24 @@ function getCareerClustersForPrimaryDomain(dom) {
 }
 
 function buildBridgeQuestion(template, domains) {
-  var options = (domains || []).map(function(dom) {
+  var bridgeDomains = expandBridgeDomains(domains || [], 4, 4, getRankedDomainsFromScores(getAnchorRoutingScores()));
+  var options = bridgeDomains.map(function(dom) {
     var base = template.optionMap ? template.optionMap[dom] : null;
     if (!base) return null;
     return {
       t: base.t,
-      sub: base.sub || '',
+      sub: (base.sub && !/更偏|更像/.test(base.sub)) ? base.sub : '',
       d: base.d || {},
       domains: base.domains || {}
     };
   }).filter(Boolean);
   var question = {
-    id: template.id + '__' + (domains || []).join('_'),
+    id: template.id + '__' + bridgeDomains.join('_'),
     sourceId: template.id,
     phase: 'bridge',
     cat: template.cat || '交界分流',
     text: template.text,
-    hint: template.hint || '',
+    hint: template.hint || '这一步会把 3-4 个看起来都像你的方向放在一起，继续比较你更愿意长期面对哪一类问题。',
     opts: options
   };
   if (needsNeutralOption(question)) question.opts.push(buildNeutralOption(question));
@@ -4810,6 +4851,9 @@ function buildStage1Sequence() {
   var ordered = [];
   var bucketKeys = Object.keys(buckets).sort(function(a, b) {
     return buckets[b].length - buckets[a].length;
+  });
+  bucketKeys.forEach(function(key) {
+    buckets[key] = shuffle((buckets[key] || []).slice());
   });
   while (ordered.length < all.length) {
     var progressed = false;

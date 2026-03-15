@@ -8,8 +8,8 @@ window.STAGE1_QS = [
       { t: '提出一个别人会持续引用的解释框架', d: { ml_theory: 2, stat_learn: 2, theory: 1, stats: 1 } },
       { t: '把一套复杂系统做得稳定、可靠、可扩展', d: { dist_sys: 2, cloud: 2, sys_ai: 1, emb_sw: 1 } },
       { t: '从混乱数据里判断真正发生了什么', d: { ds_sci: 2, causal: 2, bayes: 1, or_ops: 1 } },
-      { t: '让机器在真实世界里顺利完成任务', d: { robotics: 2, autonomous: 2, control: 1, perception: 1 } },
-      { t: '把硬件、芯片或设备链路做到更快更稳', d: { ai_hw: 2, vlsi: 2, signal: 1, embedded: 1 } }
+      { t: '让机器或车辆在真实环境里自己判断并完成任务', d: { robotics: 2, autonomous: 2, perception: 1, embodied: 1 } },
+      { t: '把传感器、设备和底层算力链路做到更快更稳', d: { ai_hw: 2, vlsi: 2, signal: 1, embedded: 1 } }
     ]
   },
   {
@@ -73,7 +73,7 @@ window.STAGE1_QS = [
       { t: '把一个模糊问题讲成一个清晰的理论问题', d: { ml_theory: 2, theory: 2, bayes: 1, game_th: 1 } },
       { t: '把一套复杂流程整理成可复用的系统', d: { systems: 2, db: 1, dist_sys: 2, ds_eng: 1 } },
       { t: '把一堆数据变成可靠的判断和建议', d: { ds_sci: 2, causal: 1, stats: 2, domain_ds: 1 } },
-      { t: '让设备或机器人在复杂环境里正常工作', d: { robotics: 2, autonomous: 1, embedded: 1, control: 2 } },
+      { t: '让机器人或车辆在复杂环境里更会看、更会判断', d: { robotics: 2, autonomous: 2, perception: 1, motion: 1 } },
       { t: '让芯片、链路或设备能力明显上一个台阶', d: { ce: 0, ai_hw: 2, npu: 1, comm: 2, vlsi: 1 } }
     ]
   },
@@ -99,8 +99,8 @@ window.STAGE1_QS = [
       { t: '为什么这个结论成立、还有没有更一般的情况', d: { ml_theory: 2, stat_learn: 1, theory: 2, dynamic_prog: 1 } },
       { t: '这套系统怎样做得更稳、更省、更能扩', d: { systems: 2, cloud: 2, ce: 0, arch: 1, ml_sys: 0 } },
       { t: '这个结果到底是不是因果，不是巧合吧', d: { causal: 2, econom: 2, ds_sci: 1, stats: 1 } },
-      { t: '机器怎样在现实里更好地感知、决策和行动', d: { robotics: 2, embodied: 1, control: 1, autonomous: 2 } },
-      { t: '底层链路怎么改才更接近极限性能', d: { ai_hw: 2, vlsi: 1, arch: 2, comm: 1 } }
+      { t: '机器怎样在现实里更好地感知、决策和行动', d: { robotics: 2, embodied: 1, autonomous: 2, perception: 1 } },
+      { t: '底层链路和算力组织怎么改才更接近极限性能', d: { ai_hw: 2, vlsi: 1, arch: 2, comm: 1 } }
     ]
   },
   {
@@ -216,7 +216,7 @@ window.STAGE1_QS = [
       { t: '因为你总能把一个问题讲透', d: { ml_theory: 2, theory: 2, stats: 1, pl: 1 } },
       { t: '因为你总能把复杂流程理顺并跑稳', d: { systems: 2, dist_sys: 2, ds_eng: 1, emb_sw: 1 } },
       { t: '因为你总能把数据和判断说得更可信', d: { ds_sci: 2, stats: 2, causal: 1, domain_ds: 1 } },
-      { t: '因为你总能让设备或机器真正动起来', d: { robotics: 2, motion: 1, control: 2, embedded: 1 } },
+      { t: '因为你总能让机器人或车辆在现实里真正做对事', d: { robotics: 2, autonomous: 2, motion: 1, control: 1 } },
       { t: '因为你总能把底层性能问题挖出来', d: { ai_hw: 2, arch: 2, mem_sys: 1, signal: 1 } }
     ]
   },
@@ -359,7 +359,7 @@ window.STAGE1_QS = [
       { t: '它在逻辑上讲得通，而且边界清楚', d: { ml_theory: 2, theory: 2, formal: 1, stats: 1 } },
       { t: '它在线上或大规模环境里真的跑稳了', d: { systems: 2, dist_sys: 2, cloud: 1, emb_sw: 1 } },
       { t: '它在不同样本和实验设计下都指向同一个结论', d: { stats: 2, causal: 2, bayes: 1, ds_sci: 1 } },
-      { t: '它在真机、真路况或真实现场里也成立', d: { robotics: 2, autonomous: 2, control: 1, hri: 1 } },
+      { t: '它在真机、真路况或真实现场里也能自己做对判断', d: { robotics: 2, autonomous: 2, perception: 1, hri: 1 } },
       { t: '它在严苛资源限制下还能保持高性能', d: { ai_hw: 2, arch: 2, embedded: 1, signal: 1 } }
     ]
   },
@@ -398,7 +398,7 @@ window.STAGE1_QS = [
       { t: '把一个原本模糊的问题讲成了清楚的问题', d: { ml_theory: 2, theory: 2, repr: 1, stats: 1 } },
       { t: '把一套原本脆弱的系统做成了公共底座', d: { systems: 2, dist_sys: 2, cloud: 1, db: 1 } },
       { t: '把原本靠感觉做的决定变成了有证据的判断', d: { ds_sci: 2, causal: 2, econom: 1, domain_ds: 1 } },
-      { t: '把机器从“能 demo”做到了“真能干活”', d: { robotics: 2, autonomous: 2, embodied: 1, control: 1 } },
+      { t: '把机器从“能 demo”做到了“真能独立干活”', d: { robotics: 2, autonomous: 2, embodied: 1, perception: 1 } },
       { t: '把底层能力做到了别人做不到的效率级别', d: { ai_hw: 2, arch: 2, npu: 1, vlsi: 1 } }
     ]
   },
@@ -413,6 +413,58 @@ window.STAGE1_QS = [
       { t: '复杂现实怎样才能被更稳地测量和判断', d: { stats: 2, causal: 2, bayes: 1, domain_ds: 1 } },
       { t: '复杂环境怎样才能被机器真正理解和应对', d: { robotics: 2, autonomous: 2, perception: 1, embodied: 1 } },
       { t: '复杂计算怎样从底层被重新组织得更高效', d: { arch: 2, ai_hw: 2, mem_sys: 1, comm: 1 } }
+    ]
+  },
+  {
+    id: 's1_33',
+    phase: 'anchor',
+    cat: '粗分流',
+    text: '如果项目是“让一台车或机器人真正上路/上场”，你最想负责哪一层？',
+    opts: [
+      { t: '把背后的方法和规律想透，知道它为什么会有效', d: { ml_theory: 2, theory: 2, stats: 1, formal: 1 } },
+      { t: '把整套系统和服务链路搭稳，让它长期可靠运行', d: { systems: 2, dist_sys: 2, cloud: 1, mlops: 1 } },
+      { t: '把日志、实验和观测变成能指导决策的证据', d: { ds_sci: 2, causal: 2, stats: 1, domain_ds: 1 } },
+      { t: '把“看见什么、怎么判断、下一步怎么做”这条脑子做对', d: { robotics: 2, autonomous: 2, perception: 1, motion: 1 } },
+      { t: '把传感器、控制器、通信和算力底座撑稳', d: { embedded: 2, signal: 1, ai_hw: 2, control: 1 } }
+    ]
+  },
+  {
+    id: 's1_34',
+    phase: 'anchor',
+    cat: '粗分流',
+    text: '同样是“东西要在物理世界里跑起来”，哪种难更像你愿意长期扛的？',
+    opts: [
+      { t: '抽象规律很难，但一旦想清楚就能解释很多现象', d: { ml_theory: 2, theory: 2, bayes: 1, stat_learn: 1 } },
+      { t: '系统组件太多，必须长期治理才能不失控', d: { systems: 2, dist_sys: 2, cloud: 1, db: 1 } },
+      { t: '数据很多，但你得判断到底哪件事真的重要', d: { ds_sci: 2, causal: 2, econom: 1, stats: 1 } },
+      { t: '环境一变，系统就必须重新感知、判断和规划', d: { robotics: 2, autonomous: 2, perception: 1, embodied: 1 } },
+      { t: '噪声、时延、功耗和资源限制总在逼你取舍', d: { signal: 2, control: 1, ai_hw: 2, embedded: 1 } }
+    ]
+  },
+  {
+    id: 's1_35',
+    phase: 'anchor',
+    cat: '粗分流',
+    text: '如果你要把一段时间都押在“让系统更聪明或更强”上，你更想强化哪类能力？',
+    opts: [
+      { t: '把一个问题讲成可以反复复用的理论或方法', d: { ml_theory: 2, theory: 2, repr: 1, bayes: 1 } },
+      { t: '把复杂系统拆清楚，让它越做越稳、越做越能扩', d: { systems: 2, dist_sys: 2, cloud: 1, hw_sw: 1 } },
+      { t: '把数据、实验和判断做成可靠的决策依据', d: { ds_sci: 2, causal: 2, stats: 1, or_ops: 1 } },
+      { t: '把机器的“脑子”做得更会理解场景、自己拿主意', d: { robotics: 2, autonomous: 2, embodied: 1, perception: 1 } },
+      { t: '把底层设备、芯片和算力组织做得更快更省', d: { arch: 2, ai_hw: 2, vlsi: 1, mem_sys: 1 } }
+    ]
+  },
+  {
+    id: 's1_36',
+    phase: 'anchor',
+    cat: '粗分流',
+    text: '哪种“看到成果”的瞬间最像你会真心兴奋的样子？',
+    opts: [
+      { t: '一个看起来混乱的问题终于被讲清楚了', d: { ml_theory: 2, theory: 2, formal: 1, stats: 1 } },
+      { t: '一套复杂系统终于稳定到大家都敢依赖', d: { systems: 2, dist_sys: 2, cloud: 1, db: 1 } },
+      { t: '一个原本靠感觉的判断终于有了扎实证据', d: { ds_sci: 2, causal: 2, stats: 1, domain_ds: 1 } },
+      { t: '机器在复杂环境里自己做对了判断和动作', d: { robotics: 2, autonomous: 2, motion: 1, perception: 1 } },
+      { t: '底层链路更顺了，设备和算力终于不再拖后腿', d: { embedded: 2, ai_hw: 2, signal: 1, arch: 1 } }
     ]
   }
 ];
