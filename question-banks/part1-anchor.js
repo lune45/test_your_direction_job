@@ -8,7 +8,7 @@ window.STAGE1_QS = [
     text: '一个东西已经能跑出结果了，但你还是忍不住想继续追哪种“不舒服”？',
     opts: [
       { t: '换个场景就掉得厉害，说明它大概还没真学会', d: { foundation: 2, repr: 1, transfer: 1 }, domains: { ai: 3, ds: 0.4 } },
-      { t: '数据看着不少，可真要下判断总觉得证据差一口气', d: { stats: 2, bayes: 1, decision_analytics: 1 }, domains: { ds: 3, or: 0.6 } },
+      { t: '数据看着不少，可真到要拍板的时候，总觉得证据还差一口气', d: { stats: 2, bayes: 1, decision_analytics: 1 }, domains: { ds: 3, or: 0.6 } },
       { t: '单机挺顺，一放大就开始慢、贵、难恢复', d: { systems: 2, dist_sys: 1, cloud: 1 }, domains: { cs: 3, ce: 0.6 } },
       { t: '目标一多、限制一多，方案就总差最后那口顺气', d: { optim: 2, resource_alloc: 1, scheduling: 1 }, domains: { or: 3, ds: 0.6 } }
     ]
@@ -33,7 +33,7 @@ window.STAGE1_QS = [
     cat: '粗分流 / DS 锚点',
     anchorFamily: 'ds',
     anchorRound: 1,
-    text: '同样都是“做判断”，哪种难点更像你愿意长期啃的东西？',
+    text: '同样都是要拿主意，哪种拧巴劲最容易让你想一直琢磨下去？',
     opts: [
       { t: '很多因素缠在一起，还得尽量分清谁真的起了作用', d: { stats: 2, causal: 1, econom: 1 }, domains: { ds: 3, or: 0.6 } },
       { t: '约束和目标互相拉扯，得给出能执行的排法', d: { optim: 2, scheduling: 1, resource_alloc: 1 }, domains: { or: 3, ds: 0.5 } },
@@ -103,7 +103,7 @@ window.STAGE1_QS = [
     cat: '粗分流 / AI 锚点',
     anchorFamily: 'ai',
     anchorRound: 2,
-    text: '真要花几年磨一件事，哪种进展最能让你觉得这时间花得值？',
+    text: '如果一件事要慢慢磨上几年，哪种变化最会让你觉得没白花时间？',
     opts: [
       { t: '模型遇到没见过的问题也没那么容易失手了', d: { foundation: 2, transfer: 1, repr: 1 }, domains: { ai: 3, ds: 0.4 } },
       { t: '一堆杂乱信息终于能支撑靠谱判断', d: { stats: 2, decision_analytics: 1, bayes: 1 }, domains: { ds: 3, or: 0.5 } },
@@ -131,12 +131,12 @@ window.STAGE1_QS = [
     cat: '粗分流 / DS 锚点',
     anchorFamily: 'ds',
     anchorRound: 2,
-    text: '哪种工作材料最像你愿意天天翻来覆去看的东西？',
+    text: '开会时桌上摊着哪一类东西，你最容易自己先看进去了？',
     opts: [
-      { t: '样本、波动、置信区间和结论边界', d: { stats: 2, bayes: 1, applied_stats: 1 }, domains: { ds: 3, or: 0.5 } },
-      { t: '排程表、资源表和一长串现实限制', d: { resource_alloc: 2, scheduling: 1, optim: 1 }, domains: { or: 3, ds: 0.6 } },
-      { t: '日志、监控、异常链路和回滚记录', d: { systems: 2, data_mgmt: 1, stream: 1 }, domains: { cs: 3, ds: 0.4 } },
-      { t: '模型输出、误差案例和评测细节', d: { repr: 1, llm: 1, foundation: 2 }, domains: { ai: 3, ds: 0.4 } }
+      { t: '一张结论表摆在那儿，我会先想这结论到底靠不靠得住', d: { stats: 2, bayes: 1, applied_stats: 1 }, domains: { ds: 3, or: 0.5 } },
+      { t: '限制条件一条条摆开以后，我会忍不住开始重排方案', d: { resource_alloc: 2, scheduling: 1, optim: 1 }, domains: { or: 3, ds: 0.6 } },
+      { t: '链路一长，我就很想先找清楚是从哪一步开始乱掉的', d: { systems: 2, data_mgmt: 1, stream: 1 }, domains: { cs: 3, ds: 0.4 } },
+      { t: '模型一失手，我会先追它到底是没见过，还是根本没学会', d: { repr: 1, llm: 1, foundation: 2 }, domains: { ai: 3, ds: 0.4 } }
     ]
   },
   {
@@ -173,7 +173,7 @@ window.STAGE1_QS = [
     cat: '粗分流 / OR 锚点',
     anchorFamily: 'or',
     anchorRound: 2,
-    text: '哪种成就更像你会追很多年的那种？',
+    text: '哪种进步最像那种能让你愿意一路追很多年的成就感？',
     opts: [
       { t: '同样的资源，方案就是比以前排得更漂亮也更能执行', d: { optim: 2, scheduling: 1, decision_science: 1 }, domains: { or: 3, ds: 0.6 } },
       { t: '判断终于不再靠感觉，结论有证据撑着', d: { stats: 2, bayes: 1, causal: 1 }, domains: { ds: 3, or: 0.5 } },

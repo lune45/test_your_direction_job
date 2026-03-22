@@ -6,7 +6,7 @@ window.STAGE3_BANKS.cs = [
     phase: 'deep',
     cat: 'CS 深挖 / 系统骨架',
     triggerDirs: ['storage_sys', 'dist_sys', 'cloud', 'data_mgmt'],
-    text: '真要在 CS 这边久待，你最想把哪种“骨架型能力”搭出来？',
+    text: '如果以后一直在 CS 这边打转，你最想把哪种“骨架型能力”搭出来？',
     opts: [
       { t: '让底层存储、恢复和持久化能力更稳、更抗折腾', d: { storage_sys: 3, db: 1, data_mgmt: 1 } },
       { t: '让很多机器一起工作时仍然可靠一致', d: { dist_sys: 3, systems: 1, storage_sys: 1 } },
@@ -162,7 +162,7 @@ window.STAGE3_BANKS.cs = [
     phase: 'deep',
     cat: 'CS 深挖 / 研究重心再分流',
     triggerDirs: ['sys_ai', 'algo', 'graphics', 'hci'],
-    text: '如果你在 CS 里继续往深走，更想把哪类“核心问题”做成自己的主线？',
+    text: '如果你在 CS 里继续往深走，更想把哪类“核心问题”慢慢坐成主线？',
     opts: [
       { t: '让 AI 系统、训练服务和推理平台在真实规模下真正站住', d: { sys_ai: 4, cloud: 1, dist_sys: 1 } },
       { t: '把算法设计、复杂度和求解策略做得更漂亮、更有边界感', d: { algo: 4, theory: 1, complexity: 1 } },
@@ -175,12 +175,12 @@ window.STAGE3_BANKS.cs = [
     phase: 'deep',
     cat: 'CS 深挖 / 数据系统与其他路线分离',
     triggerDirs: ['db', 'dist_sys', 'pl', 'security'],
-    text: '如果未来几年只想在一条 CS 主线里持续积累，你更希望它最后更像哪种日常？',
+    text: '如果未来几年只想在一条 CS 主线里持续积累，你更希望它最后长成哪种日常？',
     opts: [
       { t: '围绕事务、索引、查询和一致性，把数据底座做得又稳又快', d: { db: 4, storage_sys: 1, data_mgmt: 1 } },
       { t: '围绕分布式协同、容错和扩展性，把多机系统长期做深', d: { dist_sys: 4, cloud: 1, systems: 1 } },
       { t: '围绕语言、编译和程序本体，把软件表达和执行方式做深', d: { pl: 5, formal: 1 } },
-      { t: '围绕攻击面、验证和防护，把可信系统能力做成主标签', d: { security: 4, privacy_eng: 1, formal: 1 } }
+      { t: '围绕攻击面、验证和防护，把可信系统这套本事慢慢坐实', d: { security: 4, privacy_eng: 1, formal: 1 } }
     ]
   },
   {
@@ -189,7 +189,7 @@ window.STAGE3_BANKS.cs = [
     cat: 'CS 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '真要一直留在 CS 里，你更想把哪类计算机科学能力做成自己的底牌？',
+    text: '如果以后一直留在 CS 里，你更想把哪类计算机科学能力磨成自己的底牌？',
     opts: [
       { t: '大系统、云平台和分布式协同，重点是稳定、扩展和恢复', d: { systems: 2, dist_sys: 2, cloud: 2, storage_sys: 1 } },
       { t: '数据库、数据链路和实时处理，重点是数据怎样被稳稳组织起来', d: { db: 2, data_mgmt: 2, stream: 2, storage_sys: 1 } },

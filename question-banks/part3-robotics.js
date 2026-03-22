@@ -6,9 +6,9 @@ window.STAGE3_BANKS.robotics = [
     phase: 'deep',
     cat: 'Robotics 深挖 / 主线选择',
     triggerDirs: ['localization_mapping', 'intelligent_mobility', 'robot_learning', 'interactive_robot'],
-    text: '真要在机器人这边久待，你最想把哪条线一直守下去？',
+    text: '如果以后天天和机器人打交道，你最想把哪类问题摸透？',
     opts: [
-      { t: '让机器人更稳地知道自己在哪、地图是不是对的', d: { localization_mapping: 3, sensor_fusion_rb: 1, visual_navigation: 1 } },
+      { t: '让机器人始终知道自己在哪、地图有没有跑偏', d: { localization_mapping: 3, sensor_fusion_rb: 1, visual_navigation: 1 } },
       { t: '让移动平台更会看路、判断局势、连续完成任务', d: { intelligent_mobility: 3, visual_navigation: 1, perception: 1 } },
       { t: '让机器人通过学习获得更通用的技能', d: { robot_learning: 3, embodied: 1, vla: 1 } },
       { t: '把交互、任务和整套机器人系统做成长期可用的产品', d: { interactive_robot: 3, collaborative_rb: 1, assistive_rb: 1 } }
@@ -19,11 +19,11 @@ window.STAGE3_BANKS.robotics = [
     phase: 'deep',
     cat: 'Robotics 深挖 / 感知问题',
     triggerDirs: ['sensor_fusion_rb', 'localization_mapping', 'visual_navigation', 'spatial_understanding'],
-    text: '如果你更偏机器人感知，最想长期攻哪类问题？',
+    text: '如果你更容易被机器人“怎么看懂现场”这件事勾住，最想长期啃哪类问题？',
     opts: [
-      { t: '把多种传感器输入融合成更稳的状态判断', d: { sensor_fusion_rb: 3, localization_mapping: 1, spatial_understanding: 1 } },
-      { t: '让机器人更清楚地知道自己在哪里、地图是不是对的', d: { localization_mapping: 3, sensor_fusion_rb: 1, visual_navigation: 1 } },
-      { t: '让机器人在移动中更稳地理解空间、路线和可通行区域', d: { visual_navigation: 3, localization_mapping: 1, intelligent_mobility: 1 } },
+      { t: '把多种传感器给出的线索捏成可靠判断，别一遇到干扰就乱', d: { sensor_fusion_rb: 3, localization_mapping: 1, spatial_understanding: 1 } },
+      { t: '让机器人心里始终有数，知道自己在哪、地图有没有跑偏', d: { localization_mapping: 3, sensor_fusion_rb: 1, visual_navigation: 1 } },
+      { t: '让机器人边移动边把空间、路线和可通行区域看明白', d: { visual_navigation: 3, localization_mapping: 1, intelligent_mobility: 1 } },
       { t: '让系统更会理解三维空间、目标关系和环境结构', d: { spatial_understanding: 3, sensor_fusion_rb: 1, visual_navigation: 1 } }
     ]
   },
@@ -62,7 +62,7 @@ window.STAGE3_BANKS.robotics = [
     opts: [
       { t: '让机器人帮助老人、病人或行动不便者完成高价值任务', d: { assistive_rb: 3, hri: 1, robotics: 1 } },
       { t: '让机器人在工位、产线或同一空间里和人安全协作', d: { collaborative_rb: 3, hri: 1, robotics: 1 } },
-      { t: '让机器人更自然地理解情绪、反馈和社交互动', d: { social_rb: 3, hri: 1, embodied: 1 } },
+      { t: '让机器人在和人打交道时更会接反馈、拿捏分寸和读懂情境', d: { social_rb: 3, hri: 1, embodied: 1 } },
       { t: '把交互、任务、硬件和系统能力一起做成完整产品', d: { interactive_robot: 3, hri: 1, robotics: 1 } }
     ]
   },
@@ -115,7 +115,7 @@ window.STAGE3_BANKS.robotics = [
       { t: '真实传感器和真机日志，从现场里学最关键的模式', d: { slam: 2, perception: 2, robotics: 1 } },
       { t: '大量交互或试错数据，让机器人靠经验长技能', d: { embodied: 3, robot_learning: 1, field_robotics: 1 } },
       { t: '人类示范、语言指令和任务反馈，让机器人更懂人', d: { hri: 2, vla: 2, embodied: 1 } },
-      { t: '多视角、多模态感知数据，让系统更稳地理解环境', d: { perception: 3, embodied: 1, slam: 1 } }
+      { t: '多视角、多模态感知数据，让系统把环境看得更完整', d: { perception: 3, embodied: 1, slam: 1 } }
     ]
   },
   {
@@ -140,7 +140,7 @@ window.STAGE3_BANKS.robotics = [
     opts: [
       { t: '让机器人帮助老人、病人或行动不便者完成高价值任务', d: { assistive_rb: 3, hri: 1, robotics: 1 } },
       { t: '让机器人在工位、产线或同一空间里和人安全协作', d: { collaborative_rb: 3, hri: 1, robotics: 1 } },
-      { t: '让机器人更自然地理解情绪、反馈和社交互动', d: { social_rb: 3, hri: 1, embodied: 1 } },
+      { t: '让机器人在和人打交道时更会接反馈、拿捏分寸和读懂情境', d: { social_rb: 3, hri: 1, embodied: 1 } },
       { t: '把交互、任务流程和系统能力做成完整的机器人产品体验', d: { interactive_robot: 3, hri: 1, robotics: 1 } }
     ]
   },
@@ -162,12 +162,12 @@ window.STAGE3_BANKS.robotics = [
     phase: 'deep',
     cat: 'Robotics 深挖 / 机器人大脑',
     triggerDirs: ['intelligent_mobility', 'perception', 'motion', 'mpc'],
-    text: '如果你更想做“机器人/车的脑子”，最想一直啃哪一层？',
+    text: '如果你更想做“机器人 / 车的大脑”，最想一直啃哪一层？',
     opts: [
       { t: '让系统更会理解环境、判断局势，再决定下一步动作', d: { intelligent_mobility: 3, perception: 1, robot_learning: 1 } },
-      { t: '让系统从传感器输入里更稳地看懂周围世界和关键目标', d: { perception: 3, intelligent_mobility: 1, slam: 1 } },
+      { t: '让系统从传感器输入里把周围世界和关键目标看准看全', d: { perception: 3, intelligent_mobility: 1, slam: 1 } },
       { t: '让规划和动作链条既可执行又贴合真实任务约束', d: { motion: 3, intelligent_mobility: 1, robot_kinematics: 1 } },
-      { t: '让反馈调节和控制策略在高速变化里依然又稳又准', d: { mpc: 3, motion: 1, control: 1 } }
+      { t: '让反馈调节和控制策略在高速变化里还压得住场面', d: { mpc: 3, motion: 1, control: 1 } }
     ]
   },
   {
@@ -176,7 +176,7 @@ window.STAGE3_BANKS.robotics = [
     cat: 'Robotics 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '真要一直留在 Robotics 里，你更想把哪类机器人能力做成自己的主线？',
+    text: '如果以后一直围着机器人系统转，你更想把哪类能力慢慢坐成主线？',
     opts: [
       { t: '感知、定位和建图，重点是机器人先知道自己在哪、周围是什么', d: { localization_mapping: 2, sensor_fusion_rb: 2, visual_navigation: 2, spatial_understanding: 1 } },
       { t: '规划、运动和控制，重点是机器人下一步怎么动才对', d: { motion: 2, mpc: 2, robot_kinematics: 2, robot_dynamics: 1 } },

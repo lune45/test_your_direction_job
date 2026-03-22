@@ -6,7 +6,7 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 研究方向',
     triggerDirs: ['foundation', 'llm', 'multimodal', 'generative'],
-    text: '真要在 AI 这边久待，你最想把哪类问题一直做出自己的判断？',
+    text: '如果以后长期围着“模型到底会不会真懂”这类问题打转，你最想盯哪一头？',
     opts: [
       { t: '做更通用的基础模型，让很多下游任务都从中受益', d: { foundation: 4, scaling: 1, transfer: 1 } },
       { t: '做语言智能，让系统更会理解、推理和对话', d: { llm: 4, nlp: 1, ir: 1 } },
@@ -32,9 +32,9 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 视觉与世界理解',
     triggerDirs: ['cv', 'visual_understanding', 'video', 'vision3d', 'med_vision'],
-    text: '真往视觉这边深走，你更愿意长期琢磨哪种难点？',
+    text: '如果你往视觉这边继续钻，最想长期琢磨哪种难点？',
     opts: [
-      { t: '让系统更稳地看懂图片里的目标、关系和细节', d: { cv: 3, vlm: 1, applied_ai: 1 } },
+      { t: '让系统把图片里的目标、关系和细节看准看全', d: { cv: 3, vlm: 1, applied_ai: 1 } },
       { t: '让系统理解连续视频里的事件、动作和因果链', d: { video: 3, multimodal: 1, cv: 1 } },
       { t: '让系统从图像恢复空间结构和三维世界', d: { vision3d: 3, cv: 1, generative: 1 } },
       { t: '让模型在医疗影像里给出更可靠的辅助判断', d: { med_vision: 3, cv: 1, domain_ds: 1 } }
@@ -71,7 +71,7 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 语言与信息',
     triggerDirs: ['nlp', 'ir', 'recsys', 'speech'],
-    text: '真留在语言和信息这边，你最想一直做哪种问题？',
+    text: '如果你继续待在语言和信息这边，最想一直做哪种问题？',
     opts: [
       { t: '理解文本、抽取结构、让语言信息更可计算', d: { nlp: 3, doc_intel: 1, speech: 1 } },
       { t: '让系统更会找信息、更懂用户真正想问什么', d: { ir: 3, search_ranking: 1, recsys: 1 } },
@@ -162,7 +162,7 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 信息系统分化',
     triggerDirs: ['nlp', 'ir', 'recsys', 'doc_intel'],
-    text: '真要一直待在语言与信息系统这侧，你最想把哪类能力做成代表作？',
+    text: '如果你一直留在语言与信息系统这侧，最想把哪类能力做成自己最拿手的活？',
     opts: [
       { t: '把长文本、术语和结构化信息真正读明白', d: { nlp: 3, doc_intel: 1, ir: 1 } },
       { t: '把检索和排序做得更聪明，用户一搜就能拿到真正想要的结果', d: { ir: 2, search_ranking: 2, nlp: 1 } },
@@ -240,9 +240,9 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 可信系统细分',
     triggerDirs: ['safety', 'xai', 'fairness', 'prob_ml'],
-    text: '如果你长期做可信 AI，更想把哪一层做成自己的招牌？',
+    text: '如果你长期做可信 AI，更想把哪一层磨成别人先想到你的地方？',
     opts: [
-      { t: '把红队、越狱、失控和高风险 failure case 提前拦住', d: { safety: 4, xai: 1, fairness: 1 } },
+      { t: '把红队、越狱、失控和高风险翻车场景提前拦住', d: { safety: 4, xai: 1, fairness: 1 } },
       { t: '把模型的证据链、归因方式和决策过程讲清楚', d: { xai: 4, visual_understanding: 1, applied_ai: 1 } },
       { t: '把偏差、公平性和不同群体的结果差异长期管住', d: { fairness: 4, applied_ai: 1, xai: 1 } },
       { t: '把概率、先验和置信度真正纳入模型判断，而不是只给一个答案', d: { prob_ml: 4, bayes_ml: 2 } }
@@ -266,11 +266,11 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 语言与信息能力细分',
     triggerDirs: ['nlp', 'ir', 'search_ranking', 'recsys'],
-    text: '如果你一直待在语言与信息系统这条线上，更想把哪类能力做成核心手艺？',
+    text: '如果你一直待在语言与信息系统这条线上，更想把哪类能力磨成看家本事？',
     opts: [
-      { t: '把文本、术语和结构化知识吃得更透，后面也更好调用', d: { nlp: 4, doc_intel: 1, ir: 1 } },
+      { t: '把文本、术语和结构化知识真正读明白，后面调起来也更顺', d: { nlp: 4, doc_intel: 1, ir: 1 } },
       { t: '把检索系统做得更准，用户一搜就更接近真正想要的内容', d: { ir: 4, search_ranking: 1, nlp: 1 } },
-      { t: '把排序逻辑做得更聪明，结果的先后顺序更像“真正懂需求”', d: { search_ranking: 4, ir: 1, recsys: 1 } },
+      { t: '把排序逻辑做得更懂分寸，结果先后顺序更贴近真实需求', d: { search_ranking: 4, ir: 1, recsys: 1 } },
       { t: '把推荐和个性化长期做深，让系统更懂人和场景变化', d: { recsys: 4, search_ranking: 1, applied_ai: 1 } }
     ]
   },
@@ -279,7 +279,7 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 视觉内容路线细分',
     triggerDirs: ['cv', 'visual_understanding', 'video', 'vision3d', 'med_vision', 'image_generation', 'content_gen'],
-    text: '如果你长期做视觉内容和世界表示，更想把哪条线做成自己的代表作？',
+    text: '如果你长期做视觉内容和世界表示，更想把哪条线慢慢做成自己最顺手的路子？',
     opts: [
       { t: '让系统理解连续视频里的事件、动作和时间线，而不是只看单帧', d: { video: 4, visual_understanding: 1 } },
       { t: '让系统恢复三维结构、空间关系和真实世界几何', d: { vision3d: 4, cv: 1, multimodal_reasoning: 1 } },
@@ -305,7 +305,7 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 视觉理解细分',
     triggerDirs: ['cv', 'visual_understanding', 'med_vision', 'video'],
-    text: '如果你长期做“系统怎么理解世界”，更想把哪类能力做成自己的代表作？',
+    text: '如果你长期做“系统怎么理解世界”，更想把哪类能力磨成自己最熟的手艺？',
     opts: [
       { t: '把目标、区域和结构识别做得更准，让系统先把画面里的东西看对', d: { cv: 4, visual_understanding: 1, med_vision: 1 } },
       { t: '把关系、上下文和场景含义看懂，不只知道“有什么”，还知道“发生了什么”', d: { visual_understanding: 4, cv: 1, video: 1 } },
@@ -331,12 +331,12 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 压缩与高效化细分',
     triggerDirs: ['model_compression', 'distillation', 'quant', 'training_eff'],
-    text: '如果你长期做“模型怎么更省、更稳、更好落地”，更想把哪类能力做成强项？',
+    text: '如果你长期做“模型怎么更省、更顺手、更好落地”，更想把哪类能力磨成熟？',
     opts: [
       { t: '在尽量不掉能力的前提下，把模型压小、裁剪和重构', d: { model_compression: 4, distillation: 1, quant: 1 } },
       { t: '把大模型知识稳定迁到小模型里，让轻量版本真正可用', d: { distillation: 4, model_compression: 1, transfer: 1 } },
       { t: '把量化和低比特部署做实，不是一压就坏、一省就崩', d: { quant: 4, model_compression: 1, inf_opt: 1 } },
-      { t: '让训练过程本身更高效、更稳定、更能扛规模', d: { training_eff: 4, inf_opt: 1 } }
+      { t: '把训练过程收拾顺，规模一上来别又慢又乱', d: { training_eff: 4, inf_opt: 1 } }
     ]
   },
   {
@@ -357,9 +357,9 @@ window.STAGE3_BANKS.ai = [
     phase: 'deep',
     cat: 'AI 深挖 / 语言模型路线细分',
     triggerDirs: ['llm', 'nlp', 'ir', 'search_ranking'],
-    text: '如果你长期留在语言与检索这一侧，更想把哪类能力做成代表作？',
+    text: '如果你长期留在语言与检索这一侧，更想把哪类能力做成自己最像样的一手活？',
     opts: [
-      { t: '把大语言模型本身做得更会推理，也更像能长期托底的通用能力', d: { llm: 4, foundation: 1, nlp: 1 } },
+      { t: '把大语言模型本身做得更会推理，也更扛得住各种任务', d: { llm: 4, foundation: 1, nlp: 1 } },
       { t: '把文本理解、结构抽取和长文处理做得更扎实', d: { nlp: 4, doc_intel: 1, llm: 1 } },
       { t: '把检索链路做得更准，让系统真正找到需要的知识', d: { ir: 4, search_ranking: 1, nlp: 1 } },
       { t: '把排序逻辑做得更聪明，让结果顺序更贴近真实需求', d: { search_ranking: 4, ir: 1, recsys: 1 } }
@@ -384,7 +384,7 @@ window.STAGE3_BANKS.ai = [
     cat: 'AI 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '真要确定在 AI 里长期走下去，你最想把哪类核心能力做成自己的主线？',
+    text: '如果你已经决定会在 AI 里长期走下去，最想把哪类核心能力慢慢坐成主线？',
     opts: [
       { t: '研究模型怎么学会东西，关注表示、迁移、泛化和理论边界', d: { repr: 2, ssl: 2, transfer: 2, stat_learn: 2, ml_theory: 1 } },
       { t: '研究语言系统怎么理解、检索、推理和组织知识', d: { llm: 2, nlp: 2, ir: 2, search_ranking: 2, doc_intel: 1 } },
@@ -432,7 +432,7 @@ window.STAGE3_BANKS.ai = [
     mustBranch: true,
     branchOrder: 4,
     triggerDirs: ['foundation', 'repr', 'ssl', 'transfer', 'meta_learning', 'stat_learn', 'scaling', 'opt_ml', 'prob_ml', 'bayes_ml', 'training_eff', 'model_compression', 'quant', 'inf_opt'],
-    text: '如果你更偏“模型为什么会学会东西”这条线，最想把哪一块做成自己的主线？',
+    text: '如果你更偏“模型为什么会学会东西”这条线，最想把哪一块慢慢做成自己最熟的地盘？',
     opts: [
       { t: '做更通用的基础模型和预训练底座，让很多任务都能从中受益', d: { foundation: 4, scaling: 1 } },
       { t: '研究更好的内部表示，让模型先把世界表示对', d: { repr: 4, ssl: 1, transfer: 1 } },
@@ -454,14 +454,14 @@ window.STAGE3_BANKS.ai = [
     mustBranch: true,
     branchOrder: 5,
     triggerDirs: ['llm', 'nlp', 'ir', 'search_ranking', 'recsys', 'speech', 'doc_intel'],
-    text: '如果你一直留在语言与信息系统这条线上，更想把哪类能力做成自己的招牌？',
+    text: '如果你一直留在语言与信息系统这条线上，更想把哪类能力磨成别人最先记住你的地方？',
     opts: [
       { t: '把大语言模型本身做强，让它更会推理、表达和完成复杂任务', d: { llm: 4, foundation: 1, nlp: 1 } },
       { t: '把文本理解、结构抽取和长文处理做得更扎实', d: { nlp: 4, doc_intel: 1, llm: 1 } },
       { t: '把检索系统做得更准，真正找到需要的知识和证据', d: { ir: 4, search_ranking: 1, nlp: 1 } },
       { t: '把排序逻辑做得更聪明，让结果先后顺序更贴近真实需求', d: { search_ranking: 4, ir: 1, recsys: 1 } },
       { t: '把推荐和个性化做深，让系统长期更懂人和场景变化', d: { recsys: 4, search_ranking: 1, applied_ai: 1 } },
-      { t: '把语音、音频和自然说话场景做得更像真人交流', d: { speech: 4, nlp: 1, audio_visual: 1 } },
+      { t: '把语音、音频和自然说话场景做得更接近日常交流', d: { speech: 4, nlp: 1, audio_visual: 1 } },
       { t: '把文档、票据、表格、报告这类复杂资料真正变成可调用能力', d: { doc_intel: 4, nlp: 1, vlm: 1 } }
     ]
   },

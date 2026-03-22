@@ -6,7 +6,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / 主线选择',
     triggerDirs: ['processor_arch', 'co_optimization', 'accelerator_arch', 'firmware_sys'],
-    text: '真要在 CE 这边久待，你最想把哪条线一直做下去？',
+    text: '如果以后一直在 CE 这边打转，你最想把哪条线一直做下去？',
     opts: [
       { t: '让处理器和计算架构本身更合理、更高效', d: { processor_arch: 3, parallel_arch: 1, hetero_arch: 1 } },
       { t: '让软件和硬件彼此更懂对方、协同更顺', d: { co_optimization: 3, hw_sw: 1, device_edge_cloud: 1 } },
@@ -110,7 +110,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / 工程落点',
     triggerDirs: ['system_integration', 'firmware_sys', 'fpga_compute', 'co_optimization'],
-    text: '如果你长期待在工程一线，最想把哪类活做成自己的强项？',
+    text: '如果你长期待在工程一线，最想把哪类活磨成自己最稳的本事？',
     opts: [
       { t: '把复杂平台各模块真正集成为能用的系统', d: { system_integration: 4, computer_interfacing: 1, firmware_sys: 1 } },
       { t: '把固件、驱动、启动链和底层软件栈打磨扎实', d: { firmware_sys: 3, lowlevel_integration: 1, realtime_embedded: 1 } },
@@ -123,7 +123,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / 长期作品',
     triggerDirs: ['parallel_arch', 'accelerator_arch', 'system_integration', 'firmware_sys'],
-    text: '如果多年后别人提起你的代表作，你更希望它像哪种作品？',
+    text: '如果多年后别人提起你做过的东西，你更希望他们先想到哪一类？',
     opts: [
       { t: '一套明显提高某类并行计算效率的新平台或新架构', d: { parallel_arch: 3, processor_arch: 1, hetero_arch: 1 } },
       { t: '一套把 AI 负载真正跑顺跑稳的专用计算平台', d: { accelerator_arch: 3, efficient_inference_hw: 1, npu: 1 } },
@@ -201,7 +201,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / AI 硬件路线细分',
     triggerDirs: ['accelerator_systems', 'npu', 'efficient_inference_hw', 'training_hw', 'sparse_hw'],
-    text: '如果你长期留在 AI 硬件这条线，更想把哪类能力做成主标签？',
+    text: '如果你长期留在 AI 硬件这条线，更想把哪类能力磨成别人第一个想到你的地方？',
     opts: [
       { t: '把 NPU 这类专用单元设计成真正适配主流模型的执行核心', d: { npu: 4, accelerator_arch: 1, ai_hw: 1 } },
       { t: '把推理硬件做成低延迟、低功耗、适合真实部署的平台', d: { efficient_inference_hw: 4, npu: 1, edge_hw_platform: 1 } },
@@ -240,7 +240,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / 芯片平台实现细分',
     triggerDirs: ['soc', 'fpga', 'reconfigurable_compute', 'lowlevel_computer_design'],
-    text: '如果你长期做“芯片平台如何被真正实现”，更想把哪类能力做成自己的代表作？',
+    text: '如果你长期做“芯片平台如何被真正实现”，更想把哪类能力做成自己最熟的一手活？',
     opts: [
       { t: '把 SoC 平台上的模块、总线和协同关系做成长期可演进体系', d: { soc: 4, co_optimization: 1, processor_arch: 1 } },
       { t: '把 FPGA 路线做成原型验证和工程落地的核心能力', d: { fpga: 4, fpga_compute: 1, reconfigurable_compute: 1 } },
@@ -266,7 +266,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / 加速器系统细分',
     triggerDirs: ['accelerator_systems', 'accelerator_arch', 'efficient_inference_hw', 'fpga_compute'],
-    text: '如果你长期做“加速器怎样真正成为可用系统”，更想把哪类能力做成自己的强项？',
+    text: '如果你长期做“加速器怎样真正成为可用系统”，更想把哪类能力磨成硬本事？',
     opts: [
       { t: '把加速器和主系统之间的接口、调度和协同做顺，不让好硬件卡在系统里', d: { accelerator_systems: 4, co_optimization: 1, computer_interfacing: 1 } },
       { t: '把加速器架构本身做强，让核心数据通路和执行单元更适配目标负载', d: { accelerator_arch: 4, accelerator_systems: 1, npu: 1 } },
@@ -279,7 +279,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / 设备产品与平台边界细分',
     triggerDirs: ['smart_devices', 'computer_interfacing', 'edge_hw_platform', 'system_integration'],
-    text: '如果你长期做“设备世界里的计算平台”，更想把哪类问题做成自己的强项？',
+    text: '如果你长期做“设备世界里的计算平台”，更想把哪类问题磨成熟手？',
     opts: [
       { t: '把智能设备真正做成用户会长期使用、维护成本可控的产品', d: { smart_devices: 4, edge_hw_platform: 1, computer_interfacing: 1 } },
       { t: '把接口、外设和各种模块之间的连接与时序全部接顺', d: { computer_interfacing: 4, lowlevel_integration: 1, sensor_compute: 1 } },
@@ -306,7 +306,7 @@ window.STAGE3_BANKS.ce = [
     cat: 'CE 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '真要一直留在 CE 里，你更想把哪类计算机工程能力做成主线？',
+    text: '如果以后一直留在 CE 里，你更想把哪类计算机工程能力慢慢坐成主线？',
     opts: [
       { t: '处理器和体系结构，重点是计算单元、数据通路和内存层级怎样组织', d: { processor_arch: 2, mem_sys: 2, parallel_arch: 1, hetero_arch: 1 } },
       { t: '嵌入式和固件，重点是设备怎样从底层稳定地活起来并长期运行', d: { embedded_computing: 2, firmware_sys: 2, realtime_embedded: 1, lowlevel_integration: 1 } },
@@ -329,7 +329,7 @@ window.STAGE3_BANKS.ce = [
       { t: '把固件、启动、bring-up 和底层链路打磨成强项', d: { firmware_sys: 2, lowlevel_integration: 2, embedded_computing: 1 } },
       { t: '把端、边、云和设备平台的协同做成可长期维护的体系', d: { device_edge_cloud: 2, edge_hw_platform: 2, computer_interfacing: 1 } },
       { t: '把 NPU、推理硬件和专用 AI 平台做成真正可部署的能力', d: { npu: 2, efficient_inference_hw: 2, accelerator_systems: 1 } },
-      { t: '把 FPGA、可重构和快速原型验证路线做成自己的主标签', d: { fpga: 2, fpga_compute: 2, reconfigurable_compute: 1 } }
+      { t: '把 FPGA、可重构和快速原型验证这条路走成别人先想到你的本事', d: { fpga: 2, fpga_compute: 2, reconfigurable_compute: 1 } }
     ]
   }
 ];

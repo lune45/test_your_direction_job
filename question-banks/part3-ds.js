@@ -6,9 +6,9 @@ window.STAGE3_BANKS.ds = [
     phase: 'deep',
     cat: 'DS 深挖 / 判断方式',
     triggerDirs: ['stats', 'bayes', 'applied_stats', 'decision_analytics'],
-    text: '真要在数据这边久待，你最想把哪种“判断方式”练到最稳？',
+    text: '如果以后经常要替一堆不完整的信息拿主意，你最想把哪种判断习惯练出来？',
     opts: [
-      { t: '把结论做得更稳，知道哪些规律是真的能站住的', d: { stats: 3, applied_stats: 1, bayes: 1 } },
+      { t: '把结论做得站得住，知道哪些规律是真能算数的', d: { stats: 3, applied_stats: 1, bayes: 1 } },
       { t: '把不确定性也写进结论里，而不是只给一个单点答案', d: { bayes: 3, stats: 1, uq: 1 } },
       { t: '把复杂现象翻成可执行的分析和业务判断', d: { applied_stats: 3, decision_analytics: 1, stats: 1 } },
       { t: '把分析结果真正变成决策方案、策略动作和资源安排', d: { decision_analytics: 3, econom: 1, domain_ds: 1 } }
@@ -21,7 +21,7 @@ window.STAGE3_BANKS.ds = [
     triggerDirs: ['predictive_modeling', 'ts_anal', 'stat_modeling', 'domain_ds'],
     text: '如果你更想做预测和建模，哪类问题最值得你一直投时间？',
     opts: [
-      { t: '把特征、模型和业务问题连起来，做出更稳的预测', d: { predictive_modeling: 3, stat_modeling: 1, bayes: 1 } },
+      { t: '把特征、模型和业务问题拧在一起，尽量把未来看准', d: { predictive_modeling: 3, stat_modeling: 1, bayes: 1 } },
       { t: '追时间变化、季节性和提前预警，让趋势更早被看见', d: { ts_anal: 3, predictive_modeling: 1, stats: 1 } },
       { t: '把结构、分布和误差刻画得更扎实，而不是只追预测准头', d: { stat_modeling: 3, bayes: 1, uq: 1 } },
       { t: '把预测真正接到医疗、金融、制造等实际场景里', d: { domain_ds: 2, industrial_ds: 1, financial_ds: 1, health_ds: 1 } }
@@ -73,9 +73,9 @@ window.STAGE3_BANKS.ds = [
     triggerDirs: ['ds_eng', 'data_qual', 'mlops', 'decision_analytics'],
     text: '如果你更在意数据这件事得先靠谱，最想长期攻哪类问题？',
     opts: [
-      { t: '让数据链路、加工流程和交付节奏更稳', d: { ds_eng: 3, data_qual: 1, mlops: 1 } },
-      { t: '让口径、血缘和质量检查更清楚，少出现“同数不同义”', d: { data_qual: 3, ds_eng: 2, stats: 1 } },
-      { t: '让模型上线、监控、回滚和实验记录更像成熟工程流程', d: { mlops: 3, ds_eng: 1, experimentation: 1 } },
+      { t: '把数据链路、加工流程和交付节奏理顺，别总在半路掉链子', d: { ds_eng: 3, data_qual: 1, mlops: 1 } },
+      { t: '把口径、血缘和质量检查捋明白，少出现“同一个数各说各话”', d: { data_qual: 3, ds_eng: 2, stats: 1 } },
+      { t: '把模型上线、监控、回滚和实验记录做成一套像样的日常流程', d: { mlops: 3, ds_eng: 1, experimentation: 1 } },
       { t: '让这些底层能力最终更好服务分析和业务判断', d: { decision_analytics: 2, ds_eng: 2, business_intel: 1 } }
     ]
   },
@@ -162,12 +162,12 @@ window.STAGE3_BANKS.ds = [
     phase: 'deep',
     cat: 'DS 深挖 / 统计与建模细分',
     triggerDirs: ['stats', 'bayes', 'predictive_modeling', 'stat_modeling'],
-    text: '如果你长期做模型与判断，更想把哪类能力做成自己的主标签？',
+    text: '如果接下来一段时间都围着模型和判断打转，你更想把哪一块磨成别人先想到你的原因？',
     opts: [
       { t: '把经典统计推断、显著性和估计边界讲得很扎实', d: { stats: 4, applied_stats: 1, stat_modeling: 1 } },
-      { t: '把先验、不确定性和后验更新做得更自然、更稳', d: { bayes: 4, probability: 1, stats: 1 } },
+      { t: '把先验、不确定性和后验更新接得很顺，判断也不容易飘', d: { bayes: 4, probability: 1, stats: 1 } },
       { t: '把预测问题做得更准，长期围绕风险、需求或行为变化建模', d: { predictive_modeling: 4, ts_anal: 1, stat_modeling: 1 } },
-      { t: '把结构化统计模型做深，让解释、泛化和诊断都更清楚', d: { stat_modeling: 4, stats: 1, applied_stats: 1 } }
+      { t: '把结构化统计模型做深，让解释、泛化和诊断都说得明白', d: { stat_modeling: 4, stats: 1, applied_stats: 1 } }
     ]
   },
   {
@@ -189,7 +189,7 @@ window.STAGE3_BANKS.ds = [
     cat: 'DS 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '真要在 DS / Statistics 这边久待，你更想把哪类数据能力做成主线？',
+    text: '如果以后总有人拿着数据问题来找你，你更想主要接住哪一类？',
     opts: [
       { t: '统计推断与贝叶斯判断，重点是结论够不够稳、边界够不够清楚', d: { stats: 2, bayes: 2, applied_stats: 1, stat_modeling: 1 } },
       { t: '预测、时间序列和建模，重点是未来会怎样变化', d: { predictive_modeling: 2, ts_anal: 2, stat_modeling: 2, stats: 1 } },
@@ -221,7 +221,7 @@ window.STAGE3_BANKS.ds = [
     cat: 'DS 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 3,
-    text: '如果你未来几年只能把一种 DS 能力做成主标签，你更希望别人先因为哪类事来找你？',
+    text: '如果未来几年只够你把一类本事慢慢坐实，你更希望别人先为哪类事来找你？',
     opts: [
       { t: '因为你能把不确定性、概率和证据强弱讲清楚', d: { bayes: 2, stats: 2, probability: 1, stat_modeling: 1 } },
       { t: '因为你能把预测、时间变化和风险判断做得很稳', d: { predictive_modeling: 2, ts_anal: 2, risk_modeling: 1, stat_modeling: 1 } },

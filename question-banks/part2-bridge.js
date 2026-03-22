@@ -3,7 +3,7 @@ window.STAGE2_TEMPLATES = [
     id: 's2_01',
     phase: 'bridge',
     cat: '交界分流',
-    text: '真要把一个难题做成年头，你更愿意天天盯着哪种卡点？',
+    text: '如果一类难题得盯上很多年，你更愿意每天和哪种别扭较劲？',
     hint: '这一部分只会把前面最接近的 2 到 3 个候选方向放在一起比较，不再让你在一大堆不相关选项里硬选。',
     optionMap: {
       ai: { t: '模型为什么突然灵了，又为什么会在关键地方失手', sub: '日常会一直围着能力边界打转。', d: { foundation: 1, repr: 1, llm: 1, safety: 1 }, domains: { ai: 3, ds: 0.4 } },
@@ -66,7 +66,7 @@ window.STAGE2_TEMPLATES = [
     cat: '交界分流',
     text: '哪种失败最会让你忍不住一直往下复盘？',
     optionMap: {
-      ai: { t: '看起来会，一换场景就像没学过', sub: '这类 failure case 很容易让人较真。', d: { transfer: 1, foundation: 1, repr: 1, safety: 1 }, domains: { ai: 3, ds: 0.4 } },
+      ai: { t: '看起来会，一换场景就像没学过', sub: '这类翻车案例很容易让人一路追到底。', d: { transfer: 1, foundation: 1, repr: 1, safety: 1 }, domains: { ai: 3, ds: 0.4 } },
       cs: { t: '单点没事，规模一上来就连着掉链子', sub: '更会去追系统骨架哪里没顶住。', d: { systems: 1, dist_sys: 1, cloud: 1, stream: 1 }, domains: { cs: 3, ce: 0.5 } },
       ds: { t: '口径一变，原来的结论就不太敢信', sub: '更在意判断是从哪一步先跑偏的。', d: { data_qual: 1, stats: 1, experimentation: 1, bayes: 1 }, domains: { ds: 3, or: 0.6 } },
       robotics: { t: '仿真没毛病，真机一上场就各种失手', sub: '这类问题会让人很想一路追到底。', d: { robotics: 1, embodied: 1, motion: 1, perception: 1 }, domains: { robotics: 3, ee: 0.5 } },
@@ -102,7 +102,7 @@ window.STAGE2_TEMPLATES = [
       robotics: { t: '把现场闭环磨顺，让它不只会在理想条件下工作', sub: '更在意真环境里是否还能站住。', d: { robotics: 1, embodied: 1, perception: 1, motion: 1 }, domains: { robotics: 3, ee: 0.6 } },
       ee: { t: '把稳定性和响应品质继续压进可控范围', sub: '会继续往边界条件最难的地方顶。', d: { control: 1, signal: 1, opt_ctrl: 1, comm: 1 }, domains: { ee: 3, robotics: 0.5 } },
       ce: { t: '把设备侧的算、存、传配合打磨到不再内耗', sub: '更想把底层效率磨成确定性。', d: { arch: 1, mem_sys: 1, hw_sw: 1, ai_hw: 1 }, domains: { ce: 3, cs: 0.6 } },
-      or: { t: '把排法做得更稳，不怕限制条件稍一变就全推翻', sub: '更在意方案是不是经得住现实变化。', d: { optim: 1, planning_uncertainty: 1, scheduling: 1, resource_alloc: 1 }, domains: { or: 3, ds: 0.6 } }
+      or: { t: '把方案改到经得住条件来回变，不用一变就整盘重排', sub: '更在意方案能不能扛住现实反复。', d: { optim: 1, planning_uncertainty: 1, scheduling: 1, resource_alloc: 1 }, domains: { or: 3, ds: 0.6 } }
     }
   },
   {
@@ -139,7 +139,7 @@ window.STAGE2_TEMPLATES = [
     id: 's2_10',
     phase: 'bridge',
     cat: '交界分流',
-    text: '真要把一件事做成自己的手艺，你更想留下哪种手感？',
+    text: '如果一件事要慢慢做成熟手，你更希望最后留下哪种感觉？',
     optionMap: {
       ai: { t: '把一个能力慢慢磨到既更强也更不容易跑偏', sub: '更喜欢和能力边界长期打交道。', d: { foundation: 1, safety: 1, llm: 1, transfer: 1 }, domains: { ai: 3, ds: 0.4 } },
       cs: { t: '把复杂系统拆清楚，再一点点养成可靠底座', sub: '更喜欢把长期可依赖这件事做出来。', d: { systems: 1, dist_sys: 1, storage_sys: 1, cloud: 1 }, domains: { cs: 3, ce: 0.5 } },

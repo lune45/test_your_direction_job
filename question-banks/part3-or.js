@@ -6,9 +6,9 @@ window.STAGE3_BANKS.or = [
     phase: 'deep',
     cat: 'Math / OR 深挖 / 主线选择',
     triggerDirs: ['conv_opt', 'resource_alloc', 'risk_analysis', 'applied_modeling'],
-    text: '真要在 Math / OR 这边久待，你最想把哪条线一直做下去？',
+    text: '如果以后长期围着 Math / OR 这类问题转，你最想把哪条线慢慢做下去？',
     opts: [
-      { t: '把最优解本身找得更快、更稳、更可解释', d: { conv_opt: 2, optim: 2, large_scale_opt: 1 } },
+      { t: '把最优解本身找得更快、更准，也更说得清', d: { conv_opt: 2, optim: 2, large_scale_opt: 1 } },
       { t: '把资源、人力、产能和流程安排得更合理', d: { resource_alloc: 3, decision_science: 1, planning_uncertainty: 1 } },
       { t: '把风险和不确定性本身写进模型，而不是事后再解释', d: { risk_analysis: 3, uq: 1, stoch: 1 } },
       { t: '把真实世界系统做成可计算、可模拟、可验证的模型', d: { applied_modeling: 3, sci_comp: 1, stoch: 1 } }
@@ -37,7 +37,7 @@ window.STAGE3_BANKS.or = [
       { t: '排班、调度、路线和资源分配', d: { scheduling: 3, resource_alloc: 1, optim: 1 } },
       { t: '把资源、人力、库存或运力分到更合适的位置', d: { resource_alloc: 3, decision_science: 1, planning_uncertainty: 1 } },
       { t: '定价、收益和规则设计怎样互相咬合得更好', d: { revenue_opt: 3, mechanism_design: 1, game_th: 1 } },
-      { t: '在环境变化和需求波动下，怎样把长期安排做得更稳', d: { planning_uncertainty: 3, dynamic_prog: 1, risk_analysis: 1 } }
+      { t: '在环境变化和需求波动下，怎样把长期安排做得别一碰就散', d: { planning_uncertainty: 3, dynamic_prog: 1, risk_analysis: 1 } }
     ]
   },
   {
@@ -61,7 +61,7 @@ window.STAGE3_BANKS.or = [
     text: '如果问题是“一步一步做决定”，你最想长期攻哪类？',
     opts: [
       { t: '当前选择会影响后续很多步时，怎样做更长期的规划', d: { dynamic_prog: 3, planning_uncertainty: 1, stoch: 1 } },
-      { t: '很多参与者会彼此影响时，怎样让规则更稳', d: { mechanism_design: 3, game_th: 1, econom: 1 } },
+      { t: '很多参与者会彼此影响时，怎样把规则设计得站得住', d: { mechanism_design: 3, game_th: 1, econom: 1 } },
       { t: '需求、拥堵和等待一直在变时，怎样让系统继续做出高质量安排', d: { queueing: 3, planning_uncertainty: 1, resource_alloc: 1 } },
       { t: '让这类决策既能算得出，又能在现实里真正执行', d: { planning_uncertainty: 3, dynamic_prog: 1, risk_analysis: 1 } }
     ]
@@ -162,7 +162,7 @@ window.STAGE3_BANKS.or = [
     phase: 'deep',
     cat: 'Math / OR 深挖 / 优化内部细分',
     triggerDirs: ['nonconvex_opt', 'variational', 'large_scale_opt', 'opt_for_ai'],
-    text: '如果你长期待在“优化”这条线上，更想把哪类能力做成自己的代表作？',
+    text: '如果你长期待在“优化”这条线上，更想把哪类能力磨成自己最拿手的活？',
     opts: [
       { t: '把非凸目标里的局部极值、收敛路径和训练稳定性啃透', d: { nonconvex_opt: 4, optim: 1, conv_opt: 1 } },
       { t: '把变分方法和能量形式的问题做得更漂亮、更有统一性', d: { variational: 4, conv_opt: 1, applied_modeling: 1 } },
@@ -175,9 +175,9 @@ window.STAGE3_BANKS.or = [
     phase: 'deep',
     cat: 'Math / OR 深挖 / 随机建模与仿真细分',
     triggerDirs: ['prob_modeling', 'simulation', 'seq_decision', 'comp_finance'],
-    text: '如果你长期做“随机系统和复杂决策”，更想把哪类能力做成自己的主线？',
+    text: '如果你长期做“随机系统和复杂决策”，更想把哪类能力慢慢坐成主线？',
     opts: [
-      { t: '把概率模型本身做扎实，让系统对随机现象的刻画更细、更稳', d: { prob_modeling: 4, stoch: 1, uq: 1 } },
+      { t: '把概率模型本身做扎实，让系统对随机现象的刻画更细也更靠得住', d: { prob_modeling: 4, stoch: 1, uq: 1 } },
       { t: '把仿真平台做成可靠实验场，让复杂系统能先在虚拟环境里被摸清', d: { simulation: 4, applied_modeling: 1, sci_comp: 1 } },
       { t: '把一连串相关决策做深，关注每一步如何影响后续很多步', d: { seq_decision: 4, dynamic_prog: 1, planning_uncertainty: 1 } },
       { t: '把金融和高不确定决策系统建模做成长期强项', d: { comp_finance: 4, risk_analysis: 1, bayes: 1 } }
@@ -189,7 +189,7 @@ window.STAGE3_BANKS.or = [
     cat: 'Math / OR 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '真要在 Math / OR 里长期走下去，你更想把哪类优化与决策能力做成主线？',
+    text: '如果你打算在 Math / OR 里长期走下去，更想把哪类优化与决策能力慢慢坐成主线？',
     opts: [
       { t: '数学与科学计算底座，重点是建模、数值方法和可计算性', d: { applied_modeling: 1, sci_comp: 2, numerical_analysis: 1, comp_math: 1, matrix_tensor: 1 } },
       { t: '优化方法本身，重点是目标、约束、收敛和求解策略', d: { conv_opt: 1, nonconvex_opt: 2, large_scale_opt: 1, variational: 1, optim: 1 } },
