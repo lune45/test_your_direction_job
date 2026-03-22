@@ -6,7 +6,7 @@ window.STAGE3_BANKS.robotics = [
     phase: 'deep',
     cat: 'Robotics 深挖 / 主线选择',
     triggerDirs: ['localization_mapping', 'intelligent_mobility', 'robot_learning', 'interactive_robot'],
-    text: '如果机器人已经是你的主方向，你最想长期守哪条主线？',
+    text: '真要在机器人这边久待，你最想把哪条线一直守下去？',
     opts: [
       { t: '让机器人更稳地知道自己在哪、地图是不是对的', d: { localization_mapping: 3, sensor_fusion_rb: 1, visual_navigation: 1 } },
       { t: '让移动平台更会看路、判断局势、连续完成任务', d: { intelligent_mobility: 3, visual_navigation: 1, perception: 1 } },
@@ -45,7 +45,7 @@ window.STAGE3_BANKS.robotics = [
     phase: 'deep',
     cat: 'Robotics 深挖 / 学习与具身',
     triggerDirs: ['robot_learning', 'vla', 'embodied', 'interactive_robot'],
-    text: '如果你更偏“机器人怎么学”，最想长期深挖哪类问题？',
+    text: '如果你更好奇“机器人到底怎么学会东西”，最想长期啃哪类问题？',
     opts: [
       { t: '让机器人从数据和试错里学到可迁移技能', d: { robot_learning: 3, embodied: 1, vla: 1 } },
       { t: '让视觉、语言和动作真正接成一条链路', d: { vla: 3, embodied: 1, robot_learning: 1 } },
@@ -162,7 +162,7 @@ window.STAGE3_BANKS.robotics = [
     phase: 'deep',
     cat: 'Robotics 深挖 / 机器人大脑',
     triggerDirs: ['intelligent_mobility', 'perception', 'motion', 'mpc'],
-    text: '如果你说自己更想做“机器人/车的脑子”，你最想长期攻哪一层？',
+    text: '如果你更想做“机器人/车的脑子”，最想一直啃哪一层？',
     opts: [
       { t: '让系统更会理解环境、判断局势，再决定下一步动作', d: { intelligent_mobility: 3, perception: 1, robot_learning: 1 } },
       { t: '让系统从传感器输入里更稳地看懂周围世界和关键目标', d: { perception: 3, intelligent_mobility: 1, slam: 1 } },
@@ -176,7 +176,7 @@ window.STAGE3_BANKS.robotics = [
     cat: 'Robotics 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '如果 Robotics 已经是你的主方向，你更想长期把哪类“机器人能力”做成自己的主线？',
+    text: '真要一直留在 Robotics 里，你更想把哪类机器人能力做成自己的主线？',
     opts: [
       { t: '感知、定位和建图，重点是机器人先知道自己在哪、周围是什么', d: { localization_mapping: 2, sensor_fusion_rb: 2, visual_navigation: 2, spatial_understanding: 1 } },
       { t: '规划、运动和控制，重点是机器人下一步怎么动才对', d: { motion: 2, mpc: 2, robot_kinematics: 2, robot_dynamics: 1 } },

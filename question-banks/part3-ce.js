@@ -6,7 +6,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / 主线选择',
     triggerDirs: ['processor_arch', 'co_optimization', 'accelerator_arch', 'firmware_sys'],
-    text: '如果 CE 已经是你的主方向，你最想长期把哪条线做深？',
+    text: '真要在 CE 这边久待，你最想把哪条线一直做下去？',
     opts: [
       { t: '让处理器和计算架构本身更合理、更高效', d: { processor_arch: 3, parallel_arch: 1, hetero_arch: 1 } },
       { t: '让软件和硬件彼此更懂对方、协同更顺', d: { co_optimization: 3, hw_sw: 1, device_edge_cloud: 1 } },
@@ -162,7 +162,7 @@ window.STAGE3_BANKS.ce = [
     phase: 'deep',
     cat: 'CE 深挖 / 设备与底层分化',
     triggerDirs: ['embedded_computing', 'firmware_sys', 'realtime_embedded', 'lowlevel_integration'],
-    text: '如果你更想把“设备真的跑起来”这条线做深，最想长期盯哪一段？',
+    text: '如果你更想把“设备真的跑起来”这条线做深，最想长期盯哪一层？',
     opts: [
       { t: '把嵌入式计算平台本身做稳，资源紧也能长期工作', d: { embedded_computing: 3, edge_hw_platform: 1, emb_sw: 1 } },
       { t: '把固件、启动、驱动和底层软件链路打磨扎实', d: { firmware_sys: 3, lowlevel_integration: 1, embedded_computing: 1 } },
@@ -306,7 +306,7 @@ window.STAGE3_BANKS.ce = [
     cat: 'CE 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '如果 CE 已经是你的主方向，你更想长期把哪类“计算机工程能力”做成主线？',
+    text: '真要一直留在 CE 里，你更想把哪类计算机工程能力做成主线？',
     opts: [
       { t: '处理器和体系结构，重点是计算单元、数据通路和内存层级怎样组织', d: { processor_arch: 2, mem_sys: 2, parallel_arch: 1, hetero_arch: 1 } },
       { t: '嵌入式和固件，重点是设备怎样从底层稳定地活起来并长期运行', d: { embedded_computing: 2, firmware_sys: 2, realtime_embedded: 1, lowlevel_integration: 1 } },
@@ -322,7 +322,7 @@ window.STAGE3_BANKS.ce = [
     cat: 'CE 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 2,
-    text: '如果你继续在 CE 里往深走，你更想长期守住哪类“最容易混在一起”的硬本事？',
+    text: '如果你继续在 CE 里往深走，你更想先把哪类最容易混在一起的硬本事分清？',
     opts: [
       { t: '把缓存、内存和数据通路做顺，让系统别总卡在搬数据上', d: { mem_sys: 2, processor_arch: 1, accelerator_arch: 1 } },
       { t: '把 SoC 和复杂平台集成做好，让很多模块从一开始就更协同', d: { soc: 2, system_integration: 2, co_optimization: 1 } },

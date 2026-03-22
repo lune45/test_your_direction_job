@@ -6,7 +6,7 @@ window.STAGE3_BANKS.cs = [
     phase: 'deep',
     cat: 'CS 深挖 / 系统骨架',
     triggerDirs: ['storage_sys', 'dist_sys', 'cloud', 'data_mgmt'],
-    text: '如果 CS 是你的主方向，你最想长期搭哪种“骨架型能力”？',
+    text: '真要在 CS 这边久待，你最想把哪种“骨架型能力”搭出来？',
     opts: [
       { t: '让底层存储、恢复和持久化能力更稳、更抗折腾', d: { storage_sys: 3, db: 1, data_mgmt: 1 } },
       { t: '让很多机器一起工作时仍然可靠一致', d: { dist_sys: 3, systems: 1, storage_sys: 1 } },
@@ -166,7 +166,7 @@ window.STAGE3_BANKS.cs = [
     opts: [
       { t: '让 AI 系统、训练服务和推理平台在真实规模下真正站住', d: { sys_ai: 4, cloud: 1, dist_sys: 1 } },
       { t: '把算法设计、复杂度和求解策略做得更漂亮、更有边界感', d: { algo: 4, theory: 1, complexity: 1 } },
-      { t: '把图形、几何和视觉计算做成真正有表现力的技术能力', d: { graphics: 4, geo_proc: 1, render: 1 } },
+      { t: '把图形、几何和视觉计算做成真正有表现力的技术能力', d: { graphics: 4, geo_proc: 1, rendering: 1 } },
       { t: '让系统更符合人的使用方式、理解方式和协作节奏', d: { hci: 4, human_ai: 1, interactive_sys: 1 } }
     ]
   },
@@ -175,11 +175,11 @@ window.STAGE3_BANKS.cs = [
     phase: 'deep',
     cat: 'CS 深挖 / 数据系统与其他路线分离',
     triggerDirs: ['db', 'dist_sys', 'pl', 'security'],
-    text: '如果你未来几年只想在一条 CS 主线里持续积累，你更希望它更像哪类工作？',
+    text: '如果未来几年只想在一条 CS 主线里持续积累，你更希望它最后更像哪种日常？',
     opts: [
       { t: '围绕事务、索引、查询和一致性，把数据底座做得又稳又快', d: { db: 4, storage_sys: 1, data_mgmt: 1 } },
       { t: '围绕分布式协同、容错和扩展性，把多机系统长期做深', d: { dist_sys: 4, cloud: 1, systems: 1 } },
-      { t: '围绕语言、编译和程序本体，把软件表达和执行方式做深', d: { pl: 4, compiler: 1, formal: 1 } },
+      { t: '围绕语言、编译和程序本体，把软件表达和执行方式做深', d: { pl: 5, formal: 1 } },
       { t: '围绕攻击面、验证和防护，把可信系统能力做成主标签', d: { security: 4, privacy_eng: 1, formal: 1 } }
     ]
   },
@@ -189,12 +189,12 @@ window.STAGE3_BANKS.cs = [
     cat: 'CS 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '如果 CS 已经是你的主方向，你更想长期把哪类“计算机科学能力”做成自己的底牌？',
+    text: '真要一直留在 CS 里，你更想把哪类计算机科学能力做成自己的底牌？',
     opts: [
       { t: '大系统、云平台和分布式协同，重点是稳定、扩展和恢复', d: { systems: 2, dist_sys: 2, cloud: 2, storage_sys: 1 } },
       { t: '数据库、数据链路和实时处理，重点是数据怎样被稳稳组织起来', d: { db: 2, data_mgmt: 2, stream: 2, storage_sys: 1 } },
       { t: '算法、理论、复杂度和求解边界，重点是问题本身的结构', d: { algo: 2, theory: 2, complexity: 2, formal: 1 } },
-      { t: '语言、编译、验证和正确性，重点是程序本体怎样更可靠', d: { pl: 2, compiler: 2, formal: 2, systems: 1 } },
+      { t: '语言、编译、验证和正确性，重点是程序本体怎样更可靠', d: { pl: 4, formal: 2, systems: 1 } },
       { t: '安全、隐私和可信系统，重点是系统怎样更难出错或被攻破', d: { security: 2, privacy_eng: 2, formal: 1, networks: 1 } },
       { t: '网络、交互、图形和可视化，重点是信息怎样被传、被看见、被使用', d: { networks: 2, hci: 1, graphics: 1, vis: 1, wireless_net: 1 } }
     ]
@@ -210,7 +210,7 @@ window.STAGE3_BANKS.cs = [
       { t: '多机系统怎么协同、容错和扩展，服务怎样一直稳定在线', d: { systems: 2, dist_sys: 2, cloud: 2, storage_sys: 1 } },
       { t: '数据怎样被组织、查询和实时处理，底层链路怎样越跑越顺', d: { db: 2, data_mgmt: 2, stream: 2, storage_sys: 1 } },
       { t: '复杂问题怎样被抽象、建模并找到可证明的更优算法', d: { algo: 2, theory: 2, complexity: 2, online_algo: 1 } },
-      { t: '程序语言、编译器和正确性工具怎样让软件表达得更清楚、执行得更可靠', d: { pl: 2, compiler: 2, formal: 2, verification: 1 } },
+      { t: '程序语言、编译器和正确性工具怎样让软件表达得更清楚、执行得更可靠', d: { pl: 4, formal: 2, testing: 1 } },
       { t: '系统怎样更安全、更有隐私边界，并且能在攻击下保持可信', d: { security: 2, privacy_eng: 2, networks: 1, formal: 1 } },
       { t: '信息怎样被连接、展示和交互，让人和系统协作得更顺畅', d: { networks: 1, hci: 2, graphics: 1, vis: 2, interactive_sys: 1 } }
     ]
@@ -221,12 +221,12 @@ window.STAGE3_BANKS.cs = [
     cat: 'CS 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 3,
-    text: '如果未来几年你只能把一条 CS 主线做深，你更希望它长期围绕哪类“核心对象”展开？',
+    text: '如果未来几年你只能把一条 CS 主线做深，你更希望它一直围着哪类核心对象展开？',
     opts: [
       { t: '服务、节点和算力资源，让大系统长时间稳定运转', d: { sys_ai: 2, cloud: 2, dist_sys: 2, systems: 1 } },
       { t: '数据表、查询、流式链路和存储介质，让数据底座始终可靠', d: { db: 2, data_mgmt: 2, stream: 2, storage_sys: 1 } },
       { t: '问题结构、算法边界和求解策略，让复杂问题被真正拆开', d: { algo: 2, theory: 2, complexity: 2, online_algo: 1 } },
-      { t: '程序语言、编译过程和形式化规则，让软件本身更可信', d: { pl: 2, compiler: 2, formal: 2, testing: 1 } },
+      { t: '程序语言、编译过程和形式化规则，让软件本身更可信', d: { pl: 4, formal: 2, testing: 1 } },
       { t: '攻击面、协议边界和真实网络环境，让系统更难被搞坏', d: { security: 2, privacy_eng: 2, networks: 1, wireless_net: 1, mobile_sys: 1 } },
       { t: '界面、图形和信息表达，让人更自然地理解和使用系统', d: { hci: 2, graphics: 1, vis: 2, accessibility: 1, human_ai: 1 } }
     ]

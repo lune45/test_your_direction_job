@@ -6,7 +6,7 @@ window.STAGE3_BANKS.or = [
     phase: 'deep',
     cat: 'Math / OR 深挖 / 主线选择',
     triggerDirs: ['conv_opt', 'resource_alloc', 'risk_analysis', 'applied_modeling'],
-    text: '如果 Math / OR 已经是你的主方向，你最想长期守哪条主线？',
+    text: '真要在 Math / OR 这边久待，你最想把哪条线一直做下去？',
     opts: [
       { t: '把最优解本身找得更快、更稳、更可解释', d: { conv_opt: 2, optim: 2, large_scale_opt: 1 } },
       { t: '把资源、人力、产能和流程安排得更合理', d: { resource_alloc: 3, decision_science: 1, planning_uncertainty: 1 } },
@@ -32,7 +32,7 @@ window.STAGE3_BANKS.or = [
     phase: 'deep',
     cat: 'Math / OR 深挖 / 运筹场景',
     triggerDirs: ['scheduling', 'resource_alloc', 'revenue_opt', 'planning_uncertainty'],
-    text: '如果你更偏运筹，最想长期在哪类场景里磨问题？',
+    text: '如果你更偏运筹，最想长期把问题磨在哪类场景里？',
     opts: [
       { t: '排班、调度、路线和资源分配', d: { scheduling: 3, resource_alloc: 1, optim: 1 } },
       { t: '把资源、人力、库存或运力分到更合适的位置', d: { resource_alloc: 3, decision_science: 1, planning_uncertainty: 1 } },
@@ -136,7 +136,7 @@ window.STAGE3_BANKS.or = [
     phase: 'deep',
     cat: 'Math / OR 深挖 / 运营与规则',
     triggerDirs: ['resource_alloc', 'revenue_opt', 'queueing', 'planning_uncertainty'],
-    text: '如果你更偏“现实系统怎么排、怎么配、怎么不堵”，最想长期做哪类问题？',
+    text: '如果你更偏“现实系统怎么排、怎么配、怎么不堵”，最想长期做哪类题？',
     opts: [
       { t: '把资源、人力、产能或运力分到最合适的位置', d: { resource_alloc: 3, decision_science: 1, planning_uncertainty: 1 } },
       { t: '把定价、收益和规则设计成更优的长期策略', d: { revenue_opt: 3, game_th: 1, decision_science: 1 } },
@@ -189,9 +189,9 @@ window.STAGE3_BANKS.or = [
     cat: 'Math / OR 深挖 / 必问分叉',
     mustBranch: true,
     branchOrder: 1,
-    text: '如果 Math / OR 已经是你的主方向，你更想长期把哪类“优化与决策能力”做成主线？',
+    text: '真要在 Math / OR 里长期走下去，你更想把哪类优化与决策能力做成主线？',
     opts: [
-      { t: '数学与科学计算底座，重点是建模、数值方法和可计算性', d: { applied_modeling: 1, sci_comp: 2, numerical: 1, comp_math: 1, matrix_tensor: 1 } },
+      { t: '数学与科学计算底座，重点是建模、数值方法和可计算性', d: { applied_modeling: 1, sci_comp: 2, numerical_analysis: 1, comp_math: 1, matrix_tensor: 1 } },
       { t: '优化方法本身，重点是目标、约束、收敛和求解策略', d: { conv_opt: 1, nonconvex_opt: 2, large_scale_opt: 1, variational: 1, optim: 1 } },
       { t: '运营与资源配置，重点是怎样排、怎样配、怎样不堵', d: { resource_alloc: 2, scheduling: 2, revenue_opt: 1, decision_science: 1 } },
       { t: '随机系统与不确定性，重点是风险、排队、仿真和概率行为', d: { stoch: 1, queueing: 2, prob_modeling: 1, simulation: 1, uq: 1 } },

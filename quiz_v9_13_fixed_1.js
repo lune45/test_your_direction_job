@@ -4808,6 +4808,29 @@ function getDeepDirectionEvidence(dom) {
   return { totals: totals, hits: hits };
 }
 
+function getFocusDomains() {
+  if (phase2Finalists && phase2Finalists.length) return phase2Finalists.slice(0, 3);
+  return primaryDomain ? [primaryDomain] : [];
+}
+
+function getFocusDomainKeys() {
+  return getFocusDomains().map(function(dom) {
+    return dom === 'robotics' ? 'rb' : dom;
+  });
+}
+
+function getDomainDisplayLabel(dom) {
+  return {
+    ai:'AI / ML',
+    cs:'CS',
+    ds:'DS / Stats',
+    robotics:'Robotics',
+    ee:'ECE / EE',
+    ce:'CE',
+    or:'Math / OR'
+  }[dom] || dom || '';
+}
+
 function getPrimaryDomainDirectionScores(dom) {
   if (!dom) return {};
   var domKey = dom === 'robotics' ? 'rb' : dom;
@@ -4845,22 +4868,31 @@ function getPrimaryDomainDirectionScores(dom) {
 }
 
 function getResultDirectionScores() {
-  if (!primaryDomain) return getEffectiveDirectionScores();
-  return getPrimaryDomainDirectionScores(primaryDomain);
+  var focusDomains = getFocusDomains();
+  if (!focusDomains.length) return getEffectiveDirectionScores();
+  if (focusDomains.length === 1) return getPrimaryDomainDirectionScores(focusDomains[0]);
+  var merged = {};
+  focusDomains.forEach(function(dom) {
+    var slice = getPrimaryDomainDirectionScores(dom);
+    Object.keys(slice).forEach(function(key) {
+      merged[key] = (merged[key] || 0) + slice[key];
+    });
+  });
+  return merged;
 }
 
 function getTopFineDirectionEntries(dirEntries, limit) {
   var maxCount = limit || 3;
-  var primaryDomainKey = primaryDomain === 'robotics' ? 'rb' : primaryDomain;
+  var focusDomainKeys = getFocusDomainKeys();
   var leafEntries = (dirEntries || []).filter(function(entry) {
     return DIRS[entry[0]] && !NON_LEAF_DIRS[entry[0]] &&
-      (!primaryDomainKey || DIRS[entry[0]].domain === primaryDomainKey);
+      (!focusDomainKeys.length || focusDomainKeys.indexOf(DIRS[entry[0]].domain) >= 0);
   });
   if (!leafEntries.length) return [];
 
   var selected = [];
   var usedGroups = {};
-  var threshold = leafEntries[0][1] * 0.56;
+  var threshold = leafEntries[0][1] * (focusDomainKeys.length > 1 ? 0.48 : 0.56);
   leafEntries.forEach(function(entry) {
     if (selected.length >= maxCount) return;
     var dir = DIRS[entry[0]];
@@ -4897,7 +4929,7 @@ function buildBridgeQuestionFromResolvedDomains(template, bridgeDomains) {
     phase: 'bridge',
     cat: template.cat || '交界分流',
     text: template.text,
-    hint: template.hint || '这一步会把 3-4 个看起来都像你的方向放在一起，继续比较你更愿意长期面对哪一类问题。',
+    hint: template.hint || '这一步会把 2 到 3 个最接近的候选方向放在一起，继续比较你更愿意长期面对哪一类问题。',
     opts: options
   };
   if (needsNeutralOption(question)) question.opts.push(buildNeutralOption(question));
@@ -4939,6 +4971,18 @@ function collectLeafScoresFromAnswers(filterFn) {
   return leafScores;
 }
 
+function createEmptyDomainScoreMap() {
+  return {
+    ai: 0,
+    cs: 0,
+    ds: 0,
+    robotics: 0,
+    ee: 0,
+    ce: 0,
+    or: 0
+  };
+}
+
 function getDomainScoresFromLeafScores(leafScores) {
   return {
     ai: domainSum('ai', leafScores),
@@ -4951,12 +4995,41 @@ function getDomainScoresFromLeafScores(leafScores) {
   };
 }
 
+function getDomainScoresFromAnswers(filterFn) {
+  var totals = createEmptyDomainScoreMap();
+  answers.forEach(function(answer) {
+    var q = getQuestionById(answer.qid);
+    if (!q || (filterFn && !filterFn(q, answer))) return;
+    (answer.selectedIdxs || []).forEach(function(idx) {
+      var opt = q.opts[idx];
+      if (!opt) return;
+      if (opt.domains && Object.keys(opt.domains).length) {
+        Object.keys(opt.domains).forEach(function(dom) {
+          if (totals[dom] === undefined) return;
+          totals[dom] += opt.domains[dom] || 0;
+        });
+        return;
+      }
+      if (!opt.d) return;
+      Object.keys(totals).forEach(function(dom) {
+        var domKey = dom === 'robotics' ? 'rb' : dom;
+        var contribution = (DOMAIN_KEYS[domKey] || []).reduce(function(sum, key) {
+          if (key.indexOf('career_') === 0) return sum;
+          return sum + (opt.d[key] || 0);
+        }, 0);
+        if (contribution > 0) totals[dom] += contribution;
+      });
+    });
+  });
+  return totals;
+}
+
 function getAnchorRoutingScores() {
   var routingLookup = {};
   getActiveAnchorRoutingIds().forEach(function(id) { routingLookup[id] = true; });
-  return getDomainScoresFromLeafScores(collectLeafScoresFromAnswers(function(q) {
+  return getDomainScoresFromAnswers(function(q) {
     return q.phase === 'anchor' && !!routingLookup[q.id];
-  }));
+  });
 }
 
 var BRIDGE_NEIGHBOR_MAP = {
@@ -5060,32 +5133,47 @@ function activatePhaseDomains(domains) {
 
 function resolvePhase2Domains() {
   var sums = getAnchorRoutingScores();
-  var ranking = getRankedDomainsFromScores(sums);
+  var ranking = getRankedDomainsFromScores(sums).filter(function(item) {
+    return item.score > 0;
+  });
   var top = ranking[0];
   var second = ranking[1];
   var third = ranking[2];
   var fourth = ranking[3];
-  if (!top) return ['cs', 'robotics', 'ds', 'ee'];
+  if (!top) return ['ai', 'ds', 'cs'];
   var activated = [];
-  if (top && top.score > 0) uniquePush(activated, top.dom);
-  if (second && second.score > 0) uniquePush(activated, second.dom);
-  if (third && third.score > 0) uniquePush(activated, third.dom);
-  if (activated.length < 3) {
-    activated = expandBridgeDomains(activated, 3, 4, ranking);
+  uniquePush(activated, top.dom);
+
+  if (second) {
+    var secondClose = second.score >= top.score * 0.72 || (top.score - second.score) <= 2.2;
+    if (secondClose) uniquePush(activated, second.dom);
   }
-  if (fourth && fourth.score > 0) {
+
+  if (third) {
+    var thirdVsTop = third.score / (top.score || 1);
+    var thirdVsSecond = second ? third.score / (second.score || 1) : thirdVsTop;
+    var thirdClose = thirdVsTop >= 0.56 || thirdVsSecond >= 0.82 || (top.score - third.score) <= 4;
+    if (thirdClose) uniquePush(activated, third.dom);
+  }
+
+  if (activated.length < 2 && second) uniquePush(activated, second.dom);
+  if (activated.length < 2) {
+    activated = expandBridgeDomains(activated, 2, 3, ranking);
+  }
+
+  if (fourth && activated.length < 3) {
     var total = ranking.reduce(function(sum, item) { return sum + item.score; }, 0) || 1;
     var fourthShare = fourth.score / total;
-    var fourthRel = fourth.score / ((third && third.score) || 1);
-    var closeGap = (top.score - fourth.score) <= 6;
-    if (fourthShare >= 0.12 || fourthRel >= 0.72 || closeGap) uniquePush(activated, fourth.dom);
+    var fourthVsThird = fourth.score / ((third && third.score) || top.score || 1);
+    if (fourthShare >= 0.16 && fourthVsThird >= 0.92) uniquePush(activated, fourth.dom);
   }
-  return expandBridgeDomains(activated, 3, 4, ranking);
+
+  return activated.slice(0, 3);
 }
 
 function getPhase2TrackLimit(domainCount, dom) {
   if (ACTIVE_STAGE2_TEMPLATES.length) {
-    return Math.min(ACTIVE_STAGE2_TEMPLATES.length, ({1:10,2:11,3:12,4:12}[domainCount] || 12));
+    return Math.min(ACTIVE_STAGE2_TEMPLATES.length, ({1:8,2:8,3:10,4:12}[domainCount] || 10));
   }
   var bank = PHASE2_TRACKS[dom] || [];
   return Math.min(bank.length, PHASE2_LIMITS[domainCount] || 12);
@@ -5113,9 +5201,16 @@ function resolvePhase2Focus() {
   if (ranked[1]) {
     var topScore = ranked[0].combined || 1;
     var secondScore = ranked[1].combined || 0;
-    var pairTotal = ranked[0].combined + secondScore || 1;
-    if (secondScore >= topScore * 0.78 && secondScore / pairTotal >= 0.34) finalists.push(ranked[1].dom);
+    var secondClose = secondScore >= topScore * 0.72 || (topScore - secondScore) <= 2.4;
+    if (secondClose) finalists.push(ranked[1].dom);
   }
+  if (ranked[2]) {
+    var thirdScore = ranked[2].combined || 0;
+    var thirdClose = thirdScore >= (ranked[0].combined || 1) * 0.56;
+    var thirdNearSecond = !ranked[1] || thirdScore >= (ranked[1].combined || 1) * 0.82 || ((ranked[1].combined || 0) - thirdScore) <= 1.8;
+    if (thirdClose && thirdNearSecond) finalists.push(ranked[2].dom);
+  }
+  if (finalists.length < 2 && ranked[1]) finalists.push(ranked[1].dom);
   var primary = finalists[0] || (ranked[0] && ranked[0].dom) || null;
   if (
     finalists.length >= 2 &&
@@ -5128,7 +5223,7 @@ function resolvePhase2Focus() {
     var closeRace = gap <= 2.5 || (ranked[1].combined >= (ranked[0].combined || 1) * 0.9);
     if (closeRace) primary = anchorTop;
   }
-  return { finalists: finalists, primary: primary };
+  return { finalists: finalists.slice(0, 3), primary: primary, ranking: ranked };
 }
 
 function getDeepQuestionsForPrimaryDomain(dom) {
@@ -5160,7 +5255,12 @@ function getCareerClustersForPrimaryDomain(dom) {
 }
 
 function buildBridgeQuestion(template, domains) {
-  var bridgeDomains = expandBridgeDomains(domains || [], 4, 4, getRankedDomainsFromScores(getAnchorRoutingScores()));
+  var bridgeDomains = (domains && domains.length)
+    ? domains.slice(0, Math.min(domains.length, 3))
+    : [];
+  if (bridgeDomains.length < 2) {
+    bridgeDomains = expandBridgeDomains(bridgeDomains, 2, 3, getRankedDomainsFromScores(getAnchorRoutingScores()));
+  }
   return buildBridgeQuestionFromResolvedDomains(template, bridgeDomains);
 }
 
@@ -5195,6 +5295,50 @@ function getDeepSeedBranchCount(dom, mandatoryQuestions) {
   if (!total) return 0;
   if (dom === 'ai') return Math.min(total, 3);
   return Math.min(total, 3);
+}
+
+function allocateQuestionTargets(rankedDomains, totalCount) {
+  var ordered = (rankedDomains || []).filter(Boolean);
+  var targets = {};
+  if (!ordered.length) return targets;
+  if (ordered.length === 1) {
+    targets[ordered[0].dom] = totalCount;
+    return targets;
+  }
+
+  var base = ordered.length === 2 ? 4 : 3;
+  var remaining = Math.max(0, totalCount - base * ordered.length);
+  ordered.forEach(function(item) {
+    targets[item.dom] = base;
+  });
+
+  if (!remaining) return targets;
+
+  var weights = ordered.map(function(item) {
+    return Math.max(item.combined || item.score || 0, 1);
+  });
+  var sum = weights.reduce(function(acc, value) { return acc + value; }, 0) || ordered.length;
+  var remainders = [];
+  ordered.forEach(function(item, idx) {
+    var raw = remaining * weights[idx] / sum;
+    var whole = Math.floor(raw);
+    targets[item.dom] += whole;
+    remainders.push({ dom: item.dom, rem: raw - whole, weight: weights[idx] });
+  });
+
+  var assigned = ordered.reduce(function(acc, item) {
+    return acc + (targets[item.dom] || 0);
+  }, 0);
+  var leftovers = Math.max(0, totalCount - assigned);
+  remainders.sort(function(a, b) {
+    if (b.rem !== a.rem) return b.rem - a.rem;
+    return b.weight - a.weight;
+  });
+  for (var i = 0; i < leftovers; i++) {
+    var pick = remainders[i % remainders.length];
+    targets[pick.dom] += 1;
+  }
+  return targets;
 }
 
 function pickDeferredMustBranchQuestions(dom, mandatoryQuestions, seedCount, limit) {
@@ -5253,6 +5397,45 @@ function pickAiMustBranchQuestions(mandatoryQuestions) {
   });
 }
 
+function selectDeepQuestionsForDomain(dom, targetCount) {
+  if (!dom || !targetCount) return [];
+  var domainQuestions = getDeepQuestionsForPrimaryDomain(dom);
+  if (!domainQuestions.length) return [];
+
+  var mandatoryQuestions = getMustBranchDeepQuestions(domainQuestions);
+  var scoredCandidates = domainQuestions.filter(function(q) {
+    return !q.mustBranch;
+  }).map(function(q) {
+    return { q: q, score: getDeepTriggerScore(q) };
+  }).sort(function(a, b) {
+    return b.score - a.score;
+  });
+
+  var maxMandatory = targetCount >= 6 ? 3 : 2;
+  var selectedMandatory;
+  if (dom === 'ai') {
+    selectedMandatory = pickAiMustBranchQuestions(mandatoryQuestions).slice(0, Math.min(maxMandatory, targetCount));
+  } else {
+    var seedCount = Math.min(getDeepSeedBranchCount(dom, mandatoryQuestions), Math.min(2, targetCount));
+    selectedMandatory = mandatoryQuestions.slice(0, seedCount);
+    var extraMandatoryLimit = Math.max(0, Math.min(maxMandatory - selectedMandatory.length, targetCount - selectedMandatory.length));
+    if (extraMandatoryLimit > 0) {
+      selectedMandatory = selectedMandatory.concat(
+        pickDeferredMustBranchQuestions(dom, mandatoryQuestions, seedCount, extraMandatoryLimit)
+      );
+    }
+  }
+
+  var selected = selectedMandatory.map(function(q) {
+    return { q: q, score: 999 };
+  });
+  var remainingCount = Math.max(0, targetCount - selected.length);
+  if (remainingCount > 0) {
+    selected = selected.concat(pickBalancedDeepQuestions(dom, scoredCandidates, remainingCount));
+  }
+  return selected.map(function(item) { return item.q; });
+}
+
 function buildPhaseSequence(){
   if(phaseBuilt) return;
   phaseBuilt=true;
@@ -5284,51 +5467,17 @@ function buildDeepSequence(){
   var focus = resolvePhase2Focus();
   phase2Finalists = focus.finalists;
   primaryDomain = focus.primary;
-  var domainQuestions = getDeepQuestionsForPrimaryDomain(primaryDomain);
-  var mandatoryQuestions = getMustBranchDeepQuestions(domainQuestions);
-  var scoredCandidates = domainQuestions.filter(function(q) {
-    return !q.mustBranch;
-  }).map(function(q) {
-    return { q: q, score: getDeepTriggerScore(q) };
-  }).sort(function(a, b) {
-    return b.score - a.score;
+  var rankedFocus = (focus.ranking || []).filter(function(item) {
+    return phase2Finalists.indexOf(item.dom) >= 0;
   });
-
-  if (!domainQuestions.length) {
-    mandatoryQuestions = getMustBranchDeepQuestions(DEEP_Qs);
-    scoredCandidates = DEEP_Qs.filter(function(q) {
-      return !q.mustBranch;
-    }).map(function(q) {
-      return { q: q, score: getDeepTriggerScore(q) };
-    }).sort(function(a, b) {
-      return b.score - a.score;
-    });
+  if (!rankedFocus.length && primaryDomain) {
+    rankedFocus = [{ dom: primaryDomain, combined: 1, score: 1, tie: 0 }];
   }
 
-  var targetCount = Math.min(PHASE3_LIMIT, mandatoryQuestions.length + scoredCandidates.length);
-  var selectedMandatory;
-  if (primaryDomain === 'ai') {
-    selectedMandatory = pickAiMustBranchQuestions(mandatoryQuestions).slice(0, targetCount);
-  } else {
-    var seedCount = getDeepSeedBranchCount(primaryDomain, mandatoryQuestions);
-    selectedMandatory = mandatoryQuestions.slice(0, seedCount);
-    var extraMandatoryCap = 2;
-    var extraMandatoryLimit = Math.max(0, Math.min(extraMandatoryCap, targetCount - selectedMandatory.length));
-    if (extraMandatoryLimit > 0) {
-      selectedMandatory = selectedMandatory.concat(
-        pickDeferredMustBranchQuestions(primaryDomain, mandatoryQuestions, seedCount, extraMandatoryLimit)
-      );
-    }
-  }
-  var selected = selectedMandatory.map(function(q) {
-    return { q: q, score: 999 };
+  var targets = allocateQuestionTargets(rankedFocus, PHASE3_LIMIT);
+  rankedFocus.forEach(function(item) {
+    appendQuestionsUnique(selectDeepQuestionsForDomain(item.dom, targets[item.dom] || 0));
   });
-  var remainingCount = Math.max(0, targetCount - selected.length);
-  if (remainingCount > 0) {
-    selected = selected.concat(pickBalancedDeepQuestions(primaryDomain, scoredCandidates, remainingCount));
-  }
-
-  appendQuestionsUnique(selected.map(function(item) { return item.q; }));
   updateProgress();
 }
 
@@ -5359,44 +5508,75 @@ function getQuestionOptionOrder(q) {
 }
 
 function getQuestionDomainProfile(q) {
+  var explicit = createEmptyDomainScoreMap();
+  var hasExplicit = false;
   var leaf = {};
   (q && q.opts || []).forEach(function(opt) {
-    if (!opt || !opt.d) return;
+    if (!opt) return;
+    if (opt.domains && Object.keys(opt.domains).length) {
+      hasExplicit = true;
+      Object.keys(opt.domains).forEach(function(dom) {
+        if (explicit[dom] === undefined) return;
+        explicit[dom] += opt.domains[dom] || 0;
+      });
+    }
+    if (!opt.d) return;
     Object.keys(opt.d).forEach(function(key) {
       if (key.indexOf('career_') === 0) return;
       leaf[key] = (leaf[key] || 0) + opt.d[key];
     });
   });
-  return getDomainScoresFromLeafScores(leaf);
+  return hasExplicit ? explicit : getDomainScoresFromLeafScores(leaf);
 }
 
 function buildStage1Sequence() {
-  var buckets = {};
   var all = (ACTIVE_STAGE1_QS || []).slice();
+  var hasStructuredFamilies = all.some(function(q) { return !!q.anchorFamily; });
+  if (hasStructuredFamilies) {
+    var familyOrder = ['ai', 'cs', 'ds', 'robotics', 'ee', 'or', 'ce'];
+    var ordered = [];
+    [1, 2].forEach(function(round) {
+      familyOrder.forEach(function(family) {
+        all.filter(function(q) {
+          return q.anchorFamily === family && q.anchorRound === round;
+        }).sort(function(a, b) {
+          return String(a.id).localeCompare(String(b.id));
+        }).forEach(function(q) {
+          ordered.push(q);
+        });
+      });
+    });
+    all.forEach(function(q) {
+      if (ordered.indexOf(q) < 0) ordered.push(q);
+    });
+    return ordered;
+  }
+
+  var buckets = {};
   all.forEach(function(q) {
     var profile = getQuestionDomainProfile(q);
     var top = Object.keys(profile).sort(function(a, b) { return (profile[b] || 0) - (profile[a] || 0); })[0] || 'mixed';
     if (!buckets[top]) buckets[top] = [];
     buckets[top].push(q);
   });
-  var ordered = [];
+  var fallbackOrdered = [];
   var bucketKeys = Object.keys(buckets).sort(function(a, b) {
     return buckets[b].length - buckets[a].length;
   });
   bucketKeys.forEach(function(key) {
     buckets[key] = shuffle((buckets[key] || []).slice());
   });
-  while (ordered.length < all.length) {
+  while (fallbackOrdered.length < all.length) {
     var progressed = false;
     bucketKeys.forEach(function(key) {
       if (buckets[key] && buckets[key].length) {
-        ordered.push(buckets[key].shift());
+        fallbackOrdered.push(buckets[key].shift());
         progressed = true;
       }
     });
     if (!progressed) break;
   }
-  return ordered;
+  return fallbackOrdered;
 }
 
 function renderQ(){
@@ -5489,15 +5669,21 @@ function buildCareerSequence(){
   if(careerBuilt) return;
   careerBuilt=true;
 
-  var activeCareerBank = ACTIVE_STAGE4_CAREER_BANKS[primaryDomain];
-  if (Array.isArray(activeCareerBank) && activeCareerBank.length) {
-    careerClustersSelected = [];
-    appendQuestionsUnique(activeCareerBank.slice());
+  var careerDomains = getFocusDomains().slice(0, 2);
+  var appendedExternal = false;
+  careerDomains.forEach(function(dom) {
+    var activeCareerBank = ACTIVE_STAGE4_CAREER_BANKS[dom];
+    if (!Array.isArray(activeCareerBank) || !activeCareerBank.length) return;
+    appendedExternal = true;
+    appendQuestionsUnique(careerDomains.length > 1 ? activeCareerBank.slice(0, 4) : activeCareerBank.slice());
+  });
+  if (appendedExternal) {
+    careerClustersSelected = careerDomains.slice();
     updateProgress();
     return;
   }
 
-  careerClustersSelected = getCareerClustersForPrimaryDomain(primaryDomain);
+  careerClustersSelected = getCareerClustersForPrimaryDomain(primaryDomain || careerDomains[0]);
   if (!careerClustersSelected.length) {
     var effectiveScores = getResultDirectionScores();
     careerClustersSelected = Object.keys(CAREER_CLUSTER_TRIGGERS).sort(function(a, b) {
@@ -5621,30 +5807,15 @@ function showResults(options){
     .filter(function(entry){ return entry[1] > 0; })
     .sort(function(a,b){return b[1]-a[1];});
 
-  var primaryDomainDirKey = {
-    ai:'ai',
-    cs:'cs',
-    ds:'ds',
-    robotics:'rb',
-    ee:'ee',
-    ce:'ce',
-    or:'or'
-  }[primaryDomain] || null;
+  var focusDomains = getFocusDomains();
+  var focusDomainKeys = getFocusDomainKeys();
+  var focusDomainLabels = focusDomains.map(getDomainDisplayLabel).filter(Boolean);
   var topFineEntries = getTopFineDirectionEntries(dirEntries, 3);
-  var primaryDomainTopDir = topFineEntries[0] || dirEntries.find(function(e){
-    return !NON_LEAF_DIRS[e[0]] && DIRS[e[0]] && DIRS[e[0]].domain === primaryDomainDirKey;
+  var focusTopDir = topFineEntries[0] || dirEntries.find(function(e){
+    return !NON_LEAF_DIRS[e[0]] && DIRS[e[0]] && (!focusDomainKeys.length || focusDomainKeys.indexOf(DIRS[e[0]].domain) >= 0);
   });
-  var topDir=(primaryDomainTopDir || dirEntries.find(function(e){return !NON_LEAF_DIRS[e[0]];}) || dirEntries[0] || [null])[0];
+  var topDir=(focusTopDir || dirEntries.find(function(e){return !NON_LEAF_DIRS[e[0]];}) || dirEntries[0] || [null])[0];
   var topDirObj=topDir?DIRS[topDir]:null;
-  var primaryDomainLabel = {
-    ai:'AI / ML',
-    cs:'CS',
-    ds:'DS / Stats',
-    robotics:'Robotics',
-    ee:'ECE / EE',
-    ce:'CE',
-    or:'Math / OR'
-  }[primaryDomain] || '';
 
   // Domain distribution (7 domains) uses the routed family scores rather than
   // raw leaf totals, so large families like AI do not win just because they
@@ -5702,11 +5873,17 @@ function showResults(options){
   var topDirDetail=DIR_DETAILS[topDir];
   var topDirDesc=topDirDetail&&topDirDetail.scene?topDirDetail.scene.split('。')[0]+'。':'';
   var top3Names = topFineEntries.map(function(entry){ return DIRS[entry[0]] ? DIRS[entry[0]].name : ''; }).filter(Boolean);
+  var focusDomainLine = '';
+  if (focusDomainLabels.length > 1) {
+    focusDomainLine = '<br>前两部分结束后，<strong>' + focusDomainLabels.join(' / ') + '</strong> 都保留了明显信号，所以第三部分按交叉候选一起展开。';
+  } else if (focusDomainLabels.length === 1) {
+    focusDomainLine = '<br>前两部分结束后，当前更像 <strong>' + focusDomainLabels[0] + '</strong> 这条主线。';
+  }
   document.getElementById('heroTagline').innerHTML=topDirObj?
     '<strong>'+topDirObj.name+'</strong> 是当前最靠前的细分方向。'
     +(top3Names.length > 1 ? '<br>同时，<strong>'+top3Names.slice(1).join('</strong> 和 <strong>')+'</strong> 也保持了明显信号，建议一起看作你的候选方向。' : '')
     +(topDirDesc?'<br>'+topDirDesc:'')
-    +(primaryDomainLabel?'<br>前两部分收敛后，你的主方向被判定为 <strong>'+primaryDomainLabel+'</strong>。':'')
+    +focusDomainLine
     +'<br>下面会按 Top 3 细分方向来展开这份结果。':
     '你的偏好分布相当均匀，以下是详细的分布分析。';
 

@@ -1,212 +1,198 @@
 window.STAGE1_QS = [
   {
-    id: 's1_01',
+    id: 's1_ai_01',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '哪类研究主线最值得你用几年时间持续打磨？',
+    cat: '粗分流 / AI 锚点',
+    anchorFamily: 'ai',
+    anchorRound: 1,
+    text: '一个东西已经能跑出结果了，但你还是忍不住想继续追哪种“不舒服”？',
     opts: [
-      { t: '把一个复杂问题讲出更一般的规律，让后来的人也能复用', d: { ml_theory: 2, stat_learn: 1, repr: 1, foundation: 1 } },
-      { t: '把一套复杂系统做成很多人都敢长期依赖的底座', d: { systems: 2, dist_sys: 1, cloud: 1, data_mgmt: 1 } },
-      { t: '把杂乱信息整理成别人愿意据此行动的判断依据', d: { applied_stats: 2, predictive_modeling: 1, bayes: 1, decision_analytics: 1 } },
-      { t: '让机器在真实环境里更会看、更会判断、也更会行动', d: { robotics: 2, perception: 1, intelligent_mobility: 1, motion: 1 } },
-      { t: '让设备、信号或反馈链路在真实工况下长期稳住', d: { sensor_signal: 1, autonomous_control: 1, realtime: 1, nextgen_comm: 1 } },
-      { t: '在目标和约束很多时，排出更优也更可执行的方案', d: { conv_opt: 1, resource_alloc: 1, scheduling: 1, decision_science: 1 } },
-      { t: '把算力、内存和数据通路组织得更高效', d: { arch: 1, processor_arch: 1, mem_sys: 1, hw_sw: 1 } }
+      { t: '换个场景就掉得厉害，说明它大概还没真学会', d: { foundation: 2, repr: 1, transfer: 1 }, domains: { ai: 3, ds: 0.4 } },
+      { t: '数据看着不少，可真要下判断总觉得证据差一口气', d: { stats: 2, bayes: 1, decision_analytics: 1 }, domains: { ds: 3, or: 0.6 } },
+      { t: '单机挺顺，一放大就开始慢、贵、难恢复', d: { systems: 2, dist_sys: 1, cloud: 1 }, domains: { cs: 3, ce: 0.6 } },
+      { t: '目标一多、限制一多，方案就总差最后那口顺气', d: { optim: 2, resource_alloc: 1, scheduling: 1 }, domains: { or: 3, ds: 0.6 } }
     ]
   },
   {
-    id: 's1_02',
+    id: 's1_cs_01',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '拿到一个陌生而复杂的问题，你最自然会先从哪一层切进去？',
+    cat: '粗分流 / CS 锚点',
+    anchorFamily: 'cs',
+    anchorRound: 1,
+    text: '看一个复杂项目的复盘时，你最容易被哪类问题勾住？',
     opts: [
-      { t: '先弄清这个问题真正成立的前提、结构和边界', d: { theory: 1, ml_theory: 1, stat_learn: 1, foundation: 1 } },
-      { t: '先把组件、接口、状态和依赖关系理顺', d: { systems: 2, dist_sys: 1, cloud: 1, db: 1 } },
-      { t: '先看数据够不够、准不准、能支持什么判断', d: { stats: 1, data_qual: 1, applied_stats: 1, predictive_modeling: 1 } },
-      { t: '先看感知、决策和动作这条闭环里哪一环最可能出问题', d: { perception: 1, localization_mapping: 1, motion: 1, intelligent_mobility: 1 } },
-      { t: '先看噪声、时延、扰动和反馈是不是关键瓶颈', d: { sensor_signal: 1, control: 1, realtime: 1, autonomous_control: 1 } },
-      { t: '先把目标、约束和资源列出来，再看怎么建模', d: { optim: 1, conv_opt: 1, resource_alloc: 1, decision_science: 1 } },
-      { t: '先看算、存、传这几层里哪一层最先卡住', d: { arch: 1, processor_arch: 1, mem_sys: 1, co_optimization: 1 } }
+      { t: '服务边界没切好，后面一层层连着出事', d: { systems: 2, dist_sys: 1, data_mgmt: 1 }, domains: { cs: 3, ce: 0.4 } },
+      { t: '算力、内存和数据搬运到底先卡在了哪一层', d: { arch: 2, mem_sys: 1, hw_sw: 1 }, domains: { ce: 3, cs: 0.6 } },
+      { t: '噪声、时延和反馈为什么一下就把链路带偏', d: { control: 2, signal: 1, sensor_signal: 1 }, domains: { ee: 3, robotics: 0.5 } },
+      { t: '指标不少，但到底先该信哪个信号', d: { stats: 2, experimentation: 1, data_qual: 1 }, domains: { ds: 3, or: 0.4 } }
     ]
   },
   {
-    id: 's1_03',
+    id: 's1_ds_01',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '哪类“这件事为什么又不对了”最容易让你停下来追到底？',
+    cat: '粗分流 / DS 锚点',
+    anchorFamily: 'ds',
+    anchorRound: 1,
+    text: '同样都是“做判断”，哪种难点更像你愿意长期啃的东西？',
     opts: [
-      { t: '方法换了场景就失灵了，却说不清到底差在哪', d: { transfer: 1, ml_theory: 1, stat_learn: 1, foundation: 1 } },
-      { t: '本地能跑，一放大规模就开始抖、慢或者挂', d: { dist_sys: 1, cloud: 1, systems: 1, stream: 1 } },
-      { t: '结论看起来像对的，后来发现判断方向完全偏了', d: { stats: 1, bayes: 1, data_qual: 1, experimentation: 1 } },
-      { t: '仿真没问题，一到真环境就频繁失手', d: { robotics: 1, intelligent_mobility: 1, perception: 1, field_robotics: 1 } },
-      { t: '加上噪声、扰动或时延后，系统一下就不稳了', d: { control: 1, sensor_signal: 1, stat_signal: 1, realtime: 1 } },
-      { t: '每一步都说得过去，但合起来就是不够优', d: { optim: 1, comb_opt: 1, dynamic_prog: 1, planning_uncertainty: 1 } },
-      { t: '功能都对，但性能、功耗或带宽总是顾此失彼', d: { arch: 1, mem_sys: 1, accelerator_arch: 1, ai_hw: 1 } }
+      { t: '很多因素缠在一起，还得尽量分清谁真的起了作用', d: { stats: 2, causal: 1, econom: 1 }, domains: { ds: 3, or: 0.6 } },
+      { t: '约束和目标互相拉扯，得给出能执行的排法', d: { optim: 2, scheduling: 1, resource_alloc: 1 }, domains: { or: 3, ds: 0.5 } },
+      { t: '模型看着会，一到陌生情况又像没学过', d: { repr: 1, transfer: 2, foundation: 1 }, domains: { ai: 3, ds: 0.4 } },
+      { t: '链路太长，结果从哪一步开始跑偏都不好找', d: { systems: 2, data_mgmt: 1, stream: 1 }, domains: { cs: 3, ds: 0.4 } }
     ]
   },
   {
-    id: 's1_04',
+    id: 's1_rb_01',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '如果一个跨学科项目刚启动，你最想先研究哪一层技术问题？',
+    cat: '粗分流 / Robotics 锚点',
+    anchorFamily: 'robotics',
+    anchorRound: 1,
+    text: '如果东西最后要进真实世界，你最在意哪一环别先掉链子？',
     opts: [
-      { t: '把核心问题重新定义清楚，免得后面都建立在误解上', d: { theory: 1, ml_theory: 1, repr: 1, formal: 1 } },
-      { t: '把系统边界、依赖关系和演进路径梳清楚', d: { systems: 2, data_mgmt: 1, dist_sys: 1, cloud: 1 } },
-      { t: '把指标、口径和证据链讲明白，让判断更靠谱', d: { applied_stats: 1, stats: 1, decision_analytics: 1, data_qual: 1 } },
-      { t: '把“看—想—做”的闭环真正跑通', d: { robotics: 1, intelligent_mobility: 1, motion: 1, perception: 1 } },
-      { t: '把设备、信号或控制链路调到可控可复现', d: { image_signal: 1, sensor_signal: 1, control: 1, embedded: 1 } },
-      { t: '把目标、约束和资源安排写成可执行方案', d: { resource_alloc: 1, scheduling: 1, optim: 1, decision_science: 1 } },
-      { t: '把底层算力路径和数据搬运重新组织好', d: { processor_arch: 1, mem_sys: 1, hw_sw: 1, system_integration: 1 } }
+      { t: '系统得先看懂周围，再知道下一步该怎么做', d: { robotics: 2, perception: 1, motion: 1 }, domains: { robotics: 3, ee: 0.5 } },
+      { t: '传感、执行和反馈这条物理链要长期稳得住', d: { control: 2, signal: 1, embedded: 1 }, domains: { ee: 3, robotics: 0.6 } },
+      { t: '模型别一离开熟悉场景就开始犯傻', d: { foundation: 1, transfer: 2, multimodal: 1 }, domains: { ai: 3, robotics: 0.4 } },
+      { t: '机端算力、内存和通路别先把能力卡死', d: { ai_hw: 1, arch: 2, mem_sys: 1 }, domains: { ce: 3, robotics: 0.5 } }
     ]
   },
   {
-    id: 's1_05',
+    id: 's1_ee_01',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '如果要长期围着一个技术主线做深入研究，你更愿意把时间花在哪类对象上？',
+    cat: '粗分流 / EE 锚点',
+    anchorFamily: 'ee',
+    anchorRound: 1,
+    text: '面对一个带设备和反馈链路的系统，你最想先掐哪条线往下看？',
     opts: [
-      { t: '问题的共性结构、理论边界和可复用的方法', d: { theory: 1, ml_theory: 1, stat_learn: 1, foundation: 1 } },
-      { t: '复杂系统的边界、状态流转和长期治理', d: { systems: 2, dist_sys: 1, cloud: 1, security: 1 } },
-      { t: '数据、证据和结论之间的判断链条', d: { stats: 1, bayes: 1, decision_analytics: 1, domain_ds: 1 } },
-      { t: '机器在真实环境里的感知、决策和动作闭环', d: { robotics: 1, intelligent_mobility: 1, perception: 1, robot_learning: 1 } },
-      { t: '现实工况下的信号、反馈和动态响应链路', d: { sensor_signal: 1, control: 1, nextgen_comm: 1, realtime: 1 } },
-      { t: '多约束条件下的优化、调度和资源安排', d: { optim: 1, resource_alloc: 1, scheduling: 1, decision_science: 1 } },
-      { t: '算力、内存和数据通路这类底层组织方式', d: { arch: 1, ai_hw: 1, mem_sys: 1, co_optimization: 1 } }
+      { t: '噪声、时延、参数和稳定边界到底谁在作怪', d: { signal: 1, control: 2, sensor_signal: 1 }, domains: { ee: 3, robotics: 0.5 } },
+      { t: '感知、定位、动作这条闭环是不是哪里没接顺', d: { robotics: 2, slam: 1, motion: 1 }, domains: { robotics: 3, ee: 0.6 } },
+      { t: '算、存、传里哪一层把设备侧拖慢了', d: { arch: 2, mem_sys: 1, hw_sw: 1 }, domains: { ce: 3, ee: 0.4 } },
+      { t: '后台平台或服务链一放大，哪层先把整体拖脆了', d: { systems: 2, dist_sys: 1, cloud: 1 }, domains: { cs: 3, ce: 0.4 } }
     ]
   },
   {
-    id: 's1_06',
+    id: 's1_or_01',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '哪类“材料”最像你愿意天天打交道的东西？',
+    cat: '粗分流 / OR 锚点',
+    anchorFamily: 'or',
+    anchorRound: 1,
+    text: '一件事越复杂，你越想先把哪种东西写清楚？',
     opts: [
-      { t: '假设、结构、表示、证明和方法边界', d: { theory: 1, repr: 1, ml_theory: 1, formal: 1 } },
-      { t: '服务状态、调用链、事务、容量和接口', d: { systems: 1, dist_sys: 1, db: 1, cloud: 1 } },
-      { t: '日志、样本、波动、口径和结果解释', d: { stats: 1, data_qual: 1, ts_anal: 1, decision_analytics: 1 } },
-      { t: '地图、轨迹、传感器输入和下一步动作', d: { slam: 1, perception: 1, motion: 1, intelligent_mobility: 1 } },
-      { t: '波形、反馈、时延、噪声和设备状态', d: { stat_signal: 1, control: 1, sensor_signal: 1, image_signal: 1 } },
-      { t: '约束表、目标函数、排程表和资源配额', d: { optim: 1, scheduling: 1, resource_alloc: 1, stoch: 1 } },
-      { t: '缓存命中、带宽分配、数据搬运和执行路径', d: { mem_sys: 1, processor_arch: 1, ai_hw: 1, hw_sw: 1 } }
+      { t: '目标、约束和取舍到底该怎么摆', d: { optim: 2, decision_science: 1, resource_alloc: 1 }, domains: { or: 3, ds: 0.6 } },
+      { t: '哪些信号能信，哪些只是碰巧一起出现', d: { stats: 2, bayes: 1, experimentation: 1 }, domains: { ds: 3, or: 0.5 } },
+      { t: '服务边界和状态流转该怎么拆才不乱', d: { systems: 2, dist_sys: 1, db: 1 }, domains: { cs: 3, ce: 0.4 } },
+      { t: '模型到底学到了什么，哪些只是表面像会', d: { repr: 1, foundation: 2, xai: 1 }, domains: { ai: 3, ds: 0.3 } }
     ]
   },
   {
-    id: 's1_07',
+    id: 's1_ce_01',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '项目推进到一半突然卡住时，你最想先补哪一层技术能力？',
+    cat: '粗分流 / CE 锚点',
+    anchorFamily: 'ce',
+    anchorRound: 1,
+    text: '如果问题最后卡在“东西就是跑不起来”，你最想先查哪一层？',
     opts: [
-      { t: '把核心假设和问题定义补清楚', d: { theory: 1, foundation: 1, ml_theory: 1, bayes_ml: 1 } },
-      { t: '把接口、状态和治理方式补扎实', d: { systems: 2, data_mgmt: 1, dist_sys: 1, cloud: 1 } },
-      { t: '把数据口径、评估方式和证据链补完整', d: { experimentation: 1, stats: 1, data_qual: 1, bayes: 1 } },
-      { t: '把感知、定位、规划或动作闭环补顺', d: { slam: 1, perception: 1, intelligent_mobility: 1, motion: 1 } },
-      { t: '把传感、反馈和动态响应补稳定', d: { sensor_signal: 1, control: 1, autonomous_control: 1, realtime: 1 } },
-      { t: '把目标、约束和资源分配方式补合理', d: { decision_science: 1, resource_alloc: 1, scheduling: 1, planning_uncertainty: 1 } },
-      { t: '把算、存、传和软硬件协同补高效', d: { mem_sys: 1, arch: 1, hw_sw: 1, accelerator_arch: 1 } }
+      { t: '算力、内存、带宽和数据搬运怎么配才不浪费', d: { arch: 2, mem_sys: 1, ai_hw: 1 }, domains: { ce: 3, cs: 0.6 } },
+      { t: '多机服务和平台链路是不是先把复杂度放大了', d: { systems: 2, dist_sys: 1, cloud: 1 }, domains: { cs: 3, ce: 0.5 } },
+      { t: '传感、控制和设备接口是不是天生就吃紧', d: { embedded: 1, control: 2, signal: 1 }, domains: { ee: 3, robotics: 0.4 } },
+      { t: '模型本身是不是太重了，不适合落到设备侧', d: { efficient: 1, quant: 1, inf_opt: 2 }, domains: { ai: 3, ce: 0.6 } }
     ]
   },
   {
-    id: 's1_08',
+    id: 's1_ai_02',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '如果未来几年只允许你刻意练一种核心研究能力，你更想练哪一种？',
+    cat: '粗分流 / AI 锚点',
+    anchorFamily: 'ai',
+    anchorRound: 2,
+    text: '真要花几年磨一件事，哪种进展最能让你觉得这时间花得值？',
     opts: [
-      { t: '把复杂问题抽到别人也能复用的程度', d: { ml_theory: 1, theory: 1, repr: 1, stat_learn: 1 } },
-      { t: '把复杂系统做成长期可维护的公共能力', d: { systems: 2, dist_sys: 1, cloud: 1, security: 1 } },
-      { t: '把数据、证据和结论之间的链条守扎实', d: { stats: 1, applied_stats: 1, decision_analytics: 1, bayes: 1 } },
-      { t: '把机器在现场的闭环越调越顺', d: { robotics: 1, motion: 1, intelligent_mobility: 1, robot_learning: 1 } },
-      { t: '把噪声、反馈和设备状态压进稳定范围', d: { control: 1, sensor_signal: 1, stat_signal: 1, embedded: 1 } },
-      { t: '把复杂约束写成真正能执行的决策方案', d: { conv_opt: 1, resource_alloc: 1, scheduling: 1, decision_science: 1 } },
-      { t: '把算力、内存和通路组织到极致效率', d: { processor_arch: 1, mem_sys: 1, accelerator_arch: 1, co_optimization: 1 } }
+      { t: '模型遇到没见过的问题也没那么容易失手了', d: { foundation: 2, transfer: 1, repr: 1 }, domains: { ai: 3, ds: 0.4 } },
+      { t: '一堆杂乱信息终于能支撑靠谱判断', d: { stats: 2, decision_analytics: 1, bayes: 1 }, domains: { ds: 3, or: 0.5 } },
+      { t: '原来脆弱的服务终于能稳稳扛住量了', d: { systems: 2, cloud: 1, dist_sys: 1 }, domains: { cs: 3, ce: 0.5 } },
+      { t: '在很多限制下，方案终于排得又顺又值', d: { optim: 2, scheduling: 1, resource_alloc: 1 }, domains: { or: 3, ds: 0.6 } }
     ]
   },
   {
-    id: 's1_09',
+    id: 's1_cs_02',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '哪种研究约束环境反而会让你更想继续往下做？',
+    cat: '粗分流 / CS 锚点',
+    anchorFamily: 'cs',
+    anchorRound: 2,
+    text: '如果别人来找你救火，你其实更愿意接哪种烂摊子？',
     opts: [
-      { t: '问题很抽象，但一旦讲通会带来长久解释力', d: { theory: 1, ml_theory: 1, stat_learn: 1, prob_ml: 1 } },
-      { t: '组件很多、状态很多，不能乱也不能掉', d: { systems: 2, dist_sys: 1, db: 1, cloud: 1 } },
-      { t: '信息不完整，结论却还必须站得住', d: { bayes: 1, stats: 1, uq: 1, decision_analytics: 1 } },
-      { t: '环境持续变化，系统必须一边感知一边调整', d: { robotics: 1, intelligent_mobility: 1, perception: 1, field_robotics: 1 } },
-      { t: '噪声、干扰和时延都是真实存在、躲不开的', d: { sensor_signal: 1, control: 1, comm_networks: 1, realtime: 1 } },
-      { t: '目标彼此冲突，必须在很多取舍里找平衡', d: { optim: 1, stoch: 1, scheduling: 1, resource_alloc: 1 } },
-      { t: '资源边界很硬，但性能要求一点都不能降', d: { arch: 1, mem_sys: 1, ai_hw: 1, edge_hw_platform: 1 } }
+      { t: '服务扩完容以后越来越难排查，故障一串就是一片', d: { systems: 2, dist_sys: 1, storage_sys: 1 }, domains: { cs: 3, ce: 0.4 } },
+      { t: '软件没明显错，可性能就是被底层路径拖住', d: { arch: 2, hw_sw: 1, mem_sys: 1 }, domains: { ce: 3, cs: 0.6 } },
+      { t: '设备和控制链一复杂就开始不听话', d: { control: 2, embedded: 1, signal: 1 }, domains: { ee: 3, robotics: 0.5 } },
+      { t: '规则一多之后，怎么排都像还有更好的解没找到', d: { optim: 2, decision_science: 1, scheduling: 1 }, domains: { or: 3, ds: 0.4 } }
     ]
   },
   {
-    id: 's1_10',
+    id: 's1_ds_02',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '同样是在让系统更靠谱，你更想守哪一层？',
+    cat: '粗分流 / DS 锚点',
+    anchorFamily: 'ds',
+    anchorRound: 2,
+    text: '哪种工作材料最像你愿意天天翻来覆去看的东西？',
     opts: [
-      { t: '让能力和方法本身更稳，不是一换场景就失效', d: { foundation: 1, transfer: 1, ml_theory: 1, safety: 1 } },
-      { t: '让服务链路长期稳定、恢复快、治理清楚', d: { systems: 2, cloud: 1, dist_sys: 1, storage_sys: 1 } },
-      { t: '让判断依据更扎实，知道什么时候该信、什么时候该停', d: { stats: 1, bayes: 1, data_qual: 1, experimentation: 1 } },
-      { t: '让系统在真实场景里更会理解环境、决定下一步', d: { intelligent_mobility: 1, perception: 1, robotics: 1, robot_learning: 1 } },
-      { t: '让传感、反馈和控制链在现实工况下不漂不炸', d: { control: 1, sensor_signal: 1, stat_signal: 1, cps: 1 } },
-      { t: '让整体方案在限制很多时依然安排得合理', d: { decision_science: 1, scheduling: 1, resource_alloc: 1, planning_uncertainty: 1 } },
-      { t: '让底层硬件平台把性能真正跑出来', d: { ai_hw: 1, processor_arch: 1, mem_sys: 1, device_edge_cloud: 1 } }
+      { t: '样本、波动、置信区间和结论边界', d: { stats: 2, bayes: 1, applied_stats: 1 }, domains: { ds: 3, or: 0.5 } },
+      { t: '排程表、资源表和一长串现实限制', d: { resource_alloc: 2, scheduling: 1, optim: 1 }, domains: { or: 3, ds: 0.6 } },
+      { t: '日志、监控、异常链路和回滚记录', d: { systems: 2, data_mgmt: 1, stream: 1 }, domains: { cs: 3, ds: 0.4 } },
+      { t: '模型输出、误差案例和评测细节', d: { repr: 1, llm: 1, foundation: 2 }, domains: { ai: 3, ds: 0.4 } }
     ]
   },
   {
-    id: 's1_11',
+    id: 's1_rb_02',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '如果项目最终要落到车、机器人或设备上，你更想优先补哪块核心技术？',
+    cat: '粗分流 / Robotics 锚点',
+    anchorFamily: 'robotics',
+    anchorRound: 2,
+    text: '哪种现场问题最会让你下班后还在脑子里复盘？',
     opts: [
-      { t: '让核心能力本身更聪明，遇到新情况也不容易失手', d: { foundation: 1, applied_ai: 1, multimodal: 1, llm: 1 } },
-      { t: '让整套软件和平台链路长期稳定、方便迭代', d: { systems: 2, dist_sys: 1, mlops: 1, cloud: 1 } },
-      { t: '让日志、指标和评估体系能及时发现哪里开始跑偏', d: { experimentation: 1, data_qual: 1, mlops: 1, ts_anal: 1 } },
-      { t: '让系统更会理解环境、决定下一步该怎么做', d: { embodied: 1, perception: 1, intelligent_mobility: 1, vla: 1 } },
-      { t: '让感知、执行器和反馈回路在真实世界里始终稳得住', d: { control: 1, sensor_signal: 1, realtime: 1, autonomous_control: 1 } },
-      { t: '让路线、资源和任务安排在复杂限制下依然合理', d: { dynamic_prog: 1, resource_alloc: 1, scheduling: 1, planning_uncertainty: 1 } },
-      { t: '让车端或机端的算力、内存和通路不拖后腿', d: { ai_hw: 1, mem_sys: 1, processor_arch: 1, edge_hw_platform: 1 } }
+      { t: '到了真环境，感知、定位、动作配合总有一环出岔子', d: { robotics: 2, perception: 1, slam: 1 }, domains: { robotics: 3, ee: 0.5 } },
+      { t: '噪声、扰动和时延一上来，系统就不太听话', d: { control: 2, signal: 1, realtime: 1 }, domains: { ee: 3, robotics: 0.6 } },
+      { t: '感知和决策都对，可设备侧还是跑不动', d: { ai_hw: 1, arch: 2, hw_sw: 1 }, domains: { ce: 3, robotics: 0.5 } },
+      { t: '训练时明明不错，换个场景就掉一截', d: { transfer: 2, foundation: 1, multimodal: 1 }, domains: { ai: 3, robotics: 0.4 } }
     ]
   },
   {
-    id: 's1_12',
+    id: 's1_ee_02',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '哪种技术进展最像你愿意持续追下去的主线成果？',
+    cat: '粗分流 / EE 锚点',
+    anchorFamily: 'ee',
+    anchorRound: 2,
+    text: '哪种“终于调顺了”的时刻最会让你有满足感？',
     opts: [
-      { t: '原本混乱的问题终于被讲得更清楚了', d: { theory: 1, ml_theory: 1, repr: 1, xai: 1 } },
-      { t: '原本爱出问题的系统终于长期稳住了', d: { systems: 2, dist_sys: 1, cloud: 1, security: 1 } },
-      { t: '原本靠感觉的判断终于有了扎实依据', d: { stats: 1, bayes: 1, applied_stats: 1, decision_analytics: 1 } },
-      { t: '机器在复杂场景里真的少失手了', d: { robotics: 1, intelligent_mobility: 1, perception: 1, visual_navigation: 1 } },
-      { t: '系统在真实工况下又稳又准地跑起来了', d: { sensor_signal: 1, control: 1, realtime: 1, edge_devices: 1 } },
-      { t: '同样资源下方案明显更值、更能落地', d: { optim: 1, scheduling: 1, revenue_opt: 1, resource_alloc: 1 } },
-      { t: '底层路径理顺后，性能一下上了一个台阶', d: { processor_arch: 1, mem_sys: 1, ai_hw: 1, co_optimization: 1 } }
+      { t: '链路在真实工况下稳了、准了，也不容易漂了', d: { control: 2, signal: 1, sensor_signal: 1 }, domains: { ee: 3, robotics: 0.4 } },
+      { t: '机器在现场终于不再迷路、失手或乱动了', d: { robotics: 2, motion: 1, perception: 1 }, domains: { robotics: 3, ee: 0.5 } },
+      { t: '底层平台一理顺，设备侧性能立刻上来', d: { arch: 2, mem_sys: 1, ai_hw: 1 }, domains: { ce: 3, cs: 0.5 } },
+      { t: '很多组件一起跑时，整体系统终于不再抖了', d: { systems: 2, dist_sys: 1, cloud: 1 }, domains: { cs: 3, ce: 0.4 } }
     ]
   },
   {
-    id: 's1_13',
+    id: 's1_or_02',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '同样是在复杂平台里，你更自然会先优化哪一层？',
+    cat: '粗分流 / OR 锚点',
+    anchorFamily: 'or',
+    anchorRound: 2,
+    text: '哪种成就更像你会追很多年的那种？',
     opts: [
-      { t: '能力和方法的边界，看看系统到底学会了什么、没学会什么', d: { foundation: 1, ml_theory: 1, safety: 1, transfer: 1 } },
-      { t: '服务边界和状态流转，让系统不因为复杂度上涨而失控', d: { systems: 2, dist_sys: 1, data_mgmt: 1, cloud: 1 } },
-      { t: '数据、指标和判断链条，让结论更能被信任和采用', d: { decision_analytics: 1, experimentation: 1, data_qual: 1, business_intel: 1 } },
-      { t: '场景理解和任务决策，让机器知道该往哪走、该做什么', d: { perception: 1, intelligent_mobility: 1, motion: 1, vla: 1 } },
-      { t: '反馈、噪声和动态响应，让物理系统别一复杂就发散', d: { control: 1, stat_signal: 1, sensor_signal: 1, image_signal: 1 } },
-      { t: '目标、约束和资源配置，让复杂系统整体更会取舍', d: { optim: 1, resource_alloc: 1, scheduling: 1, decision_science: 1 } },
-      { t: '算力组织和数据搬运，让平台底层别白白浪费效率', d: { arch: 1, mem_sys: 1, hw_sw: 1, accelerator_arch: 1 } }
+      { t: '同样的资源，方案就是比以前排得更漂亮也更能执行', d: { optim: 2, scheduling: 1, decision_science: 1 }, domains: { or: 3, ds: 0.6 } },
+      { t: '判断终于不再靠感觉，结论有证据撑着', d: { stats: 2, bayes: 1, causal: 1 }, domains: { ds: 3, or: 0.5 } },
+      { t: '大系统终于变得清楚、稳当、好维护', d: { systems: 2, cloud: 1, data_mgmt: 1 }, domains: { cs: 3, ce: 0.4 } },
+      { t: '模型终于能在陌生问题上少失手', d: { foundation: 2, transfer: 1, safety: 1 }, domains: { ai: 3, ds: 0.3 } }
     ]
   },
   {
-    id: 's1_14',
+    id: 's1_ce_02',
     phase: 'anchor',
-    cat: '粗分流',
-    text: '读完一个复杂项目的复盘后，你最想继续往下追问哪一类问题？',
+    cat: '粗分流 / CE 锚点',
+    anchorFamily: 'ce',
+    anchorRound: 2,
+    text: '哪种底层改动最像你愿意长期投入的方向？',
     opts: [
-      { t: '这件事真正成立的条件是什么，哪些地方不能想当然', d: { theory: 1, ml_theory: 1, stat_learn: 1, safety: 1 } },
-      { t: '系统哪条链路最脆，怎么补才能长期稳住', d: { systems: 2, dist_sys: 1, cloud: 1, storage_sys: 1 } },
-      { t: '哪些结论可以放心用，哪些只是阶段性信号', d: { stats: 1, bayes: 1, experimentation: 1, data_qual: 1 } },
-      { t: '系统在现场到底看到了什么、想了什么、为什么做出这个动作', d: { perception: 1, intelligent_mobility: 1, robotics: 1, hri: 1 } },
-      { t: '现实工况里的噪声、时延和反馈到底怎样影响表现', d: { sensor_signal: 1, control: 1, comm_networks: 1, autonomous_control: 1 } },
-      { t: '如果要更值、更稳、更能落地，方案应该怎么重新安排', d: { optim: 1, resource_alloc: 1, revenue_opt: 1, planning_uncertainty: 1 } },
-      { t: '如果要让平台更强，算、存、传应该先改哪层', d: { arch: 1, mem_sys: 1, ai_hw: 1, co_optimization: 1 } }
+      { t: '把硬件组织方式理顺，让同样任务明显快一截', d: { arch: 2, ai_hw: 1, mem_sys: 1 }, domains: { ce: 3, cs: 0.6 } },
+      { t: '把系统平台理顺，让上层能力稳稳跑起来', d: { systems: 2, dist_sys: 1, cloud: 1 }, domains: { cs: 3, ce: 0.5 } },
+      { t: '把设备和控制链打磨到长期可用', d: { embedded: 1, control: 2, signal: 1 }, domains: { ee: 3, robotics: 0.4 } },
+      { t: '把感知和决策能力真正塞进真实机器里', d: { robotics: 2, embodied: 1, perception: 1 }, domains: { robotics: 3, ce: 0.5 } }
     ]
   }
 ];
